@@ -3,7 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Greek Alphabet &mdash; Review &amp; Quiz</title>
+<title>Greek Study Sheet</title>
+<meta name="description" content="Greek study sheet: the alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article. Flashcards, a matching game and quizzes.">
+<meta name="theme-color" content="#f5f1e8">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Greek Study Sheet">
+<meta property="og:url" content="https://daniel-projectt.github.io/greek-alphabet/">
+<meta property="og:title" content="Greek Study Sheet">
+<meta property="og:description" content="Alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article. Flashcards, match and quizzes.">
+<meta property="og:image" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
+<meta property="og:image:secure_url" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="An engraved cream Greek letter xi on parchment with gold filigree">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Greek Study Sheet">
+<meta name="twitter:description" content="Alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article.">
+<meta name="twitter:image" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
 <style>
 :root{
   --bg:#f5f1e8;
@@ -21,7 +40,8 @@
   --bad:#9c3a2d;
   --bad-bg:#f8e7e4;
   --shadow:0 1px 2px rgba(29,27,23,.05), 0 10px 28px rgba(29,27,23,.05);
-  --serif:"Palatino Linotype","Book Antiqua",Palatino,"Iowan Old Style",Cambria,"Times New Roman",Georgia,serif;
+  --serif:"Palatino Linotype","Book Antiqua",Palatino,Cambria,"Times New Roman",serif;
+  --greek:"Palatino Linotype",Cambria,"Times New Roman","Gentium Plus",serif;
   --sans:Optima,Candara,"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -37,68 +57,84 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+.gk{font-family:var(--greek)}
 
 /* ---------- masthead ---------- */
-header{text-align:center;padding-block:46px 6px}
+header{text-align:center;padding-block:44px 4px}
 .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
 h1{font-weight:400;font-size:clamp(32px,6.2vw,54px);line-height:1.08;margin:0;letter-spacing:.005em}
 .sub{margin:12px 0 0;color:var(--muted);font-style:italic;font-size:16px}
-.ornament{display:flex;align-items:center;gap:14px;justify-content:center;margin:22px auto 0;max-width:280px;color:var(--gold-soft)}
-.ornament::before,.ornament::after{content:"";height:1px;background:currentColor;flex:1;opacity:.7}
-.ornament span{font-size:9px;letter-spacing:.5em}
+.orn{color:var(--gold-soft);display:block;margin:16px auto 0;width:min(320px,82%);height:auto}
+.h2{font-weight:400;font-size:23px;text-align:center;margin:36px 0 6px;letter-spacing:.01em}
+.h2 + .lead{margin-top:0}
+.lead{text-align:center;font-style:italic;color:var(--muted);font-size:15px;max-width:640px;margin:0 auto 18px;line-height:1.55}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;color:var(--gold-soft);margin:6px auto 18px;max-width:220px}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:currentColor;opacity:.6}
+.divider span{font-size:8px}
 
-/* ---------- tabs ---------- */
-.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin:26px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:5px 0}
-.tab{font-family:var(--sans);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:11px 18px;background:none;border:0;color:var(--muted);cursor:pointer;border-radius:2px;transition:color .18s,box-shadow .18s}
-.tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--gold)}
+/* ---------- topics + modes ---------- */
+.topics{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin:26px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:5px 0}
+.topic-btn{font-family:var(--sans);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:13px 18px;background:none;border:0;color:var(--muted);cursor:pointer;border-radius:2px;transition:color .18s,box-shadow .18s;min-height:44px}
+.topic-btn:hover{color:var(--ink)}
+.topic-btn[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--gold)}
+.intro{text-align:center;font-style:italic;color:var(--muted);margin:24px auto 0;max-width:640px;font-size:15.5px;line-height:1.55}
+.modes{display:flex;justify-content:center;margin:18px 0 22px}
+.hint{text-align:center;font-family:var(--sans);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:-6px 0 18px;line-height:1.6}
+.topic[hidden],.panel[hidden]{display:none}
 
 /* ---------- generic controls ---------- */
-.toolbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:center;margin:26px 0 24px}
-.btn{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 17px;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;color:var(--ink-soft);cursor:pointer;transition:.18s}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:center;margin:0 0 22px}
+.toolbar.tight{margin:14px 0 0}
+.btn{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 17px;min-height:42px;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;color:var(--ink-soft);cursor:pointer;transition:.18s}
 .btn:hover{border-color:var(--gold);color:var(--gold)}
 .btn.primary{background:var(--ink);border-color:var(--ink);color:#f7f3ea}
 .btn.primary:hover{background:var(--gold);border-color:var(--gold);color:#fffdf7}
 .btn:disabled{opacity:.4;cursor:not-allowed}
-.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden;background:var(--surface)}
-.seg button{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;background:none;border:0;border-right:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.18s}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden;background:var(--surface)}
+.seg button{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:10px 14px;min-height:40px;background:none;border:0;border-right:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.18s}
 .seg button:last-child{border-right:0}
 .seg button[aria-pressed="true"]{background:var(--surface-2);color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
 .seg button:hover{color:var(--ink)}
 .label{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-button:focus-visible,.tile:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.panel[hidden]{display:none}
+button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.spk{background:none;border:0;color:var(--line-strong);cursor:pointer;padding:6px;line-height:0;border-radius:50%;transition:.18s;vertical-align:middle}
+.spk:hover{color:var(--gold);background:var(--surface-2)}
+
+/* ---------- engraved bits ---------- */
+.engraved{color:#fffdf5;-webkit-text-stroke:.6px rgba(150,118,64,.7);text-shadow:-1px -1px 0 #fff,2px 3px 5px rgba(96,78,48,.28)}
+.card-corners{position:relative}
+.card-corners .c{position:absolute;width:42px;height:42px;color:var(--gold-soft);opacity:.85;pointer-events:none}
+.c.tl{top:6px;left:6px}.c.tr{top:6px;right:6px;transform:scaleX(-1)}.c.bl{bottom:6px;left:6px;transform:scaleY(-1)}.c.br{bottom:6px;right:6px;transform:scale(-1)}
 
 /* ---------- review grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:14px}
 .card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:20px 14px 16px;text-align:center;box-shadow:var(--shadow)}
 .card.masked{cursor:pointer}
 .card .num{position:absolute;top:9px;left:12px;font-family:var(--sans);font-size:10px;letter-spacing:.12em;color:var(--muted)}
-.spk{position:absolute;top:6px;right:7px;background:none;border:0;color:var(--line-strong);cursor:pointer;padding:5px;line-height:0;border-radius:50%;transition:.18s}
-.spk:hover{color:var(--gold);background:var(--surface-2)}
-.glyphs{font-size:46px;line-height:1.15;letter-spacing:.04em}
-.glyphs .lo{color:var(--gold)}
+.card .spk{position:absolute;top:5px;right:6px}
+.glyphs{font-family:var(--greek);font-size:46px;line-height:1.15;letter-spacing:.04em}
+.glyphs .lo,.lo{color:var(--gold)}
 .name{font-family:var(--sans);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:10px}
 .tr{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-top:3px}
 .sound{font-style:italic;font-size:14.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
 .veil{filter:blur(9px);transition:filter .25s;user-select:none}
 .veil.shown{filter:none}
-.note{text-align:center;font-style:italic;color:var(--muted);font-size:14.5px;margin:26px auto 0;max-width:620px}
+.note{text-align:center;font-style:italic;color:var(--muted);font-size:14.5px;margin:22px auto 0;max-width:640px;line-height:1.55}
 
 /* ---------- flashcards ---------- */
-.flashWrap{max-width:460px;margin:0 auto}
-.flash{perspective:1400px;height:330px;cursor:pointer}
+.flashWrap{max-width:470px;margin:0 auto}
+.flash{perspective:1400px;height:350px;cursor:pointer}
 .flashInner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.1,.2,1);transform-style:preserve-3d}
 .flash.flipped .flashInner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 34px;overflow:auto;text-align:center}
 .face.back{transform:rotateY(180deg);background:var(--surface-2)}
-.face .big{font-size:clamp(70px,16vw,110px);line-height:1;letter-spacing:.03em}
-.face .mid{font-family:var(--sans);font-size:clamp(24px,5.5vw,36px);letter-spacing:.14em;text-transform:uppercase}
-.face .hint{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:18px}
-.face.back .big .lo{color:var(--gold)}
-.face .bname{font-family:var(--sans);font-size:13px;letter-spacing:.22em;text-transform:uppercase;margin-top:14px}
-.face .btr{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-top:4px}
-.face .bsound{font-style:italic;font-size:16px;margin-top:10px;color:var(--ink-soft);text-align:center}
+.face .big{font-family:var(--greek);font-size:clamp(66px,15vw,104px);line-height:1;letter-spacing:.03em}
+.face .mid{font-family:var(--sans);font-size:clamp(22px,5.5vw,34px);letter-spacing:.14em;text-transform:uppercase}
+.face .hint{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:16px 0 0}
+.face .bname{font-family:var(--sans);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;margin-top:12px}
+.face .btr{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-top:5px}
+.face .bsound{font-style:italic;font-size:15px;margin-top:9px;color:var(--ink-soft);line-height:1.45}
+.face .forms{font-family:var(--greek);font-size:21px;margin-top:10px;color:var(--gold);line-height:1.4}
 .progress{height:2px;background:var(--line);margin:18px 0 10px;border-radius:2px;overflow:hidden}
 .progress i{display:block;height:100%;background:var(--gold);transition:width .3s}
 .counter{text-align:center;font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin:0}
@@ -107,7 +143,7 @@ button:focus-visible,.tile:focus-visible{outline:2px solid var(--gold);outline-o
 .matchGrid{display:grid;grid-template-columns:1fr 1fr;gap:20px 26px;align-items:start}
 .col h3{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:0 0 12px;text-align:center}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:9px}
-.tile{aspect-ratio:1;display:grid;place-items:center;font-family:var(--serif);font-size:31px;background:var(--surface);border:1px solid var(--line);border-radius:3px;cursor:pointer;color:var(--ink);transition:.16s;box-shadow:var(--shadow)}
+.tile{aspect-ratio:1;display:grid;place-items:center;font-family:var(--greek);font-size:31px;background:var(--surface);border:1px solid var(--line);border-radius:3px;cursor:pointer;color:var(--ink);transition:.16s;box-shadow:var(--shadow)}
 .tile:hover{border-color:var(--gold-soft)}
 .tiles.wide{grid-template-columns:repeat(auto-fill,minmax(126px,1fr))}
 .tiles.wide .tile{aspect-ratio:auto;min-height:58px;padding:10px 8px;font-family:var(--sans);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center;line-height:1.35}
@@ -120,43 +156,77 @@ button:focus-visible,.tile:focus-visible{outline:2px solid var(--gold);outline-o
 .scoreline b{color:var(--ink);font-weight:400}
 .banner{text-align:center;background:var(--ok-bg);border:1px solid #cbdcd0;color:var(--ok);border-radius:3px;padding:14px;margin:0 0 20px;font-style:italic}
 
-/* ---------- quiz ---------- */
-.quizWrap{max-width:660px;margin:0 auto}
-.dots{display:flex;gap:6px;justify-content:center;margin-bottom:26px}
+/* ---------- quiz / practice ---------- */
+.quizWrap{max-width:680px;margin:0 auto}
+.dots{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:24px}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--line-strong);transition:.2s}
 .dots i.on{background:var(--gold);transform:scale(1.35)}
 .dots i.ok{background:var(--ok)}
 .dots i.no{background:var(--bad)}
-.qcard{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:30px 26px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:34px 30px 30px}
 .qnum{font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);text-align:center}
-.qtext{text-align:center;font-size:20px;margin:12px 0 0;line-height:1.45}
-.qglyph{text-align:center;font-size:82px;line-height:1.15;margin:12px 0 0;letter-spacing:.04em}
-.qglyph .lo{color:var(--gold)}
-.qglyph.soundq{font-size:26px;line-height:1.4;font-style:italic;color:var(--ink-soft);margin-top:18px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px}
-.opt{position:relative;font-family:var(--serif);font-size:17px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;padding:16px 14px;cursor:pointer;color:var(--ink);transition:.16s;text-align:center}
+.qtext{text-align:center;font-size:20px;margin:12px auto 0;line-height:1.45;max-width:520px}
+.qglyph{font-family:var(--greek);text-align:center;font-size:82px;line-height:1.15;margin:12px 0 0;letter-spacing:.04em}
+.qglyph.word{font-size:58px}
+.qglyph.ink{color:var(--ink)}
+.meaning{text-align:center;font-style:italic;color:var(--muted);margin:4px 0 16px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px}
+.opt{position:relative;font-family:var(--serif);font-size:16.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;padding:16px 14px 14px;min-height:54px;cursor:pointer;color:var(--ink);transition:.16s;text-align:center;line-height:1.35}
 .opt:hover:not(:disabled){border-color:var(--gold-soft);background:#fff}
-.opt.glyph{font-size:36px;line-height:1.25;padding:14px 10px}
-.opt.italic{font-style:italic;font-size:15.5px}
+.opt.glyph{font-family:var(--greek);font-size:36px;line-height:1.25;padding:14px 10px}
 .opt .k{position:absolute;top:6px;left:9px;font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:var(--muted);font-style:normal}
 .opt.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
 .opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
 .opt:disabled{cursor:default}
-.feedback{text-align:center;margin-top:20px;font-style:italic;color:var(--ink-soft);min-height:26px}
+.feedback{text-align:center;margin-top:20px;font-style:italic;color:var(--ink-soft);min-height:26px;line-height:1.5}
 .qfoot{display:flex;justify-content:center;margin-top:16px}
-.result{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:36px 26px}
+.answer{display:block;width:100%;font-family:var(--greek);font-size:24px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:3px;background:#fff;text-align:center;color:var(--ink)}
+.answer::placeholder{font-family:var(--serif);font-style:italic;font-size:16px;color:#b5ad9c}
+.answer.ok{border-color:var(--ok);background:var(--ok-bg)}
+.answer.bad{border-color:var(--bad);background:var(--bad-bg)}
+.keys{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.keys .ins{font-family:var(--greek);font-size:18px;text-transform:none;letter-spacing:0;padding:8px 16px}
+.rh{margin-top:16px;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;padding:12px 16px}
+.rh ul{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-soft)}
+.rh li{margin:4px 0;line-height:1.45}
+.result{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:40px 26px 34px}
 .result .big{font-size:60px;line-height:1;color:var(--gold)}
 .result .rsub{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px}
 .result .verdict{font-style:italic;color:var(--ink-soft);margin-top:14px}
-.misslist{margin:26px auto 0;max-width:430px;text-align:left;border-top:1px solid var(--line)}
-.misslist div{display:flex;gap:14px;align-items:baseline;padding:10px 2px;border-bottom:1px solid var(--line)}
-.misslist .g{font-size:26px;min-width:64px;letter-spacing:.04em}
-.misslist .g .lo{color:var(--gold)}
-.misslist .t{font-size:14.5px;color:var(--ink-soft);font-style:italic}
+.misslist{margin:26px auto 0;max-width:470px;text-align:left;border-top:1px solid var(--line)}
+.misslist > div{display:flex;gap:14px;align-items:baseline;padding:10px 2px;border-bottom:1px solid var(--line)}
+.misslist .g{font-family:var(--greek);font-size:24px;min-width:74px;letter-spacing:.03em}
+.misslist .t{font-size:14.5px;color:var(--ink-soft);font-style:italic;line-height:1.45}
 .misslist .t b{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:var(--ink);display:block;font-style:normal}
 
+/* ---------- tables, rule cards, chips ---------- */
+.tblwrap{overflow-x:auto;margin:0 -4px;padding:0 4px}
+.tbl{width:100%;min-width:560px;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.tbl th{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:12px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15.5px;line-height:1.5}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .gk{font-size:27px;line-height:1.2;white-space:nowrap}
+.tbl .gk.sm{font-size:21px}
+.tbl .gk.forms{white-space:normal;line-height:1.5}
+.tbl .gk.forms i{font-style:normal;display:inline-block;min-width:1.9em}
+.tbl .it{font-style:italic;color:var(--ink-soft)}
+.tbl .mn{font-size:14.5px;color:var(--ink-soft);max-width:300px}
+.tbl .kw{font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--gold)}
+.tbl .cs{font-family:var(--sans);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:18px 20px;box-shadow:var(--shadow)}
+.rule h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;font-weight:400}
+.rule p{margin:0;font-size:15px;line-height:1.5}
+.rule .ex{font-style:italic;color:var(--muted);font-size:14.5px;margin-top:6px;line-height:1.55}
+.rule .ex .gk{font-style:normal;color:var(--ink);font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:8px 13px;font-size:14.5px;color:var(--ink-soft);box-shadow:var(--shadow)}
+.chip .gk{font-size:21px;color:var(--ink);margin-right:8px}
+.chip .tl{font-family:var(--sans);letter-spacing:.06em;color:var(--gold);margin-right:6px}
+.chip .gk .lo{color:var(--gold)}
+
 footer{text-align:center;padding:46px 20px 56px;color:var(--muted);font-size:13px;font-style:italic}
-footer .keys{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-style:normal;margin-top:12px;color:var(--muted)}
+footer .keys{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-style:normal;margin-top:12px;color:var(--muted);display:block}
 kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);border-bottom-width:2px;border-radius:3px;padding:1px 5px;background:var(--surface);color:var(--ink-soft)}
 
 @media (max-width:640px){
@@ -164,11 +234,14 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   .matchGrid{grid-template-columns:1fr;gap:26px}
   .opts{grid-template-columns:1fr}
   .grid{grid-template-columns:repeat(auto-fill,minmax(146px,1fr))}
-  .flash{height:290px}
+  .flash{height:330px}
+  .qcard{padding:30px 18px 24px}
+  .card-corners .c{width:32px;height:32px}
+  .topic-btn{padding:12px 12px;font-size:11px}
 }
 @media print{
   body{background:#fff;background-image:none}
-  .tabs,.toolbar,.spk,footer,.ornament{display:none!important}
+  .topics,.modes,.toolbar,.spk,footer,.orn,.hint,.intro{display:none!important}
   .card{break-inside:avoid;box-shadow:none}
   .grid{grid-template-columns:repeat(4,1fr);gap:8px}
   .veil{filter:none!important}
@@ -177,107 +250,184 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute;width:0;height:0" aria-hidden="true" focusable="false">
+  <symbol id="flourish" viewBox="0 0 320 44">
+    <g id="flh" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M160 22 C132 22 110 6 80 14 C60 19 48 30 30 24"/>
+      <path d="M30 24 c-7-3-14 2-12 8 c2 5 9 5 10 0 c0.6-3-2-5-4.5-4"/>
+      <path d="M158 30 C130 34 114 24 88 28 C74 30 66 37 54 36" stroke-width=".8" opacity=".75"/>
+      <path d="M54 36 c-5-1-9 3-7 7 c2 3 6 2 6-1" stroke-width=".8" opacity=".75"/>
+      <path d="M104 15 c3-10 12-15 22-13 c-4 7-12 12-22 13z" fill="currentColor" stroke="none" opacity=".9"/>
+      <path d="M130 19 c3 8 11 13 20 11 c-3-6-10-11-20-11z" fill="currentColor" stroke="none" opacity=".75"/>
+      <path d="M70 18 c2-7 9-10 15-8 c-3 5-8 8-15 8z" fill="currentColor" stroke="none" opacity=".7"/>
+    </g>
+    <use href="#flh" transform="matrix(-1 0 0 1 320 0)"/>
+    <path d="M160 16 l6 6-6 6-6-6z" fill="currentColor"/>
+  </symbol>
+  <symbol id="corner" viewBox="0 0 60 60">
+    <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+      <path d="M4 58 V26 C4 12 12 4 26 4 H58"/>
+      <path d="M12 52 V30 C12 20 20 12 30 12 H52" stroke-width=".7" opacity=".7"/>
+      <path d="M26 4 c-9 4-12 15-3 19 c6 3 11-3 8-7 c-2-3-7-1-5 2"/>
+    </g>
+    <path d="M28 20 c6-3 12-1 14 6 c-6 1-11-1-14-6z" fill="currentColor" opacity=".8"/>
+    <path d="M8 8 l4 4-4 4-4-4z" fill="currentColor"/>
+  </symbol>
+</svg>
+
 <div class="wrap">
 
   <header>
     <p class="eyebrow">Study Sheet</p>
-    <h1>The Greek Alphabet</h1>
-    <p class="sub">Uppercase &middot; lowercase &middot; name &middot; sound</p>
-    <div class="ornament"><span>&#9670;</span></div>
+    <h1>Greek Study Sheet</h1>
+    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article</p>
+    <svg class="orn" viewBox="0 0 320 44" aria-hidden="true"><use href="#flourish"/></svg>
   </header>
 
-  <nav class="tabs" role="tablist" aria-label="Study modes">
-    <button class="tab" role="tab" data-tab="review" aria-selected="true">Review Chart</button>
-    <button class="tab" role="tab" data-tab="cards" aria-selected="false">Flashcards</button>
-    <button class="tab" role="tab" data-tab="match" aria-selected="false">Match</button>
-    <button class="tab" role="tab" data-tab="quiz" aria-selected="false">Quiz</button>
+  <nav class="topics" role="tablist" aria-label="Topics">
+    <button class="topic-btn" role="tab" data-topic="alphabet" aria-selected="true">Alphabet</button>
+    <button class="topic-btn" role="tab" data-topic="sounds" aria-selected="false">Diphthongs &amp; Breathings</button>
+    <button class="topic-btn" role="tab" data-topic="translit" aria-selected="false">Transliteration</button>
+    <button class="topic-btn" role="tab" data-topic="cases" aria-selected="false">Cases &amp; Articles</button>
   </nav>
 
   <main>
 
-    <!-- ============ REVIEW ============ -->
-    <section class="panel" id="panel-review" role="tabpanel">
-      <div class="toolbar">
-        <span class="label">Hide</span>
-        <div class="seg" id="maskSeg">
-          <button type="button" data-mask="none" aria-pressed="true">Nothing</button>
-          <button type="button" data-mask="low" aria-pressed="false">Lowercase</button>
-          <button type="button" data-mask="name" aria-pressed="false">Name</button>
-          <button type="button" data-mask="sound" aria-pressed="false">Sound</button>
+    <!-- ================= ALPHABET ================= -->
+    <section class="topic" id="topic-alphabet">
+      <p class="intro">Twenty-four letters. Learn them on the chart, drill them with the flashcards, then test yourself with the matching game and the quiz.</p>
+      <div class="modes"><div class="seg" data-modes="alphabet">
+        <button type="button" data-mode="chart" aria-pressed="true">Chart</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="match" aria-pressed="false">Match</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+
+      <div class="panel" data-panel="alphabet/chart">
+        <p class="hint">Blur one column to test yourself, then click a card to reveal it. The speaker reads the letter aloud.</p>
+        <div class="toolbar">
+          <span class="label">Hide</span>
+          <div class="seg" id="maskSeg">
+            <button type="button" data-mask="none" aria-pressed="true">Nothing</button>
+            <button type="button" data-mask="low" aria-pressed="false">Lowercase</button>
+            <button type="button" data-mask="name" aria-pressed="false">Name</button>
+            <button type="button" data-mask="sound" aria-pressed="false">Sound</button>
+          </div>
+          <button class="btn" type="button" id="revShuffle">Shuffle</button>
+          <button class="btn" type="button" id="revOrder">Alpha to Omega</button>
+          <button class="btn" type="button" id="revPrint">Print</button>
         </div>
-        <button class="btn" type="button" id="revShuffle">Shuffle</button>
-        <button class="btn" type="button" id="revOrder">Alpha to Omega</button>
-        <button class="btn" type="button" id="revPrint">Print</button>
+        <div class="grid" id="reviewGrid"></div>
+        <p class="note">Sigma has two lowercase forms: <span class="gk">&#963;</span> inside a word, <span class="gk">&#962;</span> at the end of a word.</p>
       </div>
-      <div class="grid" id="reviewGrid"></div>
-      <p class="note">Click a blurred card to reveal it. Sigma has two lowercase forms: <b>&#963;</b> inside a word, <b>&#962;</b> at the end of a word.</p>
+
+      <div class="panel" data-panel="alphabet/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar">
+          <span class="label">Front shows</span>
+          <div class="seg" id="frontSeg">
+            <button type="button" data-front="up" aria-pressed="true">Uppercase</button>
+            <button type="button" data-front="low" aria-pressed="false">Lowercase</button>
+            <button type="button" data-front="name" aria-pressed="false">Name</button>
+          </div>
+          <button class="btn" type="button" id="fcShuffle">Shuffle deck</button>
+          <button class="btn" type="button" id="fcHear">Hear it</button>
+        </div>
+        <div id="alphaCards"></div>
+      </div>
+
+      <div class="panel" data-panel="alphabet/match" hidden>
+        <p class="hint">Tap a letter on the left, then its partner on the right. Matched pairs fade out.</p>
+        <div class="toolbar">
+          <span class="label">Match</span>
+          <div class="seg" id="mModeSeg">
+            <button type="button" data-mmode="low" aria-pressed="true">Upper to lower</button>
+            <button type="button" data-mmode="name" aria-pressed="false">Letter to name</button>
+            <button type="button" data-mmode="sound" aria-pressed="false">Letter to sound</button>
+          </div>
+          <span class="label">Letters</span>
+          <div class="seg" id="mSizeSeg">
+            <button type="button" data-msize="8" aria-pressed="true">8</button>
+            <button type="button" data-msize="12" aria-pressed="false">12</button>
+            <button type="button" data-msize="24" aria-pressed="false">24</button>
+          </div>
+          <button class="btn primary" type="button" id="mNew">New round</button>
+        </div>
+        <p class="scoreline" id="mScore"></p>
+        <div id="mBanner"></div>
+        <div class="matchGrid">
+          <div class="col"><h3>Uppercase</h3><div class="tiles" id="mLeft"></div></div>
+          <div class="col"><h3 id="mRightTitle">Lowercase</h3><div class="tiles" id="mRight"></div></div>
+        </div>
+      </div>
+
+      <div class="panel" data-panel="alphabet/quiz" hidden>
+        <p class="hint">Ten questions. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <div id="alphaQuiz"></div>
+      </div>
     </section>
 
-    <!-- ============ FLASHCARDS ============ -->
-    <section class="panel" id="panel-cards" role="tabpanel" hidden>
-      <div class="toolbar">
-        <span class="label">Front shows</span>
-        <div class="seg" id="frontSeg">
-          <button type="button" data-front="up" aria-pressed="true">Uppercase</button>
-          <button type="button" data-front="low" aria-pressed="false">Lowercase</button>
-          <button type="button" data-front="name" aria-pressed="false">Name</button>
-        </div>
-        <button class="btn" type="button" id="fcShuffle">Shuffle deck</button>
-        <button class="btn" type="button" id="fcHear">Hear it</button>
-      </div>
-      <div class="flashWrap">
-        <div class="flash" id="flash"><div class="flashInner">
-          <div class="face front" id="flashFront"></div>
-          <div class="face back" id="flashBack"></div>
-        </div></div>
-        <div class="progress"><i id="fcBar" style="width:0"></i></div>
-        <p class="counter" id="fcCount"></p>
-        <div class="toolbar" style="margin:14px 0 0">
-          <button class="btn" type="button" id="fcPrev">&lsaquo; Prev</button>
-          <button class="btn primary" type="button" id="fcFlip">Flip</button>
-          <button class="btn" type="button" id="fcNext">Next &rsaquo;</button>
-        </div>
+    <!-- ================= DIPHTHONGS & BREATHINGS ================= -->
+    <section class="topic" id="topic-sounds" hidden>
+      <p class="intro">Two vowels that glide together make a diphthong. Every word that begins with a vowel wears a breathing mark: rough (&#8127;) adds an <b>h</b>, smooth (&#8125;) is silent.</p>
+      <div class="modes"><div class="seg" data-modes="sounds">
+        <button type="button" data-mode="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Practice</button>
+      </div></div>
+      <div class="panel" data-panel="sounds/learn"><div id="soundsLearn"></div></div>
+      <div class="panel" data-panel="sounds/quiz" hidden>
+        <p class="hint">Ten mixed questions on diphthong sounds and breathing marks.</p>
+        <div id="soundsQuiz"></div>
       </div>
     </section>
 
-    <!-- ============ MATCH ============ -->
-    <section class="panel" id="panel-match" role="tabpanel" hidden>
-      <div class="toolbar">
-        <span class="label">Match</span>
-        <div class="seg" id="mModeSeg">
-          <button type="button" data-mmode="low" aria-pressed="true">Upper to lower</button>
-          <button type="button" data-mmode="name" aria-pressed="false">Letter to name</button>
-          <button type="button" data-mmode="sound" aria-pressed="false">Letter to sound</button>
-        </div>
-        <span class="label">Letters</span>
-        <div class="seg" id="mSizeSeg">
-          <button type="button" data-msize="8" aria-pressed="true">8</button>
-          <button type="button" data-msize="12" aria-pressed="false">12</button>
-          <button type="button" data-msize="24" aria-pressed="false">24</button>
-        </div>
-        <button class="btn primary" type="button" id="mNew">New round</button>
-      </div>
-      <p class="scoreline" id="mScore"></p>
-      <div id="mBanner"></div>
-      <div class="matchGrid">
-        <div class="col"><h3>Uppercase</h3><div class="tiles" id="mLeft"></div></div>
-        <div class="col"><h3 id="mRightTitle">Lowercase</h3><div class="tiles" id="mRight"></div></div>
+    <!-- ================= TRANSLITERATION ================= -->
+    <section class="topic" id="topic-translit" hidden>
+      <p class="intro">Transliteration writes a Greek word in English letters, sound for sound. Learn the rules, then practice on real New Testament words.</p>
+      <div class="modes"><div class="seg" data-modes="translit">
+        <button type="button" data-mode="rules" aria-pressed="true">Rules</button>
+        <button type="button" data-mode="practice" aria-pressed="false">Practice</button>
+      </div></div>
+      <div class="panel" data-panel="translit/rules"><div id="translitRules"></div></div>
+      <div class="panel" data-panel="translit/practice" hidden>
+        <p class="hint">Type the word in English letters and press <kbd>Enter</kbd> or Check. The buttons insert the long-vowel marks.</p>
+        <div id="translitPractice"></div>
       </div>
     </section>
 
-    <!-- ============ QUIZ ============ -->
-    <section class="panel" id="panel-quiz" role="tabpanel" hidden>
-      <div class="quizWrap">
-        <div class="dots" id="dots"></div>
-        <div id="quizBody"></div>
+    <!-- ================= CASES & ARTICLES ================= -->
+    <section class="topic" id="topic-cases" hidden>
+      <p class="intro">The five cases and the definite article, exactly as in your book. Read the table, then memorize the forms with the flashcards and the quiz.</p>
+      <div class="modes"><div class="seg" data-modes="cases">
+        <button type="button" data-mode="table" aria-pressed="true">Table</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="cases/table"><div id="caseTable"></div></div>
+      <div class="panel" data-panel="cases/cards" hidden>
+        <p class="hint">Front shows an article form; the back tells you its case, number and gender. Switch the deck to drill the cases themselves.</p>
+        <div class="toolbar">
+          <span class="label">Deck</span>
+          <div class="seg" id="deckSeg">
+            <button type="button" data-deck="forms" aria-pressed="true">Article forms</button>
+            <button type="button" data-deck="cases" aria-pressed="false">The five cases</button>
+          </div>
+          <button class="btn" type="button" id="ccShuffle">Shuffle deck</button>
+        </div>
+        <div id="caseCards"></div>
+      </div>
+      <div class="panel" data-panel="cases/quiz" hidden>
+        <p class="hint">Ten mixed questions: name the case of a form, pick the form for a case, match key words and mnemonics.</p>
+        <div id="caseQuiz"></div>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <p>Twenty-four letters, from Alpha to Omega.</p>
-    <p class="keys">Flashcards <kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>Space</kbd> &nbsp;&middot;&nbsp; Quiz <kbd>1</kbd>&ndash;<kbd>4</kbd> <kbd>Enter</kbd></p>
+    <p>From Alpha to Omega, and a little beyond.</p>
+    <span class="keys">Flashcards <kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>Space</kbd> &nbsp;&middot;&nbsp; Quizzes <kbd>1</kbd>&ndash;<kbd>4</kbd> <kbd>Enter</kbd></span>
   </footer>
 
 </div>
@@ -286,48 +436,426 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 (function(){
 "use strict";
 
-/* ------------------------------------------------------------------ data */
-var DATA = [
-  {n:1, u:"Α", l:"α", name:"Alpha",   tr:"a",   sound:"ah — as in father",        say:"sounds like ah, as in father"},
-  {n:2, u:"Β", l:"β", name:"Beta",    tr:"b",   sound:"b — as in bat",            say:"sounds like b, as in bat"},
-  {n:3, u:"Γ", l:"γ", name:"Gamma",   tr:"g",   sound:"g — as in go",             say:"sounds like g, as in go"},
-  {n:4, u:"Δ", l:"δ", name:"Delta",   tr:"d",   sound:"d — as in dog",            say:"sounds like d, as in dog"},
-  {n:5, u:"Ε", l:"ε", name:"Epsilon", tr:"e",   sound:"eh — as in met",           say:"sounds like eh, as in met"},
-  {n:6, u:"Ζ", l:"ζ", name:"Zeta",    tr:"z",   sound:"dz — as in adze",          say:"sounds like dz, as in adze"},
-  {n:7, u:"Η", l:"η", name:"Eta",     tr:"ē", sound:"ay — as in they",       say:"sounds like ay, as in they"},
-  {n:8, u:"Θ", l:"θ", name:"Theta",   tr:"th",  sound:"th — as in thin",          say:"sounds like th, as in thin"},
-  {n:9, u:"Ι", l:"ι", name:"Iota",    tr:"i",   sound:"ee — as in machine",       say:"sounds like ee, as in machine"},
-  {n:10,u:"Κ", l:"κ", name:"Kappa",   tr:"k",   sound:"k — as in kite",           say:"sounds like k, as in kite"},
-  {n:11,u:"Λ", l:"λ", name:"Lambda",  tr:"l",   sound:"l — as in lamp",           say:"sounds like l, as in lamp"},
-  {n:12,u:"Μ", l:"μ", name:"Mu",      tr:"m",   sound:"m — as in moon",           say:"sounds like m, as in moon"},
-  {n:13,u:"Ν", l:"ν", name:"Nu",      tr:"n",   sound:"n — as in net",            say:"sounds like n, as in net"},
-  {n:14,u:"Ξ", l:"ξ", name:"Xi",      tr:"x",   sound:"ks — as in box",           say:"sounds like ks, as in box"},
-  {n:15,u:"Ο", l:"ο", name:"Omicron", tr:"o",   sound:"o — as in pot",            say:"sounds like o, as in pot"},
-  {n:16,u:"Π", l:"π", name:"Pi",      tr:"p",   sound:"p — as in pen",            say:"sounds like p, as in pen"},
-  {n:17,u:"Ρ", l:"ρ", name:"Rho",     tr:"r",   sound:"r — rolled, as in run",    say:"sounds like a rolled r, as in run"},
-  {n:18,u:"Σ", l:"σ", name:"Sigma",   tr:"s",   sound:"s — as in sun",            say:"sounds like s, as in sun"},
-  {n:19,u:"Τ", l:"τ", name:"Tau",     tr:"t",   sound:"t — as in top",            say:"sounds like t, as in top"},
-  {n:20,u:"Υ", l:"υ", name:"Upsilon", tr:"u",   sound:"ew — as in French tu",     say:"sounds like ew, as in the French tu"},
-  {n:21,u:"Φ", l:"φ", name:"Phi",     tr:"ph",  sound:"f — as in phone",          say:"sounds like f, as in phone"},
-  {n:22,u:"Χ", l:"χ", name:"Chi",     tr:"ch",  sound:"kh — as in Bach",          say:"sounds like kh, as in Bach"},
-  {n:23,u:"Ψ", l:"ψ", name:"Psi",     tr:"ps",  sound:"ps — as in lapse",         say:"sounds like ps, as in lapse"},
-  {n:24,u:"Ω", l:"ω", name:"Omega",   tr:"ō", sound:"oh — as in tone",       say:"sounds like oh, as in tone"}
-];
-
-/* --------------------------------------------------------------- helpers */
+/* ================================================================ helpers */
 function $(s,r){ return (r||document).querySelector(s); }
 function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
 function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function pick(a,n){ return shuffle(a).slice(0,n); }
 function pad(n){ return (n<10?"0":"")+n; }
-function byN(n){ for(var i=0;i<DATA.length;i++){ if(DATA[i].n===n) return DATA[i]; } return null; }
-function pair(d){ return d.u+" <span class=\"lo\">"+d.l+"</span>"; }
-
+function uniqBy(arr, fn){ var seen={}, out=[]; arr.forEach(function(x){ var k=fn(x); if(!seen[k]){ seen[k]=1; out.push(x); } }); return out; }
+function gk(s){ return '<span class="gk">'+s+'</span>'; }
+function pair(d){ return d.u+' <span class="lo">'+d.l+'</span>'; }
+var store = {
+  get:function(k){ try{ return localStorage.getItem("greek."+k); }catch(e){ return null; } },
+  set:function(k,v){ try{ localStorage.setItem("greek."+k, v); }catch(e){} }
+};
 var SPK = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">'+
   '<path d="M4 9.2v5.6h3.6L12 18.6V5.4L7.6 9.2H4z" fill="currentColor"/>'+
   '<path d="M15.6 8.6a4.6 4.6 0 0 1 0 6.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>'+
   '<path d="M18.2 6.2a8 8 0 0 1 0 11.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".55"/></svg>';
+var CORNERS = ['tl','tr','bl','br'].map(function(c){ return '<svg class="c '+c+'" aria-hidden="true"><use href="#corner"/></svg>'; }).join('');
 
-/* ----------------------------------------------------------------- voice */
+/* ================================================================ data: alphabet */
+var LETTERS = [
+  {n:1, u:"Α", l:"α", name:"Alpha",   tr:"a",  sound:"ah — as in father",       say:"sounds like ah, as in father"},
+  {n:2, u:"Β", l:"β", name:"Beta",    tr:"b",  sound:"b — as in bat",           say:"sounds like b, as in bat"},
+  {n:3, u:"Γ", l:"γ", name:"Gamma",   tr:"g",  sound:"g — as in go",            say:"sounds like g, as in go"},
+  {n:4, u:"Δ", l:"δ", name:"Delta",   tr:"d",  sound:"d — as in dog",           say:"sounds like d, as in dog"},
+  {n:5, u:"Ε", l:"ε", name:"Epsilon", tr:"e",  sound:"eh — as in met",          say:"sounds like eh, as in met"},
+  {n:6, u:"Ζ", l:"ζ", name:"Zeta",    tr:"z",  sound:"dz — as in adze",         say:"sounds like dz, as in adze"},
+  {n:7, u:"Η", l:"η", name:"Eta",     tr:"ē",  sound:"ay — as in they",         say:"sounds like ay, as in they"},
+  {n:8, u:"Θ", l:"θ", name:"Theta",   tr:"th", sound:"th — as in thin",         say:"sounds like th, as in thin"},
+  {n:9, u:"Ι", l:"ι", name:"Iota",    tr:"i",  sound:"ee — as in machine",      say:"sounds like ee, as in machine"},
+  {n:10,u:"Κ", l:"κ", name:"Kappa",   tr:"k",  sound:"k — as in kite",          say:"sounds like k, as in kite"},
+  {n:11,u:"Λ", l:"λ", name:"Lambda",  tr:"l",  sound:"l — as in lamp",          say:"sounds like l, as in lamp"},
+  {n:12,u:"Μ", l:"μ", name:"Mu",      tr:"m",  sound:"m — as in moon",          say:"sounds like m, as in moon"},
+  {n:13,u:"Ν", l:"ν", name:"Nu",      tr:"n",  sound:"n — as in net",           say:"sounds like n, as in net"},
+  {n:14,u:"Ξ", l:"ξ", name:"Xi",      tr:"x",  sound:"ks — as in box",          say:"sounds like ks, as in box"},
+  {n:15,u:"Ο", l:"ο", name:"Omicron", tr:"o",  sound:"o — as in pot",           say:"sounds like o, as in pot"},
+  {n:16,u:"Π", l:"π", name:"Pi",      tr:"p",  sound:"p — as in pen",           say:"sounds like p, as in pen"},
+  {n:17,u:"Ρ", l:"ρ", name:"Rho",     tr:"r",  sound:"r — rolled, as in run",   say:"sounds like a rolled r, as in run"},
+  {n:18,u:"Σ", l:"σ", name:"Sigma",   tr:"s",  sound:"s — as in sun",           say:"sounds like s, as in sun"},
+  {n:19,u:"Τ", l:"τ", name:"Tau",     tr:"t",  sound:"t — as in top",           say:"sounds like t, as in top"},
+  {n:20,u:"Υ", l:"υ", name:"Upsilon", tr:"u",  sound:"ew — as in French tu",    say:"sounds like ew, as in the French tu"},
+  {n:21,u:"Φ", l:"φ", name:"Phi",     tr:"ph", sound:"f — as in phone",         say:"sounds like f, as in phone"},
+  {n:22,u:"Χ", l:"χ", name:"Chi",     tr:"ch", sound:"kh — as in Bach",         say:"sounds like kh, as in Bach"},
+  {n:23,u:"Ψ", l:"ψ", name:"Psi",     tr:"ps", sound:"ps — as in lapse",        say:"sounds like ps, as in lapse"},
+  {n:24,u:"Ω", l:"ω", name:"Omega",   tr:"ō",  sound:"oh — as in tone",         say:"sounds like oh, as in tone"}
+];
+
+/* ================================================================ data: diphthongs & breathings */
+var DIPH = [
+  {g:"αι", tr:"ai", sound:"ai as in aisle",              ex:"καί (kai) — and"},
+  {g:"ει", tr:"ei", sound:"ei as in eight",              ex:"εἰ (ei) — if"},
+  {g:"οι", tr:"oi", sound:"oi as in oil",                ex:"οἶκος (oikos) — house"},
+  {g:"υι", tr:"ui", sound:"we as in suite",              ex:"υἱός (huios) — son"},
+  {g:"αυ", tr:"au", sound:"ow as in cow",                ex:"αὐτός (autos) — he, self"},
+  {g:"ευ", tr:"eu", sound:"eu as in feud",               ex:"εὐαγγέλιον (euangelion) — gospel"},
+  {g:"ου", tr:"ou", sound:"oo as in soup",               ex:"οὐ (ou) — not"},
+  {g:"ηυ", tr:"ēu", sound:"like ευ, held longer (rare)", ex:"ηὔξησεν (ēuxēsen) — he grew"}
+];
+var IMPROPER = [
+  {g:"ᾳ", tr:"āi", sound:"ah — the iota is silent", ex:"τῇ ἡμέρᾳ (tēi hēmerāi) — on the day"},
+  {g:"ῃ", tr:"ēi", sound:"ay — the iota is silent", ex:"τῇ (tēi) — to the"},
+  {g:"ῳ", tr:"ōi", sound:"oh — the iota is silent", ex:"τῷ λόγῳ (tōi logōi) — to the word"}
+];
+var ALLDIPH = DIPH.concat(IMPROPER);
+var BREATH_WORDS = [
+  {g:"ὁ",        en:"the (masculine)"},
+  {g:"ἡ",        en:"the (feminine)"},
+  {g:"οἱ",       en:"the (masculine plural)"},
+  {g:"αἱ",       en:"the (feminine plural)"},
+  {g:"ἐν",       en:"in"},
+  {g:"ἐγώ",      en:"I"},
+  {g:"υἱός",     en:"son"},
+  {g:"ὑπέρ",     en:"above, on behalf of"},
+  {g:"ῥῆμα",     en:"word, saying"},
+  {g:"Ἰησοῦς",   en:"Jesus"},
+  {g:"ἁμαρτία",  en:"sin"},
+  {g:"ἀγάπη",    en:"love"},
+  {g:"ὥρα",      en:"hour"},
+  {g:"εἰρήνη",   en:"peace"},
+  {g:"εὑρίσκω",  en:"I find"},
+  {g:"αἷμα",     en:"blood"},
+  {g:"ἄγγελος",  en:"angel, messenger"},
+  {g:"οὐρανός",  en:"heaven"},
+  {g:"ἔργον",    en:"work"},
+  {g:"ὁδός",     en:"road, way"},
+  {g:"ἅγιος",    en:"holy"},
+  {g:"ἀδελφός",  en:"brother"}
+];
+var BREATH_RULES = [
+  {h:"Every vowel start wears one", p:"A word that begins with a vowel or a diphthong always carries a breathing mark.", ex:["ἐν (en)","ὁ (ho)","αἱ (hai)"]},
+  {h:"Smooth breathing ᾿", p:"Silent. Nothing is written for it in English letters.", ex:["ἐγώ (egō)","ἀγάπη (agapē)","Ἰησοῦς (Iēsous)"]},
+  {h:"Rough breathing ῾", p:"Adds an h sound in front of the vowel.", ex:["ὁ (ho)","ἡμέρα (hēmera)","ἅγιος (hagios)"]},
+  {h:"On a diphthong", p:"The mark sits on the second vowel, but the h still comes first.", ex:["οἱ (hoi)","εὑρίσκω (heuriskō)","αἷμα (haima)"]},
+  {h:"υ and ρ", p:"A word beginning with υ or ρ always takes the rough breathing.", ex:["υἱός (huios)","ὑπέρ (hyper)","ῥῆμα (rhēma)"]},
+  {h:"On a capital", p:"The mark stands in front of the capital, at the upper left. The other marks (´ ` ῀) are accents: they show stress, not breathing.", ex:["Ἰησοῦς (Iēsous)","Ἅγιος (Hagios)"]}
+];
+var PLACE = [
+  {text:"Rough breathing on the diphthong οι — which is written correctly?", ok:"οἱ", wrong:["ὁι","ὁἱ","οί"], explain:"On a diphthong the breathing sits on the second vowel: οἱ (hoi)."},
+  {text:"Rough breathing on the diphthong αι — which is written correctly?", ok:"αἱ", wrong:["ἁι","ἁἱ","αί"], explain:"On a diphthong the breathing sits on the second vowel: αἱ (hai)."},
+  {text:"Smooth breathing on the diphthong ευ — which is written correctly?", ok:"εὐ", wrong:["ἐυ","ἐὐ","εύ"], explain:"On a diphthong the breathing sits on the second vowel: εὐ (eu)."},
+  {text:"A word that starts with υ — which breathing must it take?", ok:"ὑπέρ", wrong:["ὐπέρ","υπέρ","ύπέρ"], explain:"Initial υ always takes the rough breathing: ὑπέρ (hyper)."},
+  {text:"A word that starts with ρ — which is right?", ok:"ῥῆμα", wrong:["ῤῆμα","ρῆμα","ρήμα"], explain:"Initial ρ always takes the rough breathing: ῥῆμα (rhēma)."},
+  {text:"Breathing on a capital letter — which is right?", ok:"Ἰησοῦς", wrong:["Ιἠσοῦς","Ίησοῦς","Ιησοῦς"], explain:"On a capital the breathing goes in front, at the upper left: Ἰησοῦς (Iēsous)."}
+];
+
+/* ================================================================ data: transliteration */
+var TRANS = [
+  {g:"λόγος",       tr:"logos",       en:"word"},
+  {g:"θεός",        tr:"theos",       en:"God"},
+  {g:"ἄνθρωπος",    tr:"anthrōpos",   en:"man, human being"},
+  {g:"ἀγάπη",       tr:"agapē",       en:"love"},
+  {g:"Χριστός",     tr:"Christos",    en:"Christ"},
+  {g:"Ἰησοῦς",      tr:"Iēsous",      en:"Jesus"},
+  {g:"εὐαγγέλιον",  tr:"euangelion",  en:"gospel, good news"},
+  {g:"ἄγγελος",     tr:"angelos",     en:"angel, messenger"},
+  {g:"ἁμαρτία",     tr:"hamartia",    en:"sin"},
+  {g:"υἱός",        tr:"huios",       en:"son"},
+  {g:"ὁδός",        tr:"hodos",       en:"road, way"},
+  {g:"ἡμέρα",       tr:"hēmera",      en:"day"},
+  {g:"ψυχή",        tr:"psychē",      en:"soul, life"},
+  {g:"φῶς",         tr:"phōs",        en:"light"},
+  {g:"χάρις",       tr:"charis",      en:"grace"},
+  {g:"ῥῆμα",        tr:"rhēma",       en:"word, saying"},
+  {g:"οὐρανός",     tr:"ouranos",     en:"heaven"},
+  {g:"κόσμος",      tr:"kosmos",      en:"world"},
+  {g:"βασιλεία",    tr:"basileia",    en:"kingdom"},
+  {g:"δόξα",        tr:"doxa",        en:"glory"},
+  {g:"ζωή",         tr:"zōē",         en:"life"},
+  {g:"ἀλήθεια",     tr:"alētheia",    en:"truth"},
+  {g:"εἰρήνη",      tr:"eirēnē",      en:"peace"},
+  {g:"πνεῦμα",      tr:"pneuma",      en:"spirit, wind"},
+  {g:"κύριος",      tr:"kyrios",      en:"lord, master"},
+  {g:"σοφία",       tr:"sophia",      en:"wisdom"},
+  {g:"ἐκκλησία",    tr:"ekklēsia",    en:"church, assembly"},
+  {g:"ἔργον",       tr:"ergon",       en:"work"},
+  {g:"ὥρα",         tr:"hōra",        en:"hour"},
+  {g:"αἷμα",        tr:"haima",       en:"blood"},
+  {g:"εὑρίσκω",     tr:"heuriskō",    en:"I find"},
+  {g:"ἀδελφός",     tr:"adelphos",    en:"brother"},
+  {g:"γραφή",       tr:"graphē",      en:"writing, Scripture"},
+  {g:"δοῦλος",      tr:"doulos",      en:"slave, servant"},
+  {g:"νόμος",       tr:"nomos",       en:"law"},
+  {g:"ἅγιος",       tr:"hagios",      en:"holy"},
+  {g:"μαθητής",     tr:"mathētēs",    en:"disciple"},
+  {g:"προφήτης",    tr:"prophētēs",   en:"prophet"},
+  {g:"ἀνάγκη",      tr:"anankē",      en:"necessity"},
+  {g:"ἔλεγχος",     tr:"elenchos",    en:"proof, rebuke"},
+  {g:"τῷ λόγῳ",     tr:"tōi logōi",   en:"to the word"},
+  {g:"τῇ ἡμέρᾳ",    tr:"tēi hēmerāi", en:"on the day"},
+  {g:"ξένος",       tr:"xenos",       en:"stranger"},
+  {g:"ὄχλος",       tr:"ochlos",      en:"crowd"},
+  {g:"τέκνον",      tr:"teknon",      en:"child"},
+  {g:"λαός",        tr:"laos",        en:"people"},
+  {g:"ὑπέρ",        tr:"hyper",       en:"above, on behalf of"},
+  {g:"σάρξ",        tr:"sarx",        en:"flesh"},
+  {g:"αὐτός",       tr:"autos",       en:"he, self"},
+  {g:"οἶκος",       tr:"oikos",       en:"house"}
+];
+var RULE_TEXT = {
+  smooth:"Smooth breathing (᾿) is silent — write nothing for it.",
+  rough: "Rough breathing (῾) becomes an h at the very start of the word, even when it sits on the second vowel of a diphthong.",
+  rh:    "A word starting with ρ always has the rough breathing: ῥ = rh.",
+  iota:  "Iota subscript (ᾳ ῃ ῳ) is written as a small i after the long vowel: āi, ēi, ōi. Some books leave it out; both are accepted here.",
+  gamma: "γ before γ, κ, χ or ξ sounds like n: γγ ng · γκ nk · γχ nch · γξ nx.",
+  diph:  "Diphthongs: αι ai · ει ei · οι oi · υι ui · αυ au · ευ eu · ου ou.",
+  y:     "υ on its own is y (κύριος → kyrios). Inside a diphthong it is u.",
+  long:  "η = ē and ω = ō. The bar marks the long vowel; ε and ο stay plain.",
+  dbl:   "Two-letter sounds: θ th · φ ph · χ ch · ψ ps. Single letters: ξ x · ζ z.",
+  cap:   "A capital letter stays a capital in English."
+};
+var TRANS_RULES = [
+  {h:"Long vowels", p:"η = ē and ω = ō. The little bar marks the long vowel. ε = e and ο = o stay plain.", ex:["ἀγάπη → agapē","λόγος → logos","ζωή → zōē"]},
+  {h:"Two-letter sounds", p:"θ th · φ ph · χ ch · ψ ps. And the single letters ξ x · ζ z.", ex:["θεός → theos","ψυχή → psychē","δόξα → doxa"]},
+  {h:"Upsilon", p:"On its own υ is y. Inside a diphthong it is u: αυ au · ευ eu · ου ou · υι ui.", ex:["κύριος → kyrios","αὐτός → autos","υἱός → huios"]},
+  {h:"Gamma before a guttural", p:"γ before γ, κ, χ or ξ sounds like n: γγ ng · γκ nk · γχ nch · γξ nx.", ex:["ἄγγελος → angelos","ἀνάγκη → anankē","ἔλεγχος → elenchos"]},
+  {h:"Breathing marks", p:"Rough breathing (῾) = h at the start of the word. Smooth breathing (᾿) = nothing. Initial ρ is rh.", ex:["ὁδός → hodos","ἐν → en","ῥῆμα → rhēma"]},
+  {h:"Iota subscript", p:"ᾳ ῃ ῳ are written āi, ēi, ōi. Some books drop the i — both are accepted in the practice.", ex:["τῷ λόγῳ → tōi logōi","τῇ ἡμέρᾳ → tēi hēmerāi"]},
+  {h:"Small print", p:"Final sigma ς is still just s. Accents (´ ` ῀) are not written. Capitals stay capitals.", ex:["Χριστός → Christos","Ἰησοῦς → Iēsous"]}
+];
+
+/* ================================================================ data: cases & articles (from the book) */
+var CASES = [
+  {name:"Nominative", mnemonic:"This case nominates the subject of the sentence.", key:"", gloss:"the",
+   use:"Which case is the subject of the sentence?", sg:["ὁ","ἡ","τό"], pl:["οἱ","αἱ","τά"]},
+  {name:"Genitive", mnemonic:"This case generates a description of the noun.", key:"of", gloss:"of the",
+   use:"Which case describes the noun, and is translated with “of”?", sg:["τοῦ","τῆς","τοῦ"], pl:["τῶν","τῶν","τῶν"]},
+  {name:"Dative", mnemonic:"Two or Four people go on a date. The dative is usually translated using “to” or “for.” It tells the indirect object and can usually be recognized by the iota (either subscripted or obvious) in its ending.", key:"to or for", gloss:"to / for the",
+   use:"Which case is the indirect object, and is recognized by the iota in its ending?", sg:["τῷ","τῇ","τῷ"], pl:["τοῖς","ταῖς","τοῖς"]},
+  {name:"Accusative", mnemonic:"This case accuses the subject of what it is, has, or will do. It will usually answer the question who or what is receiving the action (as opposed to the subject, who is usually doing the action).", key:"sometimes in or by", gloss:"the (receiving the action)",
+   use:"Which case tells who or what is receiving the action?", sg:["τόν","τήν","τό"], pl:["τούς","τάς","τά"]},
+  {name:"Vocative", mnemonic:"This is the case of vocal chords, or directly calling someone. It usually looks exactly like the nominative.", key:"", gloss:"",
+   use:"Which case is used for directly calling someone?", sg:null, pl:null}
+];
+var CASE_NAMES = CASES.map(function(c){ return c.name; });
+var GENDERS = ["masculine","feminine","neuter"];
+var FORMS = [];
+CASES.forEach(function(c){
+  if(!c.sg) return;
+  GENDERS.forEach(function(g,i){
+    FORMS.push({form:c.sg[i], cs:c.name, num:"singular", gen:g});
+    FORMS.push({form:c.pl[i], cs:c.name, num:"plural",   gen:g});
+  });
+});
+var FORM_GROUPS = {};
+FORMS.forEach(function(f){ (FORM_GROUPS[f.form] = FORM_GROUPS[f.form] || []).push(f); });
+var DISTINCT = Object.keys(FORM_GROUPS);
+function idText(f){ return f.cs+" · "+f.num+" · "+f.gen; }
+function caseByName(n){ for(var i=0;i<CASES.length;i++){ if(CASES[i].name===n) return CASES[i]; } return null; }
+function describeForm(form){
+  var ids = FORM_GROUPS[form];
+  var cs = uniqBy(ids, function(x){ return x.cs; }).map(function(x){ return x.cs; });
+  var nums = uniqBy(ids, function(x){ return x.num; }).map(function(x){ return x.num; });
+  var gens = uniqBy(ids, function(x){ return x.gen; }).map(function(x){ return x.gen; });
+  var g = gens.length===3 ? "all genders" : gens.join(" or ");
+  return {cases:cs.join(" or "), num:nums.join(" or "), gen:g, gloss:caseByName(cs[0]).gloss};
+}
+
+/* ================================================================ transliteration engine */
+var MAP = {"α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"ē","θ":"th","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"x","ο":"o","π":"p","ρ":"r","σ":"s","ς":"s","τ":"t","υ":"y","φ":"ph","χ":"ch","ψ":"ps","ω":"ō"};
+function tlToken(tok, opts){
+  var nfd = tok.normalize("NFD");
+  var rough = /\u0314/.test(nfd);
+  var chars = nfd.replace(/[\u0300-\u0344\u0346-\u036F]/g, "").split("");   // letters + iota subscript only
+  var out = "";
+  for(var i=0;i<chars.length;i++){
+    var ch = chars[i];
+    if(ch === "\u0345"){ out += opts.noSub ? "" : "i"; continue; }
+    var lower = ch.toLowerCase(), isCap = ch !== lower;
+    var next = (chars[i+1] || "").toLowerCase(), prev = (chars[i-1] || "").toLowerCase();
+    var t;
+    if(lower === "γ" && next && "γκχξ".indexOf(next) >= 0) t = "n";
+    else if(lower === "υ") t = ((prev && "αεοη".indexOf(prev) >= 0) || next === "ι") ? "u" : "y";
+    else if(lower === "α" && next === "\u0345") t = "ā";
+    else t = MAP[lower] || ch;
+    if(isCap) t = t.charAt(0).toUpperCase() + t.slice(1);
+    out += t;
+  }
+  if(rough){
+    if(/^[rR]/.test(out)) out = out.charAt(0) + "h" + out.slice(1);
+    else if(/^[A-Z]/.test(out)) out = "H" + out.charAt(0).toLowerCase() + out.slice(1);
+    else out = "h" + out;
+  }
+  return out;
+}
+function translit(word, opts){
+  opts = opts || {};
+  return word.split(" ").map(function(t){ return tlToken(t, opts); }).join(" ");
+}
+function demac(s){ return s.replace(/ē/g,"e").replace(/ō/g,"o").replace(/ā/g,"a").replace(/Ē/g,"E").replace(/Ō/g,"O").replace(/Ā/g,"A"); }
+function norm(s){ return (s || "").toLowerCase().replace(/\s+/g," ").trim(); }
+function judge(word, ans){
+  var a = norm(ans);
+  var full = translit(word), noSub = translit(word, {noSub:true});
+  if(a === norm(full) || a === norm(noSub)) return {ok:true, note:""};
+  if(a === norm(demac(full)) || a === norm(demac(noSub))) return {ok:true, note:"Right letters — just remember the long-vowel marks: ē for η, ō for ω."};
+  return {ok:false};
+}
+function rulesFor(word){
+  var nfd = word.normalize("NFD"), base = nfd.replace(/[\u0300-\u036F]/g, ""), r = [];
+  if(/\u0314/.test(nfd)) r.push(/^ρ/i.test(base) ? "rh" : "rough");
+  else if(/\u0313/.test(nfd)) r.push("smooth");
+  if(/\u0345/.test(nfd)) r.push("iota");
+  if(/γ[γκχξ]/.test(base)) r.push("gamma");
+  if(/(αι|ει|οι|αυ|ευ|ου|ηυ|υι)/i.test(base)) r.push("diph");
+  if(/(^|[^αεοηΑΕΟΗ])υ(?!ι)/.test(base)) r.push("y");
+  if(/[ηωΗΩ]/.test(base)) r.push("long");
+  if(/[θφχψξζΘΦΧΨΞΖ]/.test(base)) r.push("dbl");
+  if(/[Α-Ω]/.test(base)) r.push("cap");
+  return r;
+}
+function toggleH(s){
+  if(/^[hH]/.test(s)){ var rest = s.slice(1); return /^[A-Z]/.test(s) ? rest.charAt(0).toUpperCase() + rest.slice(1) : rest; }
+  if(/^[rR]h/.test(s)) return s.charAt(0) + s.slice(2);
+  if(/^[aeiouāēō]/.test(s)) return "h" + s;
+  if(/^[AEIOUĀĒŌ]/.test(s)) return "H" + s.charAt(0).toLowerCase() + s.slice(1);
+  return s;
+}
+/* Wrong answers for a multiple-choice question. `accepted` guards against
+   offering a spelling that the typing practice would mark correct. */
+function distractorsFor(right, accepted){
+  accepted = accepted || function(s){ return s === demac(right); };
+  var out = [], seen = {}; seen[right] = 1;
+  function add(s){ if(s && s !== right && !seen[s] && !accepted(s)){ seen[s] = 1; out.push(s); } }
+  var d = demac(right);
+  add(toggleH(right)); add(toggleH(d));
+  add(right.replace(/th/,"t")); add(right.replace(/ph/,"f")); add(right.replace(/ch/,"k")); add(right.replace(/ps/,"s"));
+  add(right.replace(/ē/,"ei")); add(right.replace(/ou/,"u")); add(right.replace(/y/,"u")); add(right.replace(/ai/,"ae"));
+  add(right.replace(/k/,"c")); add(right.replace(/os$/,"us")); add(right.replace(/o/,"ō")); add(right.replace(/e/,"ē"));
+  add(right.replace(/i/,"ei")); add(right.replace(/a/,"ā"));
+  var VOW = ["a","e","i","o","u","ē","ō"];                    /* short words: swap the first vowel */
+  for(var v=0; v<VOW.length && out.length<3; v++){ add(right.replace(/[aeiouāēō]/, VOW[v])); }
+  for(var i=1; i<right.length-1 && out.length<3; i++){        /* last resort: a plausible slip */
+    add(right.slice(0,i) + right.charAt(i+1) + right.charAt(i) + right.slice(i+2));
+  }
+  return out.slice(0,3);
+}
+
+/* ================================================================ question builders */
+function mkOpts(right, wrongs, cls){
+  var o = [{html:right, ok:true, cls:cls||""}];
+  wrongs.forEach(function(w){ o.push({html:w, ok:false, cls:cls||""}); });
+  return shuffle(o);
+}
+function alphaQuestions(keys){
+  var pool = keys ? LETTERS.filter(function(d){ return keys.indexOf(d.n) >= 0; }) : LETTERS;
+  if(!pool.length) pool = LETTERS;
+  return pick(pool, Math.min(10, pool.length)).map(function(d){
+    var type = pick(["low","up","name","fromName","sound"],1)[0];
+    var others = pick(LETTERS.filter(function(x){ return x.n !== d.n; }), 3);
+    var q = {key:d.n, glyph:"", miss:'<span class="g">'+pair(d)+'</span><span class="t"><b>'+d.name+'</b>'+d.sound+'</span>', explain:d.name+" — "+d.sound+".", say:d};
+    if(type==="low"){ q.text="Which lowercase letter matches this?"; q.glyph=d.u; q.opts=mkOpts(d.l, others.map(function(x){return x.l;}), "glyph"); }
+    else if(type==="up"){ q.text="Which uppercase letter matches this?"; q.glyph='<span class="lo">'+d.l+'</span>'; q.opts=mkOpts(d.u, others.map(function(x){return x.u;}), "glyph"); }
+    else if(type==="name"){ q.text="What is this letter called?"; q.glyph=pair(d); q.opts=mkOpts(d.name, others.map(function(x){return x.name;})); }
+    else if(type==="fromName"){ q.text="Which letter is "+d.name+"?"; q.opts=mkOpts(pair(d), others.map(pair), "glyph"); }
+    else { q.text="Which letter makes this sound?"; q.glyph=d.sound; q.gcls="soundq"; q.opts=mkOpts(pair(d), others.map(pair), "glyph"); }
+    return q;
+  });
+}
+function soundsQuestions(keys){
+  var qs = [];
+  var dPool = ALLDIPH.filter(function(d){ return !keys || keys.indexOf("d:"+d.g) >= 0; });
+  var wPool = BREATH_WORDS.filter(function(w){ return !keys || keys.indexOf("w:"+w.g) >= 0; });
+  var pPool = PLACE.filter(function(p){ return !keys || keys.indexOf("p:"+p.ok) >= 0; });
+  pick(dPool, 3).forEach(function(d){
+    var others = pick(ALLDIPH.filter(function(x){ return x.g !== d.g; }), 3);
+    qs.push({key:"d:"+d.g, text:"What sound does this make?", glyph:d.g, opts:mkOpts("<i>"+d.sound+"</i>", others.map(function(x){ return "<i>"+x.sound+"</i>"; })),
+      explain:gk(d.g)+" — "+d.sound+". "+d.ex, miss:'<span class="g">'+d.g+'</span><span class="t"><b>'+d.tr+'</b>'+d.sound+'</span>'});
+  });
+  pick(dPool, 2).forEach(function(d){
+    var others = pick(ALLDIPH.filter(function(x){ return x.g !== d.g; }), 3);
+    qs.push({key:"d:"+d.g, text:"Which one sounds like <i>"+d.sound+"</i>?", opts:mkOpts(d.g, others.map(function(x){ return x.g; }), "glyph"),
+      explain:gk(d.g)+" — "+d.sound+". "+d.ex, miss:'<span class="g">'+d.g+'</span><span class="t"><b>'+d.tr+'</b>'+d.sound+'</span>'});
+  });
+  pick(wPool, 3).forEach(function(w){
+    var right = translit(w.g), nfd = w.g.normalize("NFD");
+    var why = /\u0314/.test(nfd) ? " The rough breathing (῾) adds the h." : (/\u0313/.test(nfd) ? " The smooth breathing (᾿) is silent." : "");
+    var wrong = distractorsFor(right, function(s){ return judge(w.g, s).ok; });
+    qs.push({key:"w:"+w.g, text:"How is this word written in English letters?", glyph:w.g, gcls:"word", opts:mkOpts(right, wrong),
+      explain:gk(w.g)+" → "+right+"."+why+" ("+w.en+")", miss:'<span class="g">'+w.g+'</span><span class="t"><b>'+right+'</b>'+w.en+'</span>'});
+  });
+  var roughs = wPool.filter(function(w){ return /\u0314/.test(w.g.normalize("NFD")); });
+  var smooths = BREATH_WORDS.filter(function(w){ return !/\u0314/.test(w.g.normalize("NFD")); });
+  if(roughs.length && smooths.length >= 3){
+    var r = pick(roughs, 1)[0];
+    qs.push({key:"w:"+r.g, text:"Which word begins with an <b>h</b> sound — the rough breathing ῾?", opts:mkOpts(r.g, pick(smooths,3).map(function(x){ return x.g; }), "glyph"),
+      explain:gk(r.g)+" → "+translit(r.g)+". The others have a smooth breathing, which is silent.", miss:'<span class="g">'+r.g+'</span><span class="t"><b>'+translit(r.g)+'</b>'+r.en+'</span>'});
+  }
+  pick(pPool, 2).forEach(function(p){
+    qs.push({key:"p:"+p.ok, text:p.text, opts:mkOpts(p.ok, p.wrong, "glyph"), explain:p.explain, miss:'<span class="g">'+p.ok+'</span><span class="t"><b>'+translit(p.ok)+'</b>'+p.explain+'</span>'});
+  });
+  return shuffle(qs).slice(0, 10);
+}
+function caseQuestions(keys){
+  var qs = [];
+  var fPool = DISTINCT.filter(function(f){ return !keys || keys.indexOf("f:"+f) >= 0; });
+  var cPool = CASES.filter(function(c){ return !keys || keys.indexOf("c:"+c.name) >= 0; });
+  function missForm(f){ var d = describeForm(f); return '<span class="g">'+f+'</span><span class="t"><b>'+d.cases+' · '+d.num+'</b>'+d.gen+' — '+d.gloss+'</span>'; }
+  function missCase(c){ return '<span class="g">'+(c.sg ? c.sg.join(" ") : "—")+'</span><span class="t"><b>'+c.name+'</b>'+c.mnemonic+'</span>'; }
+  function explainForm(f){ var d = describeForm(f); return gk(f)+" is "+d.cases+", "+d.num+", "+d.gen+" — “"+d.gloss+"”."; }
+  var unamb = fPool.filter(function(f){ return uniqBy(FORM_GROUPS[f], function(x){ return x.cs; }).length === 1; });
+  pick(unamb, 3).forEach(function(f){
+    var cs = FORM_GROUPS[f][0].cs;
+    qs.push({key:"f:"+f, text:"Which case is this article?", glyph:f, opts:mkOpts(cs, pick(CASE_NAMES.filter(function(x){ return x !== cs && x !== "Vocative"; }), 3)), explain:explainForm(f), miss:missForm(f)});
+  });
+  pick(fPool, 2).forEach(function(f){
+    var ids = FORM_GROUPS[f], right = pick(ids,1)[0], own = ids.map(idText);
+    var others = uniqBy(shuffle(FORMS.filter(function(x){ return own.indexOf(idText(x)) < 0; })), idText).slice(0,3).map(idText);
+    qs.push({key:"f:"+f, text:"Identify this article.", glyph:f, opts:mkOpts(idText(right), others), explain:explainForm(f), miss:missForm(f)});
+  });
+  pick(FORMS.filter(function(x){ return fPool.indexOf(x.form) >= 0; }), 2).forEach(function(f){
+    var others = pick(DISTINCT.filter(function(x){ return x !== f.form; }), 3);
+    qs.push({key:"f:"+f.form, text:"Which article is <b>"+idText(f)+"</b>?", opts:mkOpts(f.form, others, "glyph"), explain:explainForm(f.form), miss:missForm(f.form)});
+  });
+  pick(cPool.filter(function(c){ return c.key; }), 1).forEach(function(c){
+    qs.push({key:"c:"+c.name, text:"Which case goes with the key word <i>“"+c.key+"”</i>?", opts:mkOpts(c.name, pick(CASE_NAMES.filter(function(x){ return x !== c.name; }), 3)), explain:c.name+": "+c.mnemonic, miss:missCase(c)});
+  });
+  pick(cPool, 1).forEach(function(c){
+    qs.push({key:"c:"+c.name, text:c.use, opts:mkOpts(c.name, pick(CASE_NAMES.filter(function(x){ return x !== c.name; }), 3)), explain:c.name+": "+c.mnemonic, miss:missCase(c)});
+  });
+  pick(cPool, 2).forEach(function(c){
+    var first = c.mnemonic.split(". ")[0].replace(/\.$/, "") + ".";
+    qs.push({key:"c:"+c.name, text:"Which case does this describe? <i>“"+first+"”</i>", opts:mkOpts(c.name, pick(CASE_NAMES.filter(function(x){ return x !== c.name; }), 3)), explain:c.name+": "+c.mnemonic, miss:missCase(c)});
+  });
+  return shuffle(qs).slice(0, 10);
+}
+
+/* ================================================================ decks */
+function alphaDeck(front){
+  return LETTERS.map(function(d){
+    var f = front === "name" ? '<div class="mid">'+d.name+'</div>' : '<div class="big engraved">'+(front === "up" ? d.u : d.l)+'</div>';
+    var hint = front === "up" ? "uppercase" : (front === "low" ? "lowercase" : "name");
+    return {front:f+'<div class="hint">'+hint+'</div>',
+            back:'<div class="big">'+pair(d)+'</div><div class="bname">'+d.name+'</div><div class="btr">written '+d.tr+'</div><div class="bsound">'+d.sound+'</div>',
+            say:d};
+  });
+}
+function caseDeck(mode){
+  if(mode === "forms"){
+    return DISTINCT.map(function(f){
+      var d = describeForm(f);
+      return {front:'<div class="big engraved">'+f+'</div><div class="hint">article</div>',
+              back:'<div class="big">'+f+'</div><div class="bname">'+d.cases+' · '+d.num+'</div><div class="bsound">'+d.gen+'<br>“'+d.gloss+'”</div>'};
+    });
+  }
+  return CASES.map(function(c){
+    return {front:'<div class="mid">'+c.name+'</div><div class="hint">case</div>',
+            back:'<div class="bname">'+c.name+'</div><div class="bsound">'+c.mnemonic+'</div>'+
+                 (c.key ? '<div class="btr">key word: '+c.key+'</div>' : '')+
+                 (c.sg ? '<div class="forms">'+c.sg.join(" ")+' &nbsp;·&nbsp; '+c.pl.join(" ")+'</div>' : '<div class="btr">no article of its own</div>')};
+  });
+}
+
+/* ---- allow the pure parts to be tested outside a browser ---- */
+if(typeof window === "undefined"){
+  module.exports = {translit:translit, rulesFor:rulesFor, judge:judge, distractorsFor:distractorsFor, LETTERS:LETTERS, TRANS:TRANS, BREATH_WORDS:BREATH_WORDS, PLACE:PLACE, DISTINCT:DISTINCT, FORM_GROUPS:FORM_GROUPS,
+    alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm};
+  return;
+}
+
+/* ================================================================ voice */
 var voice = null;
 function pickVoice(){
   if(!("speechSynthesis" in window)) return;
@@ -335,10 +863,7 @@ function pickVoice(){
   for(var i=0;i<vs.length;i++){ if(/^en/i.test(vs[i].lang)){ voice = vs[i]; return; } }
   voice = vs[0] || null;
 }
-if("speechSynthesis" in window){
-  pickVoice();
-  window.speechSynthesis.onvoiceschanged = pickVoice;
-}
+if("speechSynthesis" in window){ pickVoice(); window.speechSynthesis.onvoiceschanged = pickVoice; }
 function say(text){
   if(!("speechSynthesis" in window)) return;
   try{
@@ -351,314 +876,366 @@ function say(text){
 }
 function sayLetter(d){ say(d.name + ". " + d.say + "."); }
 
-/* ------------------------------------------------------------------ tabs */
-var currentTab = "review";
-function selectTab(id){
-  currentTab = id;
-  $$(".tab").forEach(function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-tab")===id)); });
-  $$(".panel").forEach(function(p){ p.hidden = (p.id !== "panel-"+id); });
-  if(id==="match" && !mRound.length) newRound();
-  if(id==="quiz" && !qs.length) newQuiz(null);
-}
-$$(".tab").forEach(function(b){
-  b.addEventListener("click", function(){ selectTab(b.getAttribute("data-tab")); });
-});
-function segWire(sel, attr, fn){
-  var seg = $(sel);
-  if(!seg) return;
-  seg.addEventListener("click", function(e){
-    var b = e.target.closest("button[" + attr + "]");
-    if(!b) return;
-    $$("button", seg).forEach(function(x){ x.setAttribute("aria-pressed", String(x===b)); });
-    fn(b.getAttribute(attr));
-  });
+/* ================================================================ generic: flashcards */
+function makeCards(root){
+  root.innerHTML =
+    '<div class="flashWrap"><div class="flash"><div class="flashInner">'+
+      '<div class="face front card-corners">'+CORNERS+'<div class="fc"></div></div>'+
+      '<div class="face back card-corners">'+CORNERS+'<div class="fc"></div></div>'+
+    '</div></div>'+
+    '<div class="progress"><i style="width:0"></i></div><p class="counter"></p>'+
+    '<div class="toolbar tight"><button class="btn prev" type="button">&lsaquo; Prev</button><button class="btn primary flip" type="button">Flip</button><button class="btn next" type="button">Next &rsaquo;</button></div></div>';
+  var deck = [], idx = 0;
+  var flash = $(".flash", root), fFront = $(".face.front .fc", root), fBack = $(".face.back .fc", root), bar = $(".progress i", root), counter = $(".counter", root);
+  function render(){
+    if(!deck.length) return;
+    var d = deck[idx];
+    fFront.innerHTML = d.front; fBack.innerHTML = d.back;
+    counter.textContent = (idx+1) + " of " + deck.length;
+    bar.style.width = ((idx+1) / deck.length * 100) + "%";
+  }
+  function go(step){ flash.classList.remove("flipped"); idx = (idx + step + deck.length) % deck.length; render(); }
+  function flip(){ flash.classList.toggle("flipped"); }
+  flash.addEventListener("click", flip);
+  $(".flip", root).addEventListener("click", flip);
+  $(".next", root).addEventListener("click", function(){ go(1); });
+  $(".prev", root).addEventListener("click", function(){ go(-1); });
+  return {
+    load:function(d){ deck = d; idx = 0; flash.classList.remove("flipped"); render(); },
+    shuffle:function(){ deck = shuffle(deck); idx = 0; flash.classList.remove("flipped"); render(); },
+    current:function(){ return deck[idx]; },
+    keys:function(e){
+      if(e.key === "ArrowRight"){ go(1); return true; }
+      if(e.key === "ArrowLeft"){ go(-1); return true; }
+      if(e.key === " " || e.key === "Spacebar"){ flip(); return true; }
+      return false;
+    }
+  };
 }
 
-/* ---------------------------------------------------------------- review */
-var reviewOrder = DATA.slice();
-var maskMode = "none";
+/* ================================================================ generic: quiz */
+function makeQuiz(root, gen, opts){
+  opts = opts || {};
+  root.innerHTML = '<div class="quizWrap"><div class="dots"></div><div class="qbody"></div></div>';
+  var dots = $(".dots", root), body = $(".qbody", root);
+  var qs = [], qi = 0, score = 0, missed = [], answered = false, started = false;
+  function start(keys){ qs = gen(keys); qi = 0; score = 0; missed = []; started = true; render(); }
+  function renderDots(){
+    dots.innerHTML = "";
+    qs.forEach(function(q, i){
+      var s = document.createElement("i");
+      if(q.got === true) s.className = "ok"; else if(q.got === false) s.className = "no"; else if(i === qi) s.className = "on";
+      dots.appendChild(s);
+    });
+  }
+  function render(){
+    renderDots();
+    if(qi >= qs.length){ results(); return; }
+    var q = qs[qi]; answered = false;
+    body.innerHTML =
+      '<div class="qcard card-corners">'+CORNERS+
+        '<div class="qnum">Question '+(qi+1)+' of '+qs.length+'</div>'+
+        '<p class="qtext">'+q.text+'</p>'+
+        (q.glyph ? '<div class="qglyph'+(q.gcls ? " "+q.gcls : "")+'">'+q.glyph+'</div>' : '')+
+        '<div class="opts"></div><p class="feedback"></p>'+
+        '<div class="qfoot"><button class="btn primary next" type="button" hidden>Next &rsaquo;</button></div>'+
+      '</div>';
+    var optsEl = $(".opts", body);
+    q.opts.forEach(function(o, i){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt " + (o.cls || "");
+      b.innerHTML = '<span class="k">'+(i+1)+'</span>' + o.html;
+      b.addEventListener("click", function(){ answer(o, b); });
+      optsEl.appendChild(b);
+    });
+    $(".next", body).addEventListener("click", function(){ qi++; render(); });
+  }
+  function answer(o, node){
+    if(answered) return;
+    answered = true;
+    var q = qs[qi]; q.got = o.ok;
+    $$(".opt", body).forEach(function(b, i){ b.disabled = true; if(q.opts[i].ok) b.classList.add("correct"); });
+    if(o.ok){ score++; $(".feedback", body).innerHTML = "Correct — " + q.explain; }
+    else { node.classList.add("wrong"); missed.push(q); $(".feedback", body).innerHTML = "Not this one. " + q.explain; }
+    if(q.say && opts.say) opts.say(q.say);
+    renderDots();
+    var nb = $(".next", body); nb.hidden = false; nb.textContent = (qi === qs.length-1) ? "See results" : "Next"; nb.focus();
+  }
+  function results(){
+    var pct = qs.length ? Math.round(score / qs.length * 100) : 0;
+    var verdict = pct===100 ? "Flawless." : pct>=80 ? "Strong. One more pass and it is yours." : pct>=50 ? "Halfway there. Look over the misses below." : "Go back to the learning side, then try again.";
+    var html = '<div class="result card-corners">'+CORNERS+'<div class="big">'+score+'/'+qs.length+'</div><div class="rsub">'+pct+' percent</div><p class="verdict">'+verdict+'</p>';
+    if(missed.length){ html += '<div class="misslist">' + uniqBy(missed, function(q){ return q.key; }).map(function(q){ return "<div>"+q.miss+"</div>"; }).join("") + "</div>"; }
+    html += '<div class="toolbar" style="margin:26px 0 0"><button class="btn primary again" type="button">New quiz</button>'+
+            (missed.length ? '<button class="btn missed" type="button">Practice the misses</button>' : '')+'</div></div>';
+    body.innerHTML = html;
+    $(".again", body).addEventListener("click", function(){ start(null); });
+    if($(".missed", body)) $(".missed", body).addEventListener("click", function(){ start(uniqBy(missed, function(q){ return q.key; }).map(function(q){ return q.key; })); });
+    renderDots();
+  }
+  return {
+    start:start,
+    ensure:function(){ if(!started) start(null); },
+    keys:function(e){
+      if(/^[1-4]$/.test(e.key)){ var b = $$(".opt", body)[parseInt(e.key,10)-1]; if(b && !b.disabled){ b.click(); return true; } }
+      else if(e.key === "Enter"){ var nb = $(".next", body); if(nb && !nb.hidden){ nb.click(); return true; } }
+      return false;
+    }
+  };
+}
 
+/* ================================================================ transliteration practice */
+function insertAt(inp, ch){
+  var s = typeof inp.selectionStart === "number" ? inp.selectionStart : inp.value.length;
+  var e = typeof inp.selectionEnd === "number" ? inp.selectionEnd : s;
+  inp.value = inp.value.slice(0, s) + ch + inp.value.slice(e);
+  inp.focus();
+  try{ inp.setSelectionRange(s+1, s+1); }catch(x){}
+}
+function makeTranslit(root){
+  root.innerHTML = '<div class="quizWrap"><div class="dots"></div><div class="qbody"></div></div>';
+  var dots = $(".dots", root), body = $(".qbody", root);
+  var set = [], i = 0, score = 0, missed = [], state = "ask", started = false;
+  function start(keys){
+    var pool = keys ? TRANS.filter(function(w){ return keys.indexOf(w.g) >= 0; }) : TRANS;
+    if(!pool.length) pool = TRANS;
+    set = pick(pool, Math.min(10, pool.length)).map(function(w){ return {g:w.g, en:w.en}; });
+    i = 0; score = 0; missed = []; started = true; render();
+  }
+  function renderDots(){
+    dots.innerHTML = "";
+    set.forEach(function(w, k){
+      var s = document.createElement("i");
+      if(w.got === true) s.className = "ok"; else if(w.got === false) s.className = "no"; else if(k === i) s.className = "on";
+      dots.appendChild(s);
+    });
+  }
+  function render(){
+    renderDots();
+    if(i >= set.length){ results(); return; }
+    var w = set[i]; state = "ask";
+    body.innerHTML =
+      '<div class="qcard card-corners">'+CORNERS+
+        '<div class="qnum">Word '+(i+1)+' of '+set.length+'</div>'+
+        '<div class="qglyph word ink">'+w.g+'</div><p class="meaning">'+w.en+'</p>'+
+        '<input class="answer" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="type it in English letters">'+
+        '<div class="keys"><button class="btn ins" type="button" data-ch="ā">ā</button><button class="btn ins" type="button" data-ch="ē">ē</button><button class="btn ins" type="button" data-ch="ō">ō</button><button class="btn primary check" type="button">Check</button></div>'+
+        '<p class="feedback"></p><div class="rulehints"></div>'+
+        '<div class="qfoot"><button class="btn primary next" type="button" hidden>Next &rsaquo;</button></div>'+
+      '</div>';
+    var inp = $(".answer", body);
+    $$(".ins", body).forEach(function(b){ b.addEventListener("click", function(){ insertAt(inp, b.getAttribute("data-ch")); }); });
+    $(".check", body).addEventListener("click", check);
+    $(".next", body).addEventListener("click", function(){ i++; render(); });
+    inp.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); check(); } });
+    setTimeout(function(){ inp.focus(); }, 30);
+  }
+  function check(){
+    if(state !== "ask") return;
+    var w = set[i], inp = $(".answer", body), v = inp.value;
+    if(!v.trim()){ inp.focus(); return; }
+    var j = judge(w.g, v), right = translit(w.g);
+    state = "done"; w.got = j.ok;
+    if(j.ok) score++; else missed.push({g:w.g, en:w.en, ans:v.trim()});
+    inp.disabled = true; inp.classList.add(j.ok ? "ok" : "bad");
+    $(".feedback", body).innerHTML = j.ok ? ("Correct — <b>"+right+"</b>." + (j.note ? " "+j.note : "")) : ("Not quite. It is <b>"+right+"</b>.");
+    var rl = rulesFor(w.g);
+    $(".rulehints", body).innerHTML = rl.length ? '<div class="rh"><span class="label">Rules in this word</span><ul>'+rl.map(function(r){ return "<li>"+RULE_TEXT[r]+"</li>"; }).join("")+'</ul></div>' : "";
+    var nb = $(".next", body); nb.hidden = false; nb.textContent = (i === set.length-1) ? "See results" : "Next"; nb.focus();
+    renderDots();
+  }
+  function results(){
+    var pct = set.length ? Math.round(score / set.length * 100) : 0;
+    var verdict = pct===100 ? "Flawless." : pct>=80 ? "Strong. One more pass and it is yours." : pct>=50 ? "Halfway there. Look over the misses below." : "Read the rules once more, then try again.";
+    var html = '<div class="result card-corners">'+CORNERS+'<div class="big">'+score+'/'+set.length+'</div><div class="rsub">'+pct+' percent</div><p class="verdict">'+verdict+'</p>';
+    if(missed.length){
+      html += '<div class="misslist">' + missed.map(function(m){ return '<div><span class="g">'+m.g+'</span><span class="t"><b>'+translit(m.g)+'</b>'+m.en+' — you wrote “'+m.ans.replace(/</g,"&lt;")+'”</span></div>'; }).join("") + '</div>';
+    }
+    html += '<div class="toolbar" style="margin:26px 0 0"><button class="btn primary again" type="button">Practice again</button>'+
+            (missed.length ? '<button class="btn missed" type="button">Practice the misses</button>' : '')+'</div></div>';
+    body.innerHTML = html;
+    $(".again", body).addEventListener("click", function(){ start(null); });
+    if($(".missed", body)) $(".missed", body).addEventListener("click", function(){ start(missed.map(function(m){ return m.g; })); });
+    renderDots();
+  }
+  return { start:start, ensure:function(){ if(!started) start(null); } };
+}
+
+/* ================================================================ static renderers */
+var reviewOrder = LETTERS.slice(), maskMode = "none";
 function renderReview(){
-  var g = $("#reviewGrid");
-  g.innerHTML = "";
+  var g = $("#reviewGrid"); g.innerHTML = "";
   reviewOrder.forEach(function(d){
     var c = document.createElement("article");
-    c.className = "card" + (maskMode!=="none" ? " masked" : "");
+    c.className = "card" + (maskMode !== "none" ? " masked" : "");
     c.innerHTML =
-      '<span class="num">' + pad(d.n) + '</span>' +
-      '<button class="spk" type="button" title="Hear it" aria-label="Hear ' + d.name + '">' + SPK + '</button>' +
-      '<div class="glyphs">' + d.u + ' <span class="lo' + (maskMode==="low"?" veil":"") + '">' + d.l + '</span></div>' +
-      '<div class="name' + (maskMode==="name"?" veil":"") + '">' + d.name + '</div>' +
-      '<div class="tr">' + d.tr + '</div>' +
-      '<div class="sound' + (maskMode==="sound"?" veil":"") + '">' + d.sound + '</div>';
+      '<span class="num">'+pad(d.n)+'</span>'+
+      '<button class="spk" type="button" title="Hear it" aria-label="Hear '+d.name+'">'+SPK+'</button>'+
+      '<div class="glyphs">'+d.u+' <span class="lo'+(maskMode==="low" ? " veil" : "")+'">'+d.l+'</span></div>'+
+      '<div class="name'+(maskMode==="name" ? " veil" : "")+'">'+d.name+'</div>'+
+      '<div class="tr">'+d.tr+'</div>'+
+      '<div class="sound'+(maskMode==="sound" ? " veil" : "")+'">'+d.sound+'</div>';
     $(".spk", c).addEventListener("click", function(e){ e.stopPropagation(); sayLetter(d); });
-    c.addEventListener("click", function(){
-      $$(".veil", c).forEach(function(v){ v.classList.toggle("shown"); });
-    });
+    c.addEventListener("click", function(){ $$(".veil", c).forEach(function(v){ v.classList.toggle("shown"); }); });
     g.appendChild(c);
   });
 }
-segWire("#maskSeg", "data-mask", function(v){ maskMode = v; renderReview(); });
-$("#revShuffle").addEventListener("click", function(){ reviewOrder = shuffle(DATA); renderReview(); });
-$("#revOrder").addEventListener("click", function(){ reviewOrder = DATA.slice(); renderReview(); });
-$("#revPrint").addEventListener("click", function(){ selectTab("review"); setTimeout(function(){ window.print(); }, 60); });
-
-/* ------------------------------------------------------------ flashcards */
-var deck = DATA.slice(), fcIdx = 0, frontMode = "up";
-
-function renderCard(){
-  var d = deck[fcIdx];
-  var hint = frontMode==="up" ? "uppercase" : (frontMode==="low" ? "lowercase" : "name");
-  var frontHTML = (frontMode==="name")
-    ? '<div class="mid">' + d.name + '</div>'
-    : '<div class="big">' + (frontMode==="up" ? d.u : '<span class="lo" style="color:var(--gold)">'+d.l+'</span>') + '</div>';
-  $("#flashFront").innerHTML = frontHTML + '<div class="hint">' + hint + '</div>';
-  $("#flashBack").innerHTML =
-    '<div class="big">' + pair(d) + '</div>' +
-    '<div class="bname">' + d.name + '</div>' +
-    '<div class="btr">written ' + d.tr + '</div>' +
-    '<div class="bsound">' + d.sound + '</div>';
-  $("#fcCount").textContent = (fcIdx+1) + " of " + deck.length;
-  $("#fcBar").style.width = ((fcIdx+1)/deck.length*100) + "%";
+function ruleCards(list){
+  return '<div class="rules">' + list.map(function(r){
+    return '<div class="rule"><h4>'+r.h+'</h4><p>'+r.p+'</p><p class="ex">'+r.ex.map(function(x){ return x.replace(/^([^\s(→]+(?: [^\s(→]+)*)/, function(m){ return gk(m); }); }).join(" &nbsp;·&nbsp; ")+'</p></div>';
+  }).join("") + '</div>';
 }
-function fcGo(step){
-  $("#flash").classList.remove("flipped");
-  fcIdx = (fcIdx + step + deck.length) % deck.length;
-  renderCard();
+function renderSoundsLearn(){
+  var html = '<h2 class="h2">Diphthongs</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<p class="lead">Two vowels pronounced as one gliding sound. Seven of them are common; ηυ is rare.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Diphthong</th><th>Sounds like</th><th>Written</th><th>Example</th><th></th></tr></thead><tbody>'+
+    DIPH.map(function(d){ return '<tr><td class="gk">'+d.g+'</td><td class="it">'+d.sound+'</td><td class="kw">'+d.tr+'</td><td>'+d.ex.replace(/^(\S+)/, function(m){ return gk(m); })+'</td><td><button class="spk" type="button" data-say="'+d.sound.replace(/"/g,"")+'" aria-label="Hear it">'+SPK+'</button></td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Improper diphthongs — the iota subscript</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<p class="lead">A tiny iota tucked under α, η or ω. It is silent, the vowel just sounds long. It matters for grammar: it is the tell-tale sign of the <b>dative singular</b>.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Letter</th><th>Sounds like</th><th>Written</th><th>Example</th></tr></thead><tbody>'+
+    IMPROPER.map(function(d){ return '<tr><td class="gk">'+d.g+'</td><td class="it">'+d.sound+'</td><td class="kw">'+d.tr+'</td><td>'+d.ex.replace(/^(\S+ \S+|\S+)/, function(m){ return gk(m); })+'</td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Breathing marks</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<p class="lead">Two little hooks that sit over the first vowel of a word. One is silent, the other is an <b>h</b>.</p>'+
+    ruleCards(BREATH_RULES)+
+    '<h2 class="h2">Examples to say aloud</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<div class="chips">'+BREATH_WORDS.map(function(w){ return '<span class="chip">'+gk(w.g)+'<span class="tl">'+translit(w.g)+'</span>'+w.en+'</span>'; }).join("")+'</div>';
+  $("#soundsLearn").innerHTML = html;
+  $$("#soundsLearn .spk").forEach(function(b){ b.addEventListener("click", function(){ say(b.getAttribute("data-say")); }); });
 }
-function fcFlip(){ $("#flash").classList.toggle("flipped"); }
-$("#flash").addEventListener("click", fcFlip);
-$("#fcFlip").addEventListener("click", fcFlip);
-$("#fcNext").addEventListener("click", function(){ fcGo(1); });
-$("#fcPrev").addEventListener("click", function(){ fcGo(-1); });
-$("#fcShuffle").addEventListener("click", function(){ deck = shuffle(DATA); fcIdx = 0; $("#flash").classList.remove("flipped"); renderCard(); });
-$("#fcHear").addEventListener("click", function(){ sayLetter(deck[fcIdx]); });
-segWire("#frontSeg", "data-front", function(v){ frontMode = v; $("#flash").classList.remove("flipped"); renderCard(); });
+function renderTranslitRules(){
+  var html = '<h2 class="h2">Letter by letter</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<div class="chips">'+LETTERS.map(function(d){ return '<span class="chip">'+gk(pair(d))+'<span class="tl">'+d.tr+'</span></span>'; }).join("")+'</div>'+
+    '<h2 class="h2">The rules</h2><div class="divider"><span>&#9670;</span></div>'+
+    ruleCards(TRANS_RULES);
+  $("#translitRules").innerHTML = html;
+}
+function renderCaseTable(){
+  var html = '<div class="tblwrap"><table class="tbl"><thead><tr><th>Case</th><th>Mnemonic</th><th>Key word</th><th>Article · singular<br><small>m · f · n</small></th><th>Article · plural<br><small>m · f · n</small></th></tr></thead><tbody>'+
+    CASES.map(function(c){
+      return '<tr><td class="cs">'+c.name+'</td><td class="mn">'+c.mnemonic+'</td><td class="kw">'+(c.key || "—")+'</td>'+
+        '<td class="gk forms">'+(c.sg ? c.sg.map(function(f){ return "<i>"+f+"</i>"; }).join(" ") : "—")+'</td>'+
+        '<td class="gk forms">'+(c.pl ? c.pl.map(function(f){ return "<i>"+f+"</i>"; }).join(" ") : "—")+'</td></tr>';
+    }).join("")+
+    '</tbody></table></div>'+
+    '<p class="note">Read the article across: masculine, feminine, neuter. Notice the dative row — every form carries an iota, subscripted (τῷ τῇ) or written out (τοῖς ταῖς).</p>';
+  $("#caseTable").innerHTML = html;
+}
 
-/* ----------------------------------------------------------------- match */
+/* ================================================================ match game */
 var mRound = [], mMode = "low", mSize = 8, mSel = null, mMiss = 0, mDone = 0;
-var M_TITLES = { low:"Lowercase", name:"Name", sound:"Sound" };
-
-function mText(d){ return mMode==="low" ? d.l : (mMode==="name" ? d.name : d.sound); }
-
+var M_TITLES = {low:"Lowercase", name:"Name", sound:"Sound"};
+function mText(d){ return mMode === "low" ? d.l : (mMode === "name" ? d.name : d.sound); }
 function newRound(){
-  mRound = shuffle(DATA).slice(0, mSize);
-  mSel = null; mMiss = 0; mDone = 0;
-  $("#mBanner").innerHTML = "";
-  $("#mRightTitle").textContent = M_TITLES[mMode];
-
+  mRound = pick(LETTERS, mSize); mSel = null; mMiss = 0; mDone = 0;
+  $("#mBanner").innerHTML = ""; $("#mRightTitle").textContent = M_TITLES[mMode];
   var left = $("#mLeft"), right = $("#mRight");
   left.innerHTML = ""; right.innerHTML = "";
-  right.className = "tiles" + (mMode==="low" ? "" : (mMode==="sound" ? " wide sound" : " wide"));
-
-  shuffle(mRound).forEach(function(d){
-    var b = document.createElement("button");
-    b.type = "button"; b.className = "tile"; b.textContent = d.u;
-    b.setAttribute("data-n", d.n);
-    b.addEventListener("click", function(){ tileClick("L", d, b); });
-    left.appendChild(b);
-  });
-  shuffle(mRound).forEach(function(d){
-    var b = document.createElement("button");
-    b.type = "button"; b.className = "tile"; b.textContent = mText(d);
-    b.setAttribute("data-n", d.n);
-    b.addEventListener("click", function(){ tileClick("R", d, b); });
-    right.appendChild(b);
-  });
+  right.className = "tiles" + (mMode === "low" ? "" : (mMode === "sound" ? " wide sound" : " wide"));
+  shuffle(mRound).forEach(function(d){ var b = document.createElement("button"); b.type = "button"; b.className = "tile"; b.textContent = d.u; b.addEventListener("click", function(){ tileClick("L", d, b); }); left.appendChild(b); });
+  shuffle(mRound).forEach(function(d){ var b = document.createElement("button"); b.type = "button"; b.className = "tile"; b.textContent = mText(d); b.addEventListener("click", function(){ tileClick("R", d, b); }); right.appendChild(b); });
   updateScore();
 }
-function updateScore(){
-  $("#mScore").innerHTML = "Matched <b>" + mDone + " of " + mRound.length + "</b> &nbsp;&middot;&nbsp; Misses <b>" + mMiss + "</b>";
-}
+function updateScore(){ $("#mScore").innerHTML = "Matched <b>"+mDone+" of "+mRound.length+"</b> &nbsp;&middot;&nbsp; Misses <b>"+mMiss+"</b>"; }
 function tileClick(side, d, node){
   if(node.classList.contains("done")) return;
-  if(!mSel){
-    mSel = {side:side, d:d, node:node};
-    node.classList.add("sel");
-    if(side==="L") sayLetter(d);
-    return;
-  }
-  if(mSel.side === side){
-    mSel.node.classList.remove("sel");
-    mSel = {side:side, d:d, node:node};
-    node.classList.add("sel");
-    return;
-  }
-  var a = mSel; mSel = null;
-  a.node.classList.remove("sel");
+  if(!mSel){ mSel = {side:side, d:d, node:node}; node.classList.add("sel"); if(side === "L") sayLetter(d); return; }
+  if(mSel.side === side){ mSel.node.classList.remove("sel"); mSel = {side:side, d:d, node:node}; node.classList.add("sel"); return; }
+  var a = mSel; mSel = null; a.node.classList.remove("sel");
   if(a.d.n === d.n){
-    a.node.classList.add("done"); node.classList.add("done");
-    mDone++; updateScore();
-    if(mDone === mRound.length){
-      $("#mBanner").innerHTML = '<p class="banner">Round complete &mdash; ' +
-        (mMiss===0 ? "a perfect run." : mMiss + (mMiss===1?" miss.":" misses.")) +
-        ' Press <b>New round</b> to go again.</p>';
-    }
+    a.node.classList.add("done"); node.classList.add("done"); mDone++; updateScore();
+    if(mDone === mRound.length){ $("#mBanner").innerHTML = '<p class="banner">Round complete &mdash; '+(mMiss === 0 ? "a perfect run." : mMiss + (mMiss === 1 ? " miss." : " misses."))+' Press <b>New round</b> to go again.</p>'; }
   } else {
     mMiss++; updateScore();
-    [a.node, node].forEach(function(x){
-      x.classList.add("bad");
-      setTimeout(function(){ x.classList.remove("bad"); }, 400);
-    });
+    [a.node, node].forEach(function(x){ x.classList.add("bad"); setTimeout(function(){ x.classList.remove("bad"); }, 400); });
   }
 }
+
+/* ================================================================ wiring */
+function segWire(sel, attr, fn){
+  var seg = $(sel); if(!seg) return;
+  seg.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("button["+attr+"]") : null;
+    if(!b) return;
+    $$("button", seg).forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    fn(b.getAttribute(attr));
+  });
+}
+var engines = {};
+engines.alphaCards = makeCards($("#alphaCards")); engines.alphaCards.load(alphaDeck("up"));
+engines.alphaQuiz  = makeQuiz($("#alphaQuiz"), alphaQuestions, {say:sayLetter});
+engines.soundsQuiz = makeQuiz($("#soundsQuiz"), soundsQuestions);
+engines.translit   = makeTranslit($("#translitPractice"));
+engines.caseCards  = makeCards($("#caseCards")); engines.caseCards.load(caseDeck("forms"));
+engines.caseQuiz   = makeQuiz($("#caseQuiz"), caseQuestions);
+renderReview(); renderSoundsLearn(); renderTranslitRules(); renderCaseTable();
+
+var frontMode = "up", deckMode = "forms";
+segWire("#maskSeg", "data-mask", function(v){ maskMode = v; renderReview(); });
+$("#revShuffle").addEventListener("click", function(){ reviewOrder = shuffle(LETTERS); renderReview(); });
+$("#revOrder").addEventListener("click", function(){ reviewOrder = LETTERS.slice(); renderReview(); });
+$("#revPrint").addEventListener("click", function(){ showTopic("alphabet"); showMode("alphabet", "chart"); setTimeout(function(){ window.print(); }, 80); });
+segWire("#frontSeg", "data-front", function(v){ frontMode = v; engines.alphaCards.load(alphaDeck(v)); });
+$("#fcShuffle").addEventListener("click", function(){ engines.alphaCards.shuffle(); });
+$("#fcHear").addEventListener("click", function(){ var c = engines.alphaCards.current(); if(c && c.say) sayLetter(c.say); });
 segWire("#mModeSeg", "data-mmode", function(v){ mMode = v; newRound(); });
 segWire("#mSizeSeg", "data-msize", function(v){ mSize = parseInt(v,10); newRound(); });
 $("#mNew").addEventListener("click", newRound);
+segWire("#deckSeg", "data-deck", function(v){ deckMode = v; engines.caseCards.load(caseDeck(v)); });
+$("#ccShuffle").addEventListener("click", function(){ engines.caseCards.shuffle(); });
 
-/* ------------------------------------------------------------------ quiz */
-var qs = [], qi = 0, qScore = 0, qMissed = [], qAnswered = false;
-var Q_TYPES = ["low","up","name","fromName","sound"];
-
-function makeQ(d){
-  var type = Q_TYPES[Math.floor(Math.random()*Q_TYPES.length)];
-  var others = shuffle(DATA.filter(function(x){ return x.n !== d.n; })).slice(0,3);
-  var pool = shuffle(others.concat([d]));
-  var q = {answer:d, type:type, glyph:"", opts:[]};
-
-  if(type==="low"){
-    q.text = "Which lowercase letter matches this?";
-    q.glyph = d.u;
-    q.opts = pool.map(function(x){ return {n:x.n, html:x.l, cls:"glyph"}; });
-  } else if(type==="up"){
-    q.text = "Which uppercase letter matches this?";
-    q.glyph = '<span class="lo">' + d.l + '</span>';
-    q.opts = pool.map(function(x){ return {n:x.n, html:x.u, cls:"glyph"}; });
-  } else if(type==="name"){
-    q.text = "What is this letter called?";
-    q.glyph = pair(d);
-    q.opts = pool.map(function(x){ return {n:x.n, html:x.name, cls:""}; });
-  } else if(type==="fromName"){
-    q.text = "Which letter is " + d.name + "?";
-    q.opts = pool.map(function(x){ return {n:x.n, html:pair(x), cls:"glyph"}; });
-  } else {
-    q.text = "Which letter makes this sound?";
-    q.glyph = d.sound;
-    q.gcls = "soundq";
-    q.opts = pool.map(function(x){ return {n:x.n, html:pair(x), cls:"glyph"}; });
-  }
-  return q;
+var ON_SHOW = {
+  "alphabet/match": function(){ if(!mRound.length) newRound(); },
+  "alphabet/quiz":  function(){ engines.alphaQuiz.ensure(); },
+  "sounds/quiz":    function(){ engines.soundsQuiz.ensure(); },
+  "translit/practice": function(){ engines.translit.ensure(); },
+  "cases/quiz":     function(){ engines.caseQuiz.ensure(); }
+};
+var KEYS = {
+  "alphabet/cards": function(e){ return engines.alphaCards.keys(e); },
+  "alphabet/quiz":  function(e){ return engines.alphaQuiz.keys(e); },
+  "sounds/quiz":    function(e){ return engines.soundsQuiz.keys(e); },
+  "cases/cards":    function(e){ return engines.caseCards.keys(e); },
+  "cases/quiz":     function(e){ return engines.caseQuiz.keys(e); }
+};
+var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table"};
+function showMode(topic, mode){
+  currentMode[topic] = mode;
+  $$('.seg[data-modes="'+topic+'"] button').forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
+  $$('#topic-'+topic+' .panel').forEach(function(p){ p.hidden = (p.getAttribute("data-panel") !== topic+"/"+mode); });
+  var id = topic+"/"+mode;
+  if(ON_SHOW[id]) ON_SHOW[id]();
+  store.set("mode."+topic, mode);
 }
-function newQuiz(pickPool){
-  var source = (pickPool && pickPool.length) ? pickPool : DATA;
-  var picks = shuffle(source).slice(0, Math.min(10, source.length));
-  qs = picks.map(makeQ);
-  qi = 0; qScore = 0; qMissed = []; qAnswered = false;
-  renderQuiz();
+function showTopic(id){
+  currentTopic = id;
+  $$(".topic-btn").forEach(function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-topic") === id)); });
+  $$(".topic").forEach(function(s){ s.hidden = (s.id !== "topic-"+id); });
+  showMode(id, currentMode[id]);
+  store.set("topic", id);
 }
-function renderDots(){
-  var d = $("#dots"); d.innerHTML = "";
-  qs.forEach(function(q, i){
-    var s = document.createElement("i");
-    if(q.got === true) s.className = "ok";
-    else if(q.got === false) s.className = "no";
-    else if(i === qi) s.className = "on";
-    d.appendChild(s);
+$$(".topic-btn").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-topic")); window.scrollTo({top:0, behavior:"smooth"}); }); });
+$$(".seg[data-modes]").forEach(function(seg){
+  seg.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("button[data-mode]") : null;
+    if(b) showMode(seg.getAttribute("data-modes"), b.getAttribute("data-mode"));
   });
-}
-function renderQuiz(){
-  renderDots();
-  var body = $("#quizBody");
-  if(qi >= qs.length){ renderResults(); return; }
-  var q = qs[qi];
-  qAnswered = false;
-  body.innerHTML =
-    '<div class="qcard">' +
-      '<div class="qnum">Question ' + (qi+1) + ' of ' + qs.length + '</div>' +
-      '<p class="qtext">' + q.text + '</p>' +
-      (q.glyph ? '<div class="qglyph' + (q.gcls ? " " + q.gcls : "") + '">' + q.glyph + '</div>' : '') +
-      '<div class="opts" id="opts"></div>' +
-      '<p class="feedback" id="feedback"></p>' +
-      '<div class="qfoot"><button class="btn primary" type="button" id="qNext" hidden>Next &rsaquo;</button></div>' +
-    '</div>';
-  var opts = $("#opts");
-  q.opts.forEach(function(o, i){
-    var b = document.createElement("button");
-    b.type = "button";
-    b.className = "opt " + (o.cls || "");
-    b.innerHTML = '<span class="k">' + (i+1) + '</span>' + o.html;
-    b.addEventListener("click", function(){ answer(o, b); });
-    opts.appendChild(b);
-  });
-  $("#qNext").addEventListener("click", function(){ qi++; renderQuiz(); });
-}
-function answer(o, node){
-  if(qAnswered) return;
-  qAnswered = true;
-  var q = qs[qi], right = (o.n === q.answer.n);
-  q.got = right;
-  var buttons = $$("#opts .opt");
-  buttons.forEach(function(b, i){
-    b.disabled = true;
-    if(q.opts[i].n === q.answer.n) b.classList.add("correct");
-  });
-  if(right){
-    qScore++;
-    $("#feedback").innerHTML = "Correct &mdash; " + q.answer.name + ", " + q.answer.sound + ".";
-  } else {
-    node.classList.add("wrong");
-    qMissed.push(q.answer);
-    $("#feedback").innerHTML = "The answer is " + q.answer.name + " &mdash; " + q.answer.sound + ".";
-  }
-  sayLetter(q.answer);
-  renderDots();
-  var nb = $("#qNext");
-  nb.hidden = false;
-  nb.textContent = (qi === qs.length-1) ? "See results" : "Next";
-  nb.focus();
-}
-function renderResults(){
-  var pct = Math.round(qScore / qs.length * 100);
-  var verdict = pct===100 ? "Flawless. Alpha to Omega."
-    : pct>=80 ? "Strong. A pass or two more and it is yours."
-    : pct>=50 ? "Halfway there. Review the misses below."
-    : "Start with the chart, then come back.";
-  var html =
-    '<div class="result">' +
-      '<div class="big">' + qScore + '/' + qs.length + '</div>' +
-      '<div class="rsub">' + pct + ' percent</div>' +
-      '<p class="verdict">' + verdict + '</p>';
-  if(qMissed.length){
-    html += '<div class="misslist">';
-    qMissed.forEach(function(d){
-      html += '<div><span class="g">' + pair(d) + '</span><span class="t"><b>' + d.name + '</b>' + d.sound + '</span></div>';
-    });
-    html += '</div>';
-  }
-  html += '<div class="toolbar" style="margin:26px 0 0">' +
-      '<button class="btn primary" type="button" id="qAgain">New quiz</button>' +
-      (qMissed.length ? '<button class="btn" type="button" id="qMissed">Practice the misses</button>' : '') +
-      '<button class="btn" type="button" id="qToChart">Back to chart</button>' +
-    '</div></div>';
-  $("#quizBody").innerHTML = html;
-  $("#qAgain").addEventListener("click", function(){ newQuiz(null); });
-  if($("#qMissed")) $("#qMissed").addEventListener("click", function(){ newQuiz(qMissed.slice()); });
-  $("#qToChart").addEventListener("click", function(){ selectTab("review"); });
-  renderDots();
-}
-
-/* -------------------------------------------------------------- keyboard */
+});
 document.addEventListener("keydown", function(e){
-  var t = e.target;
-  if(t && t.tagName && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
-  if(currentTab === "cards"){
-    if(e.key === "ArrowRight"){ e.preventDefault(); fcGo(1); }
-    else if(e.key === "ArrowLeft"){ e.preventDefault(); fcGo(-1); }
-    else if(e.key === " " || e.key === "Spacebar"){ e.preventDefault(); fcFlip(); }
-  } else if(currentTab === "quiz"){
-    if(/^[1-4]$/.test(e.key)){
-      var b = $$("#opts .opt")[parseInt(e.key,10)-1];
-      if(b && !b.disabled){ e.preventDefault(); b.click(); }
-    } else if(e.key === "Enter"){
-      var nb = $("#qNext");
-      if(nb && !nb.hidden){ e.preventDefault(); nb.click(); }
-    }
-  }
+  var t = e.target, tag = (t && t.tagName) || "";
+  if(/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+  if(tag === "BUTTON" && (e.key === " " || e.key === "Enter")) return;
+  var h = KEYS[currentTopic+"/"+currentMode[currentTopic]];
+  if(h && h(e)) e.preventDefault();
 });
 
-/* ------------------------------------------------------------------ boot */
-renderReview();
-renderCard();
+/* ---- restore where you were ---- */
+(function(){
+  var t = store.get("topic");
+  ["alphabet","sounds","translit","cases"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
+  showTopic(t && $('#topic-'+t) ? t : "alphabet");
+})();
 
 })();
 </script>
