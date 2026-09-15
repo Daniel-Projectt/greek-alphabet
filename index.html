@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Greek Study Sheet</title>
-<meta name="description" content="Greek study sheet: the alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article. Flashcards, a matching game and quizzes.">
+<meta name="description" content="Greek study sheet: the alphabet, diphthongs and breathing marks, transliteration practice, the cases of the article, and vocabulary. Flashcards, matching games and quizzes.">
 <meta name="theme-color" content="#f5f1e8">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Greek Study Sheet">
 <meta property="og:url" content="https://daniel-projectt.github.io/greek-alphabet/">
 <meta property="og:title" content="Greek Study Sheet">
-<meta property="og:description" content="Alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article. Flashcards, match and quizzes.">
+<meta property="og:description" content="Alphabet, diphthongs and breathing marks, transliteration, the cases of the article, and vocabulary. Flashcards, match and quizzes.">
 <meta property="og:image" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
 <meta property="og:image:secure_url" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
 <meta property="og:image:type" content="image/png">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="An engraved cream Greek letter xi on parchment with gold filigree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Greek Study Sheet">
-<meta name="twitter:description" content="Alphabet, diphthongs and breathing marks, transliteration practice, and the cases of the article.">
+<meta name="twitter:description" content="Alphabet, diphthongs and breathing marks, transliteration, the cases of the article, and vocabulary.">
 <meta name="twitter:image" content="https://daniel-projectt.github.io/greek-alphabet/preview.png">
 <style>
 :root{
@@ -245,6 +245,21 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 .chip .tl{font-family:var(--sans);letter-spacing:.06em;color:var(--gold);margin-right:6px}
 .chip .gk .lo{color:var(--gold)}
 
+/* ---------- vocabulary ---------- */
+.tbl .rk{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;color:var(--muted);width:1%;padding-top:17px}
+.tbl th.fqh,.tbl .fq{text-align:right;padding-right:24px}
+.tbl .fq{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:15px;padding-top:16px}
+.tbl.vocab .kw,.tbl.vocab .it,.tbl.vocab .mn{padding-top:16px}
+.tbl tr.masked{cursor:pointer}
+.face .big.vword{font-size:clamp(42px,10.5vw,66px);line-height:1.15}
+.face .mid.vmean{font-size:clamp(19px,4.6vw,27px);line-height:1.35}
+.face .bname.vgloss{font-size:14px;line-height:1.5}
+.tiles.words,.tiles.glosses,.tiles.translits{grid-template-columns:repeat(auto-fill,minmax(128px,1fr))}
+.tiles.words .tile,.tiles.glosses .tile,.tiles.translits .tile{aspect-ratio:auto;min-height:60px;padding:10px 8px;text-align:center;line-height:1.3}
+.tiles.words .tile{font-family:var(--greek);font-size:23px}
+.tiles.glosses .tile{font-family:var(--serif);font-size:14.5px;font-style:italic}
+.tiles.translits .tile{font-family:var(--sans);font-size:14px;letter-spacing:.06em}
+
 footer{text-align:center;padding:46px 20px 56px;color:var(--muted);font-size:13px;font-style:italic}
 footer .keys{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-style:normal;margin-top:12px;color:var(--muted);display:block}
 kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);border-bottom-width:2px;border-radius:3px;padding:1px 5px;background:var(--surface);color:var(--ink-soft)}
@@ -319,7 +334,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   <header>
     <p class="eyebrow">Study Sheet</p>
     <h1>Greek Study Sheet</h1>
-    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article</p>
+    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article &middot; vocabulary</p>
     <svg class="orn" viewBox="0 0 320 44" aria-hidden="true"><use href="#flourish"/></svg>
   </header>
 
@@ -328,6 +343,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
     <button class="topic-btn" role="tab" data-topic="sounds" aria-selected="false">Diphthongs &amp; Breathings</button>
     <button class="topic-btn" role="tab" data-topic="translit" aria-selected="false">Transliteration</button>
     <button class="topic-btn" role="tab" data-topic="cases" aria-selected="false">Cases &amp; Articles</button>
+    <button class="topic-btn" role="tab" data-topic="vocab" aria-selected="false">Vocabulary</button>
   </nav>
 
   <main>
@@ -458,6 +474,61 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       <div class="panel" data-panel="cases/quiz" hidden>
         <p class="hint">Ten mixed questions: name the case of a form, pick the form for a case, match key words and mnemonics.</p>
         <div id="caseQuiz"></div>
+      </div>
+    </section>
+
+    <!-- ================= VOCABULARY ================= -->
+    <section class="topic" id="topic-vocab" hidden>
+      <p class="intro">Vocabulary List 1: ten words, each with its part of speech, how many times it is used in the New Testament, and its meaning.</p>
+      <div class="modes"><div class="seg" data-modes="vocab">
+        <button type="button" data-mode="list" aria-pressed="true">List</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="match" aria-pressed="false">Match</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+
+      <div class="panel" data-panel="vocab/list">
+        <p class="hint">Hide a column to test yourself, then tap a row to reveal it.</p>
+        <div class="toolbar">
+          <span class="label">Hide</span>
+          <div class="seg" id="vMaskSeg">
+            <button type="button" data-vmask="none" aria-pressed="true">Nothing</button>
+            <button type="button" data-vmask="greek" aria-pressed="false">Greek</button>
+            <button type="button" data-vmask="meaning" aria-pressed="false">Meaning</button>
+          </div>
+        </div>
+        <div id="vocabList"></div>
+      </div>
+
+      <div class="panel" data-panel="vocab/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar">
+          <span class="label">Front shows</span>
+          <div class="seg" id="vFrontSeg">
+            <button type="button" data-vfront="greek" aria-pressed="true">Greek</button>
+            <button type="button" data-vfront="english" aria-pressed="false">English</button>
+          </div>
+          <button class="btn" type="button" id="vcShuffle">Shuffle deck</button>
+        </div>
+        <div id="vocabCards"></div>
+      </div>
+
+      <div class="panel" data-panel="vocab/match" hidden>
+        <p class="hint">Tap a Greek word, then its partner on the right. Matched pairs fade out.</p>
+        <div class="toolbar">
+          <span class="label">Match</span>
+          <div class="seg" id="vMatchSeg">
+            <button type="button" data-vmatch="meaning" aria-pressed="true">Word to meaning</button>
+            <button type="button" data-vmatch="translit" aria-pressed="false">Word to English letters</button>
+          </div>
+          <button class="btn primary" type="button" id="vmNew">New round</button>
+        </div>
+        <div id="vocabMatch"></div>
+      </div>
+
+      <div class="panel" data-panel="vocab/quiz" hidden>
+        <p class="hint">Ten mixed questions: meanings, spelling, part of speech, and which words are most common. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <div id="vocabQuiz"></div>
       </div>
     </section>
 
@@ -691,6 +762,23 @@ function describeForm(form){
   return {cases:cs.join(" or "), num:nums.join(" or "), gen:g, gloss:caseByName(cs[0]).gloss};
 }
 
+/* ================================================================ data: vocabulary (from the printed lists) */
+var VOCAB = [
+  {list:1, g:"ὁ, ἡ, τό", pos:"article",               freq:19870, gloss:"the"},
+  {list:1, g:"καί",      pos:"conjunction",           freq:9153,  gloss:"and, even, also"},
+  {list:1, g:"θεός",     pos:"masculine noun",        freq:1317,  gloss:"god"},
+  {list:1, g:"γάρ",      pos:"conjunction",           freq:1041,  gloss:"for"},
+  {list:1, g:"Ἰησοῦς",   pos:"masculine proper noun", freq:917,   gloss:"Jesus"},
+  {list:1, g:"κύριος",   pos:"masculine noun",        freq:717,   gloss:"lord, master"},
+  {list:1, g:"Χριστός",  pos:"masculine noun",        freq:529,   gloss:"Christ, messiah"},
+  {list:1, g:"πατήρ",    pos:"masculine noun",        freq:413,   gloss:"father"},
+  {list:1, g:"πνεῦμα",   pos:"neuter noun",           freq:379,   gloss:"spirit, Spirit, wind"},
+  {list:1, g:"υἱός",     pos:"masculine noun",        freq:377,   gloss:"son"}
+];
+var VOCAB_POS = uniqBy(VOCAB, function(d){ return d.pos; }).map(function(d){ return d.pos; });
+function fmtNum(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+function capFirst(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
 /* ================================================================ transliteration engine */
 var MAP = {"α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"ē","θ":"th","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"x","ο":"o","π":"p","ρ":"r","σ":"s","ς":"s","τ":"t","υ":"y","φ":"ph","χ":"ch","ψ":"ps","ω":"ō"};
 function tlToken(tok, opts){
@@ -859,6 +947,32 @@ function caseQuestions(keys){
   });
   return shuffle(qs).slice(0, 10);
 }
+function vocabQuestions(keys){
+  var pool = keys ? VOCAB.filter(function(d){ return keys.indexOf("v:"+d.g) >= 0; }) : VOCAB;
+  if(!pool.length) pool = VOCAB;
+  return pick(pool, Math.min(10, pool.length)).map(function(d){
+    var tr = translit(d.g);
+    var others = pick(VOCAB.filter(function(x){ return x.g !== d.g; }), 3);
+    var rarer = VOCAB.filter(function(x){ return x.freq < d.freq; });
+    var types = ["meaning","meaning","greek","pos","translit"];
+    if(rarer.length >= 3) types.push("freq");
+    var type = pick(types, 1)[0];
+    var q = {key:"v:"+d.g,
+      explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”. "+capFirst(d.pos)+", used "+fmtNum(d.freq)+" times in the New Testament.",
+      miss:'<span class="g">'+d.g+'</span><span class="t"><b>'+tr+' · '+d.pos+'</b>'+d.gloss+'</span>'};
+    if(type === "meaning"){ q.text = "What does this word mean?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(d.gloss, others.map(function(x){ return x.gloss; })); }
+    else if(type === "greek"){ q.text = "Which word means <i>“"+d.gloss+"”</i>?"; q.opts = mkOpts(d.g, others.map(function(x){ return x.g; }), "glyph"); }
+    else if(type === "pos"){ q.text = "What part of speech is this word?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(d.pos, pick(VOCAB_POS.filter(function(p){ return p !== d.pos; }), 3)); }
+    else if(type === "translit"){ q.text = "How is this word written in English letters?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(tr, others.map(function(x){ return translit(x.g); })); }
+    else {
+      var low = pick(rarer, 3);
+      q.text = "Which of these is used most often in the New Testament?";
+      q.opts = mkOpts(d.g, low.map(function(x){ return x.g; }), "glyph");
+      q.explain += " The others: " + low.map(function(x){ return gk(x.g)+" "+fmtNum(x.freq); }).join(", ") + ".";
+    }
+    return q;
+  });
+}
 
 /* ================================================================ decks */
 function alphaDeck(front){
@@ -886,10 +1000,28 @@ function caseDeck(mode){
   });
 }
 
+function vocabDeck(front){
+  return VOCAB.map(function(d){
+    var tr = translit(d.g);
+    var f = front === "english"
+      ? '<div class="mid vmean">'+d.gloss+'</div><div class="hint">meaning</div>'
+      : '<div class="big engraved vword">'+d.g+'</div><div class="hint">Greek word</div>';
+    return {front:f,
+            back:'<div class="big vword">'+d.g+'</div><div class="btr">'+tr+'</div><div class="bname vgloss">'+d.gloss+'</div>'+
+                 '<div class="bsound">'+capFirst(d.pos)+' · used '+fmtNum(d.freq)+' times in the NT</div>'};
+  });
+}
+function vocabMatch(mode){
+  var byMeaning = mode !== "translit";
+  return {leftTitle:"Greek word", rightTitle:byMeaning ? "Meaning" : "English letters", rightCls:byMeaning ? "glosses" : "translits",
+          items:VOCAB.map(function(d){ return {id:d.g, left:d.g, right:byMeaning ? d.gloss : translit(d.g)}; })};
+}
+
 /* ---- allow the pure parts to be tested outside a browser ---- */
 if(typeof window === "undefined"){
   module.exports = {translit:translit, rulesFor:rulesFor, judge:judge, distractorsFor:distractorsFor, LETTERS:LETTERS, TRANS:TRANS, BREATH_WORDS:BREATH_WORDS, PLACE:PLACE, DISTINCT:DISTINCT, FORM_GROUPS:FORM_GROUPS,
-    alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm};
+    alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm,
+    VOCAB:VOCAB, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch};
   return;
 }
 
@@ -1020,6 +1152,46 @@ function makeQuiz(root, gen, opts){
       return false;
     }
   };
+}
+
+/* ================================================================ generic: match game */
+function makeMatch(root, getRound){
+  root.innerHTML = '<p class="scoreline"></p><div class="mbanner"></div>'+
+    '<div class="matchGrid"><div class="col"><h3 class="lt"></h3><div class="tiles words L"></div></div>'+
+    '<div class="col"><h3 class="rt"></h3><div class="tiles R"></div></div></div>';
+  var items = [], sel = null, miss = 0, done = 0, started = false;
+  var scoreEl = $(".scoreline", root), banner = $(".mbanner", root), L = $(".L", root), R = $(".R", root);
+  function upd(){ scoreEl.innerHTML = "Matched <b>"+done+" of "+items.length+"</b> &nbsp;&middot;&nbsp; Misses <b>"+miss+"</b>"; }
+  function click(side, it, node){
+    if(node.classList.contains("done")) return;
+    if(!sel){ sel = {side:side, it:it, node:node}; node.classList.add("sel"); return; }
+    if(sel.side === side){ sel.node.classList.remove("sel"); sel = {side:side, it:it, node:node}; node.classList.add("sel"); return; }
+    var a = sel; sel = null; a.node.classList.remove("sel");
+    if(a.it.id === it.id){
+      a.node.classList.add("done"); node.classList.add("done"); done++; upd();
+      if(done === items.length) banner.innerHTML = '<p class="banner">Round complete &mdash; '+(miss === 0 ? "a perfect run." : miss + (miss === 1 ? " miss." : " misses."))+' Press <b>New round</b> to go again.</p>';
+    } else {
+      miss++; upd();
+      [a.node, node].forEach(function(x){ x.classList.add("bad"); setTimeout(function(){ x.classList.remove("bad"); }, 400); });
+    }
+  }
+  function addTile(parent, side, it, text){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "tile"; b.textContent = text;
+    b.addEventListener("click", function(){ click(side, it, b); });
+    parent.appendChild(b);
+  }
+  function round(){
+    var r = getRound();
+    items = r.items; sel = null; miss = 0; done = 0; started = true;
+    banner.innerHTML = ""; $(".lt", root).textContent = r.leftTitle; $(".rt", root).textContent = r.rightTitle;
+    R.className = "tiles R " + (r.rightCls || "");
+    L.innerHTML = ""; R.innerHTML = "";
+    shuffle(items).forEach(function(it){ addTile(L, "L", it, it.left); });
+    shuffle(items).forEach(function(it){ addTile(R, "R", it, it.right); });
+    upd();
+  }
+  return {round:round, ensure:function(){ if(!started) round(); }};
 }
 
 /* ================================================================ transliteration practice */
@@ -1160,6 +1332,26 @@ function renderCaseTable(){
     '<p class="note">Read the article across: masculine, feminine, neuter. Notice the dative row — every form carries an iota, subscripted (τῷ τῇ) or written out (τοῖς ταῖς).</p>';
   $("#caseTable").innerHTML = html;
 }
+var vocabMask = "none", vocabMatchMode = "meaning";
+function renderVocabList(){
+  var hideG = vocabMask === "greek" ? " veil" : "", hideM = vocabMask === "meaning" ? " veil" : "";
+  var html = '<div class="tblwrap"><table class="tbl vocab"><thead><tr><th>#</th><th>Greek word</th><th>Written</th><th>Part of speech</th><th class="fqh">Times used in the NT</th><th>Meaning</th></tr></thead><tbody>'+
+    VOCAB.map(function(d, i){
+      return '<tr'+(vocabMask !== "none" ? ' class="masked"' : '')+'>'+
+        '<td class="rk">'+pad(i+1)+'</td>'+
+        '<td class="gk'+hideG+'">'+d.g+'</td>'+
+        '<td class="kw'+hideG+'">'+translit(d.g)+'</td>'+
+        '<td class="it">'+d.pos+'</td>'+
+        '<td class="fq">'+fmtNum(d.freq)+'</td>'+
+        '<td class="mn'+hideM+'">'+d.gloss+'</td></tr>';
+    }).join("")+
+    '</tbody></table></div>'+
+    '<p class="note">Spirit with a capital S is the Holy Spirit. The counts are how many times each word appears in the Greek New Testament.</p>';
+  $("#vocabList").innerHTML = html;
+  $$("#vocabList tr.masked").forEach(function(tr){
+    tr.addEventListener("click", function(){ $$(".veil", tr).forEach(function(v){ v.classList.toggle("shown"); }); });
+  });
+}
 
 /* ================================================================ match game */
 var mRound = [], mMode = "low", mSize = 8, mSel = null, mMiss = 0, mDone = 0;
@@ -1223,21 +1415,35 @@ $("#mNew").addEventListener("click", newRound);
 segWire("#deckSeg", "data-deck", function(v){ deckMode = v; engines.caseCards.load(caseDeck(v)); });
 $("#ccShuffle").addEventListener("click", function(){ engines.caseCards.shuffle(); });
 
+engines.vocabCards = makeCards($("#vocabCards")); engines.vocabCards.load(vocabDeck("greek"));
+engines.vocabMatch = makeMatch($("#vocabMatch"), function(){ return vocabMatch(vocabMatchMode); });
+engines.vocabQuiz  = makeQuiz($("#vocabQuiz"), vocabQuestions);
+renderVocabList();
+segWire("#vMaskSeg", "data-vmask", function(v){ vocabMask = v; renderVocabList(); });
+segWire("#vFrontSeg", "data-vfront", function(v){ engines.vocabCards.load(vocabDeck(v)); });
+$("#vcShuffle").addEventListener("click", function(){ engines.vocabCards.shuffle(); });
+segWire("#vMatchSeg", "data-vmatch", function(v){ vocabMatchMode = v; engines.vocabMatch.round(); });
+$("#vmNew").addEventListener("click", function(){ engines.vocabMatch.round(); });
+
 var ON_SHOW = {
   "alphabet/match": function(){ if(!mRound.length) newRound(); },
   "alphabet/quiz":  function(){ engines.alphaQuiz.ensure(); },
   "sounds/quiz":    function(){ engines.soundsQuiz.ensure(); },
   "translit/practice": function(){ engines.translit.ensure(); },
-  "cases/quiz":     function(){ engines.caseQuiz.ensure(); }
+  "cases/quiz":     function(){ engines.caseQuiz.ensure(); },
+  "vocab/match":    function(){ engines.vocabMatch.ensure(); },
+  "vocab/quiz":     function(){ engines.vocabQuiz.ensure(); }
 };
 var KEYS = {
   "alphabet/cards": function(e){ return engines.alphaCards.keys(e); },
   "alphabet/quiz":  function(e){ return engines.alphaQuiz.keys(e); },
   "sounds/quiz":    function(e){ return engines.soundsQuiz.keys(e); },
   "cases/cards":    function(e){ return engines.caseCards.keys(e); },
-  "cases/quiz":     function(e){ return engines.caseQuiz.keys(e); }
+  "cases/quiz":     function(e){ return engines.caseQuiz.keys(e); },
+  "vocab/cards":    function(e){ return engines.vocabCards.keys(e); },
+  "vocab/quiz":     function(e){ return engines.vocabQuiz.keys(e); }
 };
-var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table"};
+var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list"};
 function showMode(topic, mode){
   currentMode[topic] = mode;
   $$('.seg[data-modes="'+topic+'"] button').forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
@@ -1271,7 +1477,7 @@ document.addEventListener("keydown", function(e){
 /* ---- restore where you were ---- */
 (function(){
   var t = store.get("topic");
-  ["alphabet","sounds","translit","cases"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
+  ["alphabet","sounds","translit","cases","vocab"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
   showTopic(t && $('#topic-'+t) ? t : "alphabet");
 })();
 
