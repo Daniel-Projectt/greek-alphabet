@@ -146,6 +146,7 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 .flash{perspective:1400px;height:350px;cursor:pointer}
 .flashInner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.1,.2,1);transform-style:preserve-3d}
 .flash.flipped .flashInner{transform:rotateY(180deg)}
+.flash.noanim .flashInner{transition:none}   /* snap back to the front, so the next card's back never shows mid-turn */
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 34px;overflow:auto;text-align:center}
 .face.back{transform:rotateY(180deg);background:var(--surface-2)}
 .face .big{font-family:var(--greek);font-size:clamp(66px,15vw,104px);line-height:1;letter-spacing:.03em}
@@ -1174,15 +1175,24 @@ function makeCards(root){
     counter.textContent = (idx+1) + " of " + deck.length;
     bar.style.width = ((idx+1) / deck.length * 100) + "%";
   }
-  function go(step){ flash.classList.remove("flipped"); idx = (idx + step + deck.length) % deck.length; render(); }
+  /* Turning to another card must not animate: the faces would rotate while the
+     new card's back is already rendered, showing the answer for half a second. */
+  function unflip(){
+    if(!flash.classList.contains("flipped")) return;
+    flash.classList.add("noanim");
+    flash.classList.remove("flipped");
+    void flash.offsetWidth;                       /* apply it before the next paint */
+    flash.classList.remove("noanim");
+  }
+  function go(step){ unflip(); idx = (idx + step + deck.length) % deck.length; render(); }
   function flip(){ flash.classList.toggle("flipped"); }
   flash.addEventListener("click", flip);
   $(".flip", root).addEventListener("click", flip);
   $(".next", root).addEventListener("click", function(){ go(1); });
   $(".prev", root).addEventListener("click", function(){ go(-1); });
   return {
-    load:function(d){ deck = d; idx = 0; flash.classList.remove("flipped"); render(); },
-    shuffle:function(){ deck = shuffle(deck); idx = 0; flash.classList.remove("flipped"); render(); },
+    load:function(d){ unflip(); deck = d; idx = 0; render(); },
+    shuffle:function(){ unflip(); deck = shuffle(deck); idx = 0; render(); },
     current:function(){ return deck[idx]; },
     keys:function(e){
       if(e.key === "ArrowRight"){ go(1); return true; }
