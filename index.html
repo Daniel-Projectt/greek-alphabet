@@ -247,9 +247,8 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 
 /* ---------- vocabulary ---------- */
 .tbl .rk{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;color:var(--muted);width:1%;padding-top:17px}
-.tbl th.fqh,.tbl .fq{text-align:right;padding-right:24px}
-.tbl .fq{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:15px;padding-top:16px}
 .tbl.vocab .kw,.tbl.vocab .it,.tbl.vocab .mn{padding-top:16px}
+#vListSeg button{min-width:42px}
 .tbl tr.masked{cursor:pointer}
 .face .big.vword{font-size:clamp(42px,10.5vw,66px);line-height:1.15}
 .face .mid.vmean{font-size:clamp(19px,4.6vw,27px);line-height:1.35}
@@ -479,13 +478,27 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 
     <!-- ================= VOCABULARY ================= -->
     <section class="topic" id="topic-vocab" hidden>
-      <p class="intro">Vocabulary List 1: ten words, each with its part of speech, how many times it is used in the New Testament, and its meaning.</p>
+      <p class="intro">Eight vocabulary lists, seventy-five words in all, each with its part of speech and its meaning. Pick a list, then learn it with the flashcards, the matching game and the quiz.</p>
       <div class="modes"><div class="seg" data-modes="vocab">
         <button type="button" data-mode="list" aria-pressed="true">List</button>
         <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
         <button type="button" data-mode="match" aria-pressed="false">Match</button>
         <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
       </div></div>
+      <div class="toolbar">
+        <span class="label">List</span>
+        <div class="seg" id="vListSeg">
+          <button type="button" data-vlist="1" aria-pressed="true">1</button>
+          <button type="button" data-vlist="2" aria-pressed="false">2</button>
+          <button type="button" data-vlist="3" aria-pressed="false">3</button>
+          <button type="button" data-vlist="4" aria-pressed="false">4</button>
+          <button type="button" data-vlist="5" aria-pressed="false">5</button>
+          <button type="button" data-vlist="6" aria-pressed="false">6</button>
+          <button type="button" data-vlist="7" aria-pressed="false">7</button>
+          <button type="button" data-vlist="8" aria-pressed="false">8</button>
+          <button type="button" data-vlist="all" aria-pressed="false">All 75</button>
+        </div>
+      </div>
 
       <div class="panel" data-panel="vocab/list">
         <p class="hint">Hide a column to test yourself, then tap a row to reveal it.</p>
@@ -527,7 +540,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       </div>
 
       <div class="panel" data-panel="vocab/quiz" hidden>
-        <p class="hint">Ten mixed questions: meanings, spelling, part of speech, and which words are most common. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <p class="hint">Ten mixed questions on the list you picked: meanings, spelling and part of speech. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
         <div id="vocabQuiz"></div>
       </div>
     </section>
@@ -764,20 +777,103 @@ function describeForm(form){
 
 /* ================================================================ data: vocabulary (from the printed lists) */
 var VOCAB = [
-  {list:1, g:"ὁ, ἡ, τό", pos:"article",               freq:19870, gloss:"the"},
-  {list:1, g:"καί",      pos:"conjunction",           freq:9153,  gloss:"and, even, also"},
-  {list:1, g:"θεός",     pos:"masculine noun",        freq:1317,  gloss:"god"},
-  {list:1, g:"γάρ",      pos:"conjunction",           freq:1041,  gloss:"for"},
-  {list:1, g:"Ἰησοῦς",   pos:"masculine proper noun", freq:917,   gloss:"Jesus"},
-  {list:1, g:"κύριος",   pos:"masculine noun",        freq:717,   gloss:"lord, master"},
-  {list:1, g:"Χριστός",  pos:"masculine noun",        freq:529,   gloss:"Christ, messiah"},
-  {list:1, g:"πατήρ",    pos:"masculine noun",        freq:413,   gloss:"father"},
-  {list:1, g:"πνεῦμα",   pos:"neuter noun",           freq:379,   gloss:"spirit, Spirit, wind"},
-  {list:1, g:"υἱός",     pos:"masculine noun",        freq:377,   gloss:"son"}
+  {list:1, g:"ὁ, ἡ, τό",     pos:"article",                  gloss:"the"},
+  {list:1, g:"καί",          pos:"conjunction",              gloss:"and, even, also"},
+  {list:1, g:"θεός",         pos:"masculine noun",           gloss:"god"},
+  {list:1, g:"γάρ",          pos:"conjunction",              gloss:"for"},
+  {list:1, g:"Ἰησοῦς",       pos:"masculine proper noun",    gloss:"Jesus"},
+  {list:1, g:"κύριος",       pos:"masculine noun",           gloss:"lord, master"},
+  {list:1, g:"Χριστός",      pos:"masculine noun",           gloss:"Christ, messiah"},
+  {list:1, g:"πατήρ",        pos:"masculine noun",           gloss:"father"},
+  {list:1, g:"πνεῦμα",       pos:"neuter noun",              gloss:"spirit, Spirit, wind"},
+  {list:1, g:"υἱός",         pos:"masculine noun",           gloss:"son"},
+
+  {list:2, g:"δέ",           pos:"conjunction",              gloss:"but, and"},
+  {list:2, g:"ἐν",           pos:"preposition (dat.)",       gloss:"in, among, with"},
+  {list:2, g:"εἰς",          pos:"preposition (acc.)",       gloss:"into, in"},
+  {list:2, g:"πᾶς",          pos:"adjective",                gloss:"all, every"},
+  {list:2, g:"ἐκ",           pos:"preposition (gen.)",       gloss:"out of, from"},
+  {list:2, g:"διά",          pos:"preposition (gen., acc.)", gloss:"through, on account of"},
+  {list:2, g:"ἄνθρωπος",     pos:"masculine noun",           gloss:"man, human being"},
+  {list:2, g:"ἀδελφός",      pos:"masculine noun",           gloss:"brother"},
+  {list:2, g:"ἅγιος",        pos:"adjective",                gloss:"holy"},
+  {list:2, g:"ἔσχατος",      pos:"adjective",                gloss:"last"},
+
+  {list:3, g:"αὐτός, -ή, -ό", pos:"3rd person pronoun",      gloss:"he, she, it"},
+  {list:3, g:"εἰμί",         pos:"verb",                     gloss:"I am"},
+  {list:3, g:"λέγω",         pos:"verb",                     gloss:"I say"},
+  {list:3, g:"ἐγώ",          pos:"1st person pronoun",       gloss:"I"},
+  {list:3, g:"σύ",           pos:"2nd person pronoun",       gloss:"you"},
+  {list:3, g:"ἔχω",          pos:"verb",                     gloss:"I have"},
+  {list:3, g:"λόγος",        pos:"masculine noun",           gloss:"word"},
+  {list:3, g:"ἀνήρ",         pos:"masculine noun",           gloss:"man, husband"},
+  {list:3, g:"γυνή",         pos:"feminine noun",            gloss:"woman, wife"},
+  {list:3, g:"λύω",          pos:"verb",                     gloss:"I loose"},
+
+  {list:4, g:"οὐ",           pos:"negative particle",        gloss:"no, not"},
+  {list:4, g:"μή",           pos:"negative particle",        gloss:"no, not"},
+  {list:4, g:"ἀλλά",         pos:"conjunction",              gloss:"but, yet"},
+  {list:4, g:"οὖν",          pos:"conjunction",              gloss:"therefore"},
+  {list:4, g:"χάρις",        pos:"feminine noun",            gloss:"grace"},
+  {list:4, g:"ἀγαπάω",       pos:"contract verb",            gloss:"I love"},
+  {list:4, g:"ἀγάπη",        pos:"feminine noun",            gloss:"love"},
+  {list:4, g:"γεννάω",       pos:"contract verb",            gloss:"I beget"},
+  {list:4, g:"ἀκολουθέω",    pos:"contract verb",            gloss:"I follow"},
+
+  {list:5, g:"ἔρχομαι",      pos:"deponent verb",            gloss:"I come, go"},
+  {list:5, g:"δίδωμι",       pos:"-μι verb",                 gloss:"I give"},
+  {list:5, g:"οὐρανός",      pos:"masculine noun",           gloss:"heaven"},
+  {list:5, g:"μαθητής",      pos:"masculine noun",           gloss:"disciple"},
+  {list:5, g:"ἀποκρίνομαι",  pos:"deponent verb",            gloss:"I answer"},
+  {list:5, g:"νόμος",        pos:"masculine noun",           gloss:"law"},
+  {list:5, g:"κόσμος",       pos:"masculine noun",           gloss:"world"},
+  {list:5, g:"ἁμαρτία",      pos:"feminine noun",            gloss:"sin"},
+  {list:5, g:"προσεύχομαι",  pos:"deponent verb",            gloss:"I pray"},
+
+  {list:6, g:"ὅτι",          pos:"conjunction",              gloss:"because, that"},
+  {list:6, g:"ἵνα",          pos:"conjunction",              gloss:"in order that, that"},
+  {list:6, g:"πιστεύω",      pos:"verb",                     gloss:"I believe"},
+  {list:6, g:"δόξα",         pos:"feminine noun",            gloss:"glory"},
+  {list:6, g:"βασιλεία",     pos:"feminine noun",            gloss:"kingdom"},
+  {list:6, g:"σάρξ",         pos:"feminine noun",            gloss:"flesh"},
+  {list:6, g:"ἐκκλησία",     pos:"feminine noun",            gloss:"assembly, church"},
+  {list:6, g:"κρίνω",        pos:"verb",                     gloss:"I judge"},
+  {list:6, g:"ἀλήθεια",      pos:"feminine noun",            gloss:"truth"},
+
+  {list:7, g:"ἀκούω",        pos:"verb",                     gloss:"I hear"},
+  {list:7, g:"γράφω",        pos:"verb",                     gloss:"I write"},
+  {list:7, g:"τέκνον",       pos:"neuter noun",              gloss:"child"},
+  {list:7, g:"δικαιοσύνη",   pos:"feminine noun",            gloss:"righteousness"},
+  {list:7, g:"εἰρήνη",       pos:"feminine noun",            gloss:"peace"},
+  {list:7, g:"ἀπόστολος",    pos:"masculine noun",           gloss:"apostle"},
+  {list:7, g:"σημεῖον",      pos:"neuter noun",              gloss:"sign"},
+  {list:7, g:"εὐαγγέλιον",   pos:"neuter noun",              gloss:"gospel, good news"},
+  {list:7, g:"ὕδωρ",         pos:"neuter noun",              gloss:"water"},
+
+  {list:8, g:"ζωή",          pos:"feminine noun",            gloss:"life"},
+  {list:8, g:"αἰών",         pos:"neuter noun",              gloss:"age"},
+  {list:8, g:"σῴζω",         pos:"verb",                     gloss:"I save"},
+  {list:8, g:"διδάσκω",      pos:"verb",                     gloss:"I teach"},
+  {list:8, g:"κεφαλή",       pos:"feminine noun",            gloss:"head"},
+  {list:8, g:"φῶς",          pos:"neuter noun",              gloss:"light"},
+  {list:8, g:"αἰώνιος",      pos:"adjective",                gloss:"eternal"},
+  {list:8, g:"ῥῆμα",         pos:"neuter noun",              gloss:"word"},
+  {list:8, g:"διδάσκαλος",   pos:"masculine noun",           gloss:"teacher"}
 ];
+var VOCAB_LISTS = uniqBy(VOCAB, function(d){ return d.list; }).map(function(d){ return d.list; });
 var VOCAB_POS = uniqBy(VOCAB, function(d){ return d.pos; }).map(function(d){ return d.pos; });
-function fmtNum(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+var vocabSel = 1;                                    /* 1..8, or "all" */
+function vocabPool(sel){
+  sel = (sel === undefined) ? vocabSel : sel;
+  return sel === "all" ? VOCAB : VOCAB.filter(function(d){ return d.list === sel; });
+}
 function capFirst(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+/* Two words on the sheet share a gloss (οὐ / μή, and λόγος / ῥῆμα).
+   Questions that ask "which word means X" are skipped for those. */
+function glossTwin(d){
+  for(var i=0;i<VOCAB.length;i++){ if(VOCAB[i].g !== d.g && VOCAB[i].gloss === d.gloss) return true; }
+  return false;
+}
 
 /* ================================================================ transliteration engine */
 var MAP = {"α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"ē","θ":"th","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"x","ο":"o","π":"p","ρ":"r","σ":"s","ς":"s","τ":"t","υ":"y","φ":"ph","χ":"ch","ψ":"ps","ω":"ō"};
@@ -810,6 +906,9 @@ function translit(word, opts){
   opts = opts || {};
   return word.split(" ").map(function(t){ return tlToken(t, opts); }).join(" ");
 }
+/* Vocabulary is shown the way a dictionary spells it: the iota subscript is
+   not written out, so σῴζω is sōzō rather than sōizō. */
+function vtr(g){ return translit(g, {noSub:true}); }
 function demac(s){ return s.replace(/ē/g,"e").replace(/ō/g,"o").replace(/ā/g,"a").replace(/Ē/g,"E").replace(/Ō/g,"O").replace(/Ā/g,"A"); }
 function norm(s){ return (s || "").toLowerCase().replace(/\s+/g," ").trim(); }
 function judge(word, ans){
@@ -947,28 +1046,37 @@ function caseQuestions(keys){
   });
   return shuffle(qs).slice(0, 10);
 }
-function vocabQuestions(keys){
-  var pool = keys ? VOCAB.filter(function(d){ return keys.indexOf("v:"+d.g) >= 0; }) : VOCAB;
-  if(!pool.length) pool = VOCAB;
+function vocabQuestions(keys, sel){
+  var all = vocabPool(sel);
+  var pool = keys ? all.filter(function(d){ return keys.indexOf("v:"+d.g) >= 0; }) : all;
+  if(!pool.length) pool = all;
   return pick(pool, Math.min(10, pool.length)).map(function(d){
-    var tr = translit(d.g);
-    var others = pick(VOCAB.filter(function(x){ return x.g !== d.g; }), 3);
-    var rarer = VOCAB.filter(function(x){ return x.freq < d.freq; });
-    var types = ["meaning","meaning","greek","pos","translit"];
-    if(rarer.length >= 3) types.push("freq");
+    var tr = vtr(d.g);
+    var rest = all.filter(function(x){ return x.g !== d.g; });
+    var types = ["meaning","meaning","pos","translit"];
+    if(!glossTwin(d)) types.push("greek");
     var type = pick(types, 1)[0];
     var q = {key:"v:"+d.g,
-      explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”. "+capFirst(d.pos)+", used "+fmtNum(d.freq)+" times in the New Testament.",
+      explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”. "+capFirst(d.pos)+", list "+d.list+".",
       miss:'<span class="g">'+d.g+'</span><span class="t"><b>'+tr+' · '+d.pos+'</b>'+d.gloss+'</span>'};
-    if(type === "meaning"){ q.text = "What does this word mean?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(d.gloss, others.map(function(x){ return x.gloss; })); }
-    else if(type === "greek"){ q.text = "Which word means <i>“"+d.gloss+"”</i>?"; q.opts = mkOpts(d.g, others.map(function(x){ return x.g; }), "glyph"); }
-    else if(type === "pos"){ q.text = "What part of speech is this word?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(d.pos, pick(VOCAB_POS.filter(function(p){ return p !== d.pos; }), 3)); }
-    else if(type === "translit"){ q.text = "How is this word written in English letters?"; q.glyph = d.g; q.gcls = "word"; q.opts = mkOpts(tr, others.map(function(x){ return translit(x.g); })); }
+    if(type === "meaning"){
+      /* one option per meaning: οὐ and μή both mean "no, not" */
+      var byGloss = uniqBy(rest.filter(function(x){ return x.gloss !== d.gloss; }), function(x){ return x.gloss; });
+      q.text = "What does this word mean?"; q.glyph = d.g; q.gcls = "word";
+      q.opts = mkOpts(d.gloss, pick(byGloss, 3).map(function(x){ return x.gloss; }));
+    }
+    else if(type === "greek"){
+      q.text = "Which word means <i>“"+d.gloss+"”</i>?";
+      q.opts = mkOpts(d.g, pick(rest, 3).map(function(x){ return x.g; }), "glyph");
+    }
+    else if(type === "pos"){
+      q.text = "What part of speech is this word?"; q.glyph = d.g; q.gcls = "word";
+      q.opts = mkOpts(d.pos, pick(VOCAB_POS.filter(function(p){ return p !== d.pos; }), 3));
+    }
     else {
-      var low = pick(rarer, 3);
-      q.text = "Which of these is used most often in the New Testament?";
-      q.opts = mkOpts(d.g, low.map(function(x){ return x.g; }), "glyph");
-      q.explain += " The others: " + low.map(function(x){ return gk(x.g)+" "+fmtNum(x.freq); }).join(", ") + ".";
+      var otherTr = pick(uniqBy(rest.filter(function(x){ return vtr(x.g) !== tr; }), function(x){ return vtr(x.g); }), 3);
+      q.text = "How is this word written in English letters?"; q.glyph = d.g; q.gcls = "word";
+      q.opts = mkOpts(tr, otherTr.map(function(x){ return vtr(x.g); }));
     }
     return q;
   });
@@ -1000,28 +1108,30 @@ function caseDeck(mode){
   });
 }
 
-function vocabDeck(front){
-  return VOCAB.map(function(d){
-    var tr = translit(d.g);
+function vocabDeck(front, sel){
+  return vocabPool(sel).map(function(d){
+    var tr = vtr(d.g);
     var f = front === "english"
       ? '<div class="mid vmean">'+d.gloss+'</div><div class="hint">meaning</div>'
       : '<div class="big engraved vword">'+d.g+'</div><div class="hint">Greek word</div>';
     return {front:f,
             back:'<div class="big vword">'+d.g+'</div><div class="btr">'+tr+'</div><div class="bname vgloss">'+d.gloss+'</div>'+
-                 '<div class="bsound">'+capFirst(d.pos)+' · used '+fmtNum(d.freq)+' times in the NT</div>'};
+                 '<div class="bsound">'+capFirst(d.pos)+' · list '+d.list+'</div>'};
   });
 }
-function vocabMatch(mode){
+function vocabMatch(mode, sel){
   var byMeaning = mode !== "translit";
-  return {leftTitle:"Greek word", rightTitle:byMeaning ? "Meaning" : "English letters", rightCls:byMeaning ? "glosses" : "translits",
-          items:VOCAB.map(function(d){ return {id:d.g, left:d.g, right:byMeaning ? d.gloss : translit(d.g)}; })};
+  var items = vocabPool(sel).map(function(d){ return {id:d.g, left:d.g, right:byMeaning ? d.gloss : vtr(d.g)}; });
+  items = uniqBy(items, function(x){ return x.right; });      /* two words share a gloss; never show it twice */
+  return {leftTitle:"Greek word", rightTitle:byMeaning ? "Meaning" : "English letters",
+          rightCls:byMeaning ? "glosses" : "translits", items:pick(items, Math.min(10, items.length))};
 }
 
 /* ---- allow the pure parts to be tested outside a browser ---- */
 if(typeof window === "undefined"){
   module.exports = {translit:translit, rulesFor:rulesFor, judge:judge, distractorsFor:distractorsFor, LETTERS:LETTERS, TRANS:TRANS, BREATH_WORDS:BREATH_WORDS, PLACE:PLACE, DISTINCT:DISTINCT, FORM_GROUPS:FORM_GROUPS,
     alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm,
-    VOCAB:VOCAB, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch};
+    VOCAB:VOCAB, VOCAB_LISTS:VOCAB_LISTS, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch, vocabPool:vocabPool, vtr:vtr};
   return;
 }
 
@@ -1332,21 +1442,25 @@ function renderCaseTable(){
     '<p class="note">Read the article across: masculine, feminine, neuter. Notice the dative row — every form carries an iota, subscripted (τῷ τῇ) or written out (τοῖς ταῖς).</p>';
   $("#caseTable").innerHTML = html;
 }
-var vocabMask = "none", vocabMatchMode = "meaning";
+var vocabMask = "none", vocabMatchMode = "meaning", vocabFront = "greek";
 function renderVocabList(){
   var hideG = vocabMask === "greek" ? " veil" : "", hideM = vocabMask === "meaning" ? " veil" : "";
-  var html = '<div class="tblwrap"><table class="tbl vocab"><thead><tr><th>#</th><th>Greek word</th><th>Written</th><th>Part of speech</th><th class="fqh">Times used in the NT</th><th>Meaning</th></tr></thead><tbody>'+
-    VOCAB.map(function(d, i){
+  var pool = vocabPool(), all = (vocabSel === "all");
+  var html = '<h2 class="h2">'+(all ? "All "+VOCAB.length+" words" : "Vocabulary List "+vocabSel)+'</h2>'+
+    '<div class="divider"><span>&#9670;</span></div>'+
+    '<div class="tblwrap"><table class="tbl vocab"><thead><tr><th>#</th>'+(all ? '<th>List</th>' : '')+
+    '<th>Greek word</th><th>Written</th><th>Part of speech</th><th>Meaning</th></tr></thead><tbody>'+
+    pool.map(function(d, i){
       return '<tr'+(vocabMask !== "none" ? ' class="masked"' : '')+'>'+
         '<td class="rk">'+pad(i+1)+'</td>'+
+        (all ? '<td class="rk">'+d.list+'</td>' : '')+
         '<td class="gk'+hideG+'">'+d.g+'</td>'+
-        '<td class="kw'+hideG+'">'+translit(d.g)+'</td>'+
+        '<td class="kw'+hideG+'">'+vtr(d.g)+'</td>'+
         '<td class="it">'+d.pos+'</td>'+
-        '<td class="fq">'+fmtNum(d.freq)+'</td>'+
         '<td class="mn'+hideM+'">'+d.gloss+'</td></tr>';
     }).join("")+
     '</tbody></table></div>'+
-    '<p class="note">Spirit with a capital S is the Holy Spirit. The counts are how many times each word appears in the Greek New Testament.</p>';
+    '<p class="note">Spirit with a capital S is the Holy Spirit.</p>';
   $("#vocabList").innerHTML = html;
   $$("#vocabList tr.masked").forEach(function(tr){
     tr.addEventListener("click", function(){ $$(".veil", tr).forEach(function(v){ v.classList.toggle("shown"); }); });
@@ -1419,11 +1533,32 @@ engines.vocabCards = makeCards($("#vocabCards")); engines.vocabCards.load(vocabD
 engines.vocabMatch = makeMatch($("#vocabMatch"), function(){ return vocabMatch(vocabMatchMode); });
 engines.vocabQuiz  = makeQuiz($("#vocabQuiz"), vocabQuestions);
 renderVocabList();
+function vocabReload(){
+  renderVocabList();
+  engines.vocabCards.load(vocabDeck(vocabFront));
+  engines.vocabMatch.round();
+  engines.vocabQuiz.start(null);
+}
+segWire("#vListSeg", "data-vlist", function(v){
+  vocabSel = (v === "all") ? "all" : parseInt(v, 10);
+  store.set("vocab.list", v);
+  vocabReload();
+});
 segWire("#vMaskSeg", "data-vmask", function(v){ vocabMask = v; renderVocabList(); });
-segWire("#vFrontSeg", "data-vfront", function(v){ engines.vocabCards.load(vocabDeck(v)); });
+segWire("#vFrontSeg", "data-vfront", function(v){ vocabFront = v; engines.vocabCards.load(vocabDeck(v)); });
 $("#vcShuffle").addEventListener("click", function(){ engines.vocabCards.shuffle(); });
 segWire("#vMatchSeg", "data-vmatch", function(v){ vocabMatchMode = v; engines.vocabMatch.round(); });
 $("#vmNew").addEventListener("click", function(){ engines.vocabMatch.round(); });
+(function(){                                          /* come back to the list you were on */
+  var saved = store.get("vocab.list");
+  var btn = saved && $('#vListSeg button[data-vlist="'+saved+'"]');
+  if(btn){
+    $$("#vListSeg button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === btn)); });
+    vocabSel = (saved === "all") ? "all" : parseInt(saved, 10);
+    renderVocabList();
+    engines.vocabCards.load(vocabDeck(vocabFront));
+  }
+})();
 
 var ON_SHOW = {
   "alphabet/match": function(){ if(!mRound.length) newRound(); },
