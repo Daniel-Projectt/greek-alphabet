@@ -113,6 +113,9 @@ h1{font-weight:400;font-size:clamp(32px,6.2vw,54px);line-height:1.08;margin:0;le
 .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden;background:var(--surface)}
 .seg button{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:10px 14px;min-height:40px;background:none;border:0;border-right:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.18s}
 .seg button:last-child{border-right:0}
+/* when a bar wraps on a phone, every row fills the width, so nothing hangs off to the left */
+.seg{justify-content:center}
+.seg button{flex:1 1 auto;border-bottom:1px solid var(--line);margin-bottom:-1px}
 .seg button[aria-pressed="true"]{background:var(--surface-2);color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
 .seg button:hover{color:var(--ink)}
 .label{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
@@ -587,7 +590,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       </div>
 
       <div class="panel" data-panel="vocab/quiz" hidden>
-        <p class="hint">Mixed questions on the list you picked, always from the Greek: meaning, spelling and part of speech. Ten for one list, twenty for a range. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <p class="hint">Mixed questions on the list you picked, always from the Greek: meaning, spelling and part of speech. Ten for one list, twenty for a range. <b>All 75</b> asks only what each word means. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
         <div id="vocabQuiz"></div>
       </div>
 
@@ -1195,7 +1198,8 @@ function vocabQuestions(keys, sel){
   return pick(pool, Math.min(keys ? 10 : quizSize(sel === undefined ? vocabSel : sel), pool.length)).map(function(d){
     var tr = vtr(d.g);
     var rest = VOCAB.filter(function(x){ return x.g !== d.g; });   /* wrong answers may come from any list */
-    var types = ["meaning","meaning","meaning","pos","translit"];  /* always Greek to English */
+    var types = (sel === undefined ? vocabSel : sel) === "all" ? ["meaning"]      /* All 75: only Greek to English meanings */
+                                                             : ["meaning","meaning","meaning","pos","translit"];
     var type = pick(types, 1)[0];
     var q = {key:"v:"+d.g,
       explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”. "+capFirst(d.pos)+", list "+d.list+".",
