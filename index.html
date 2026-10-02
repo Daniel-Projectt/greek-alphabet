@@ -274,6 +274,15 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 .qglyph .trq{font-family:var(--sans);font-size:44px;letter-spacing:.08em;color:var(--gold)}
 .btn.overrule{border-style:dashed}
 /* ---------- verbs ---------- */
+.examlist{display:grid;gap:10px;max-width:640px;margin:18px auto 0}
+.examrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 16px;box-shadow:var(--shadow)}
+.examrow .what{flex:1 1 200px;font-size:16px;line-height:1.45}
+.examrow .what small{display:block;color:var(--muted);font-size:14px;font-style:italic}
+.examrow .go{display:flex;flex-wrap:wrap;gap:6px}
+.parse{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.parse div{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:12px 14px;box-shadow:var(--shadow);text-align:center;min-width:128px;flex:1 1 128px;max-width:200px}
+.parse b{display:block;font-family:var(--sans);font-weight:400;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.parse span{font-size:15px;line-height:1.45}
 .five{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .five span{font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 18px;box-shadow:var(--shadow)}
 .moods{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px}
@@ -359,7 +368,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   <header>
     <p class="eyebrow">Study Sheet</p>
     <h1>Greek Study Sheet</h1>
-    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article &middot; vocabulary &middot; verbs &middot; prepositions</p>
+    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article &middot; vocabulary &middot; verbs &middot; prepositions &middot; participles &middot; conditionals</p>
     <svg class="orn" viewBox="0 0 320 44" aria-hidden="true"><use href="#flourish"/></svg>
   </header>
 
@@ -371,6 +380,9 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
     <button class="topic-btn" role="tab" data-topic="vocab" aria-selected="false">Vocabulary</button>
     <button class="topic-btn" role="tab" data-topic="verbs" aria-selected="false">Verbs</button>
     <button class="topic-btn" role="tab" data-topic="preps" aria-selected="false">Prepositions</button>
+    <button class="topic-btn" role="tab" data-topic="parts" aria-selected="false">Participles</button>
+    <button class="topic-btn" role="tab" data-topic="conds" aria-selected="false">Conditionals</button>
+    <button class="topic-btn" role="tab" data-topic="exam" aria-selected="false">On the Exam</button>
   </nav>
 
   <main>
@@ -618,6 +630,52 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
         <p class="hint">Ten questions: how many, which one, and &ldquo;what are the&hellip;&rdquo; lists where you pick every one that belongs. Keys <kbd>1</kbd>&ndash;<kbd>9</kbd> answer or pick, <kbd>Enter</kbd> checks and moves on.</p>
         <div id="verbQuiz"></div>
       </div>
+    </section>
+
+    <!-- ================= PARTICIPLES ================= -->
+    <section class="topic" id="topic-parts" hidden>
+      <p class="intro">A participle is a verbal adjective. Learn what it carries and the two ways it is used, drill the flashcards, then take the quiz.</p>
+      <div class="modes"><div class="seg" data-modes="parts">
+        <button type="button" data-mode="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="parts/learn"><div id="partsLearn"></div></div>
+      <div class="panel" data-panel="parts/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar"><button class="btn" type="button" id="ptShuffle">Shuffle deck</button></div>
+        <div id="partCards"></div>
+      </div>
+      <div class="panel" data-panel="parts/quiz" hidden>
+        <p class="hint">Ten questions from the class notes, with &ldquo;what are the&hellip;&rdquo; lists where you pick every one that belongs. Keys <kbd>1</kbd>&ndash;<kbd>9</kbd> answer or pick, <kbd>Enter</kbd> checks and moves on.</p>
+        <div id="partQuiz"></div>
+      </div>
+    </section>
+
+    <!-- ================= CONDITIONAL SENTENCES ================= -->
+    <section class="topic" id="topic-conds" hidden>
+      <p class="intro">A conditional sentence says &ldquo;if&hellip;, then&hellip;&rdquo;. Greek has four classes of them, and each one tells you how the writer sees the &ldquo;if&rdquo;.</p>
+      <div class="modes"><div class="seg" data-modes="conds">
+        <button type="button" data-mode="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="conds/learn"><div id="condsLearn"></div></div>
+      <div class="panel" data-panel="conds/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar"><button class="btn" type="button" id="cdShuffle">Shuffle deck</button></div>
+        <div id="condCards"></div>
+      </div>
+      <div class="panel" data-panel="conds/quiz" hidden>
+        <p class="hint">Ten questions on the four classes and the subjunctive. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> answer, <kbd>Enter</kbd> moves on.</p>
+        <div id="condQuiz"></div>
+      </div>
+    </section>
+
+    <!-- ================= ON THE EXAM ================= -->
+    <section class="topic" id="topic-exam" hidden>
+      <p class="intro">What the exam covers, from the class notes &mdash; each line opens the part of this page that drills it.</p>
+      <div class="panel" data-panel="exam/page"><div id="examList"></div></div>
     </section>
 
     <!-- ================= PREPOSITIONS ================= -->
@@ -1010,6 +1068,45 @@ var HOW_MANY = [
   {what:"numbers", n:2}, {what:"persons", n:3}, {what:"things you need to know about a verb", n:5}
 ];
 
+/* ================================================================ data: participles and conditional sentences (class notes, Sep 30 and Oct 2) */
+var PART_TENSES = ["Present","Aorist","Perfect"];
+var PART_HAS = ["Tense","Voice","Gender","Number","Case"];
+var PART_PARSE = [
+  {h:"Tense",  v:"Present, Aorist, Perfect"},
+  {h:"Voice",  v:"Active, Middle, Passive"},
+  {h:"Mood",   v:"none — write “participle”"},
+  {h:"Gender", v:"Masculine, Feminine, Neuter"},
+  {h:"Number", v:"Singular, Plural"},
+  {h:"Case",   v:"Nominative, Genitive, Dative, Accusative"}
+];
+var PART_USES = [
+  {name:"Adverbial",  adv:"adverbially",  mod:"a verb", d:"modifies a verb"},
+  {name:"Adjectival", adv:"adjectivally", mod:"a noun", d:"modifies a noun, or works as a noun"}
+];
+var PART_WORDS = [                                               /* how an adverbial participle is translated */
+  {w:"because", kind:"Causal"}, {w:"by", kind:"Means"},
+  {w:"before", kind:"Temporal"}, {w:"while", kind:"Temporal"}, {w:"after", kind:"Temporal"}
+];
+var PART_KINDS = ["Causal","Temporal","Means"];
+var PART_LISTS = [
+  {id:"tenses", q:"the three tenses a participle usually comes in", items:PART_TENSES,
+   extra:["Imperfect","Pluperfect","Conditional"], e:"Present, aorist and perfect. In a participle the tense shows the kind of action."},
+  {id:"has",    q:"the five things a participle has", items:PART_HAS,
+   extra:["Mood","Person","Degree","Declension"], e:"Tense, voice, gender, number and case. A participle has no mood and no person."},
+  {id:"common", q:"the four common words for translating a participle", items:["because","while","by","after"],
+   extra:["and","but","therefore","or","the"], e:"Because, while, by, after."},
+  {id:"temporal", q:"the three temporal words", items:["before","while","after"],
+   extra:["because","by","and","therefore"], e:"Before, while and after tell when. “Because” is causal and “by” is means."},
+  {id:"match",  q:"the three things an adjectival participle matches in its noun", items:["Case","Number","Gender"],
+   extra:["Tense","Voice","Mood","Person"], e:"Like any adjective, it matches its noun in case, number and gender."}
+];
+var COND_CLASSES = [
+  {n:"First",  d:"the writer assumes, for the sake of argument, that the “if” part is true", s:"assumed true, for the sake of argument", ex:"1 Corinthians 15:13"},
+  {n:"Second", d:"the writer assumes that the “if” part is false", s:"assumed false"},
+  {n:"Third",  d:"a true conditional: if you meet the condition, the result will follow", s:"a true conditional — meet the condition and the result follows", note:"This is what we usually think of as “conditional”."},
+  {n:"Fourth", d:"only partial examples exist, in 1 Peter", s:"partial — found in 1 Peter"}
+];
+
 /* ================================================================ data: prepositions (from the vocabulary lists so far) */
 var PREPS = [
   {g:"ἐν",  cs:["dative"],                 gloss:"in, among, with",        list:2},
@@ -1290,6 +1387,97 @@ function verbDeck(){
   d.push({front:'<div class="mid">Person</div><div class="hint">how many?</div>', back:'<div class="bname">First · Second · Third</div>'});
   return d;
 }
+function bankQuestions(bank, keys){
+  var pool = keys ? bank.filter(function(b){ return keys.indexOf(b.key) >= 0; }) : bank;
+  if(!pool.length) pool = bank;
+  pool = uniqBy(shuffle(pool), function(b){ return b.key; });            /* one question per key */
+  var lists = pool.filter(function(b){ return b.list; }).slice(0, 3), rest = pool.filter(function(b){ return !b.list; });
+  return shuffle(lists.concat(rest.slice(0, 10 - lists.length))).map(function(b){ return b.make(); });
+}
+function missLine(title, text){ return '<span class="g">&middot;</span><span class="t"><b>'+title+'</b>'+text+'</span>'; }
+function partBank(){
+  var B = [];
+  function mc(key, text, right, wrongs, explain, title){
+    B.push({key:"pt:"+key, make:function(){ return {key:"pt:"+key, text:text, opts:mkOpts(right, wrongs), explain:explain, miss:missLine(title, explain)}; }});
+  }
+  PART_LISTS.forEach(function(l){ B.push({key:"pl:"+l.id, list:true, make:function(){ return listQuestion(l, "pl:"+l.id); }}); });
+  var va = "A participle is a verbal adjective; an infinitive is a verbal noun.";
+  mc("what", "A participle is a verbal…", "adjective", ["noun","adverb","pronoun"], va, "Participle");
+  mc("inf", "An infinitive is a verbal…", "noun", ["adjective","adverb","article"], va, "Infinitive");
+  mc("vadj", "Which one is a <b>verbal adjective</b>?", "Participle", ["Infinitive","Imperative","Preposition"], va, "Verbal adjective");
+  mc("vnoun", "Which one is a <b>verbal noun</b>?", "Infinitive", ["Participle","Subjunctive","Article"], va, "Verbal noun");
+  var tk = "In a participle the tense shows the kind of action. Tense shows time only in the indicative.";
+  mc("tense", "What does the <b>tense</b> of a participle show?", "The kind of action", ["The time of the action","Who does the action","How real the action is"], tk, "Tense of a participle");
+  mc("time", "In which mood does tense show <b>time</b>?", "Indicative", ["Subjunctive","Imperative","Optative"], tk, "Tense and time");
+  var nm = "A participle has no mood. Where the mood would go, write “participle”.";
+  mc("mood", "When you parse a participle, what goes where the <b>mood</b> would be?", "“Participle” — it has no mood", ["“Indicative” — the usual mood","“Subjunctive” — it is uncertain","Nothing — leave the spot out"], nm, "No mood");
+  mc("person", "Which of these does a participle <b>not</b> have?", "Person", ["Gender","Case","Voice"], "A participle has tense, voice, gender, number and case — no mood and no person.", "What a participle has");
+  PART_USES.forEach(function(u, i){
+    var o = PART_USES[1 - i], ex = capFirst(u.name)+" — the participle "+u.d+".";
+    mc("use:"+u.name, "A participle used <b>"+u.adv+"</b> modifies…", u.mod, [o.mod, "a preposition", "an article"], ex, u.name+" participle");
+    mc("use:"+u.name, "A participle that modifies <b>"+u.mod+"</b> is being used…", u.adv, [o.adv, "as an infinitive", "as a preposition"], ex, u.name+" participle");
+  });
+  PART_WORDS.forEach(function(p){
+    var ex = "“"+capFirst(p.w)+"” is "+p.kind.toLowerCase()+". Because = causal; before, while, after = temporal; by = means.";
+    mc("w:"+p.w, "Translating a participle with <b>“"+p.w+"”</b> makes it…", p.kind, others(PART_KINDS, p.kind, 2).concat(["Adjectival"]), ex, "“"+capFirst(p.w)+"”");
+  });
+  mc("k:causal", "Which word gives a <b>causal</b> participle?", "because", ["while","by","after"], "Causal — “because”.", "Causal");
+  mc("k:means", "Which word gives a participle of <b>means</b>?", "by", ["because","while","before"], "Means (how it was done) — “by”.", "Means");
+  mc("advwords", "“Because”, “while”, “by” and “after” translate which kind of participle?", "Adverbial", ["Adjectival","Infinitive","Imperative"], "They are the common words for an adverbial participle, the kind that modifies a verb.", "The four common words");
+  mc("agree", "An adjectival participle matches its noun in…", "case, number and gender", ["tense, voice and mood","person and number only","tense and case only"], "Like any adjective, it matches its noun in case, number and gender.", "Adjectival participle");
+  return B;
+}
+function partQuestions(keys){ return bankQuestions(partBank(), keys); }
+function partDeck(){
+  var d = [];
+  function c(front, hint, back, sub){ d.push({front:'<div class="mid">'+front+'</div><div class="hint">'+hint+'</div>', back:'<div class="bname">'+back+'</div>'+(sub ? '<div class="bsound">'+sub+'</div>' : '')}); }
+  c("Participle", "what is it?", "A verbal adjective");
+  c("Infinitive", "what is it?", "A verbal noun");
+  c("Tenses", "of a participle", PART_TENSES.join(" · "), "they show the kind of action");
+  c("Tense", "time or kind of action?", "Kind of action", "tense shows time in the indicative");
+  c("Mood", "of a participle", "None", "write “participle” where the mood would go");
+  c("A participle has…", "five things", PART_HAS.join(" · "), "no mood, no person");
+  PART_USES.forEach(function(u){ c(u.name, "what does it modify?", capFirst(u.mod), capFirst(u.d)); });
+  c("Adjectival", "matches its noun in…", "Case · Number · Gender");
+  c("Four common words", "for a participle", "because · while · by · after");
+  PART_KINDS.forEach(function(k){
+    c(k, "which words?", PART_WORDS.filter(function(p){ return p.kind === k; }).map(function(p){ return p.w; }).join(" · "));
+  });
+  return d;
+}
+function condBank(){
+  var B = [], names = COND_CLASSES.map(function(c){ return c.n; }), descs = COND_CLASSES.map(function(c){ return capFirst(c.s); });
+  function mc(key, text, right, wrongs, explain, title){
+    B.push({key:"cd:"+key, make:function(){ return {key:"cd:"+key, text:text, opts:mkOpts(right, wrongs), explain:explain, miss:missLine(title, explain)}; }});
+  }
+  mc("what", "A conditional sentence is a sentence that says…", "“if…, then…”", ["“either…, or…”","“not only…, but also…”","“because…, therefore…”"], "A conditional sentence says “if…, then…”.", "Conditional sentence");
+  var sj = "The subjunctive is the mood of uncertainty. Its key word is “should”.";
+  mc("subj", "Which mood is the <b>mood of uncertainty</b>?", "Subjunctive", ["Indicative","Imperative","Optative"], sj, "Subjunctive");
+  mc("should", "What is the key word for the <b>subjunctive</b>?", "should", ["did","must","is"], sj, "Subjunctive");
+  mc("subjwhat", "The subjunctive is the mood of…", "uncertainty", ["command","reality","past time"], sj, "Subjunctive");
+  mc("count", "How many classes of conditional sentence are there?", "4", ["2","3","5"], "There are four classes: first, second, third and fourth.", "How many classes?");
+  COND_CLASSES.forEach(function(c){
+    var ex = c.n+" class — "+c.d+".";
+    mc("c:"+c.n, "Which class of conditional is this? <i>"+capFirst(c.s)+"</i>", c.n, others(names, c.n, 3), ex, c.n+" class");
+    mc("c:"+c.n, "What marks a <b>"+c.n.toLowerCase()+" class</b> conditional?", capFirst(c.s), others(descs, capFirst(c.s), 3), ex, c.n+" class");
+  });
+  mc("ex", "<b>1 Corinthians 15:13</b> is the example of which class?", "First", ["Second","Third","Fourth"], "First class: “If there is no resurrection of the dead…” — assumed true for the sake of argument.", "1 Corinthians 15:13");
+  mc("usual", "Which class is what we usually think of as “conditional”?", "Third", ["First","Second","Fourth"], "Third class — a true conditional: meet the condition and the result follows.", "The usual conditional");
+  mc("peter", "Where are the partial fourth class conditionals found?", "1 Peter", ["1 Corinthians","Romans","John"], "Fourth class — partial, in 1 Peter.", "Fourth class");
+  mc("true", "Which two classes are about whether the “if” is assumed <b>true or false</b>?", "First and second", ["Third and fourth","First and third","Second and fourth"], "First class assumes the “if” is true (for the sake of argument); second class assumes it is false.", "True or false");
+  return B;
+}
+function condQuestions(keys){ return bankQuestions(condBank(), keys); }
+function condDeck(){
+  var d = [];
+  function c(front, hint, back, sub){ d.push({front:'<div class="mid">'+front+'</div><div class="hint">'+hint+'</div>', back:'<div class="bname">'+back+'</div>'+(sub ? '<div class="bsound">'+sub+'</div>' : '')}); }
+  c("Conditional sentence", "what does it say?", "“if…, then…”");
+  c("Subjunctive", "the mood of…", "Uncertainty", "key word: “should”");
+  COND_CLASSES.forEach(function(k){ c(k.n+" class", "what marks it?", capFirst(k.s), k.ex || k.note || ""); });
+  c("1 Corinthians 15:13", "which class?", "First class", "assumed true for the sake of argument");
+  c("1 Peter", "which class?", "Fourth class", "partial");
+  return d;
+}
 var CASE_LABEL = {"dative":"Dative","accusative":"Accusative","genitive":"Genitive","genitive,accusative":"Genitive or accusative"};
 var CASE_LABELS = ["Dative","Accusative","Genitive","Genitive or accusative"];
 function prepQuestions(keys){
@@ -1519,6 +1707,8 @@ if(typeof window === "undefined"){
     alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm,
     VOCAB:VOCAB, VOCAB_LISTS:VOCAB_LISTS, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch, vocabPool:vocabPool, vtr:vtr,
     VERB_PARTS:VERB_PARTS, TENSES:TENSES, VOICES:VOICES, MOODS:MOODS, VERB_LISTS:VERB_LISTS, HOW_MANY:HOW_MANY, verbQuestions:verbQuestions, verbDeck:verbDeck, verbBank:verbBank,
+    PART_TENSES:PART_TENSES, PART_HAS:PART_HAS, PART_PARSE:PART_PARSE, PART_USES:PART_USES, PART_WORDS:PART_WORDS, PART_LISTS:PART_LISTS, COND_CLASSES:COND_CLASSES,
+    partBank:partBank, partQuestions:partQuestions, partDeck:partDeck, condBank:condBank, condQuestions:condQuestions, condDeck:condDeck,
     PREPS:PREPS, prepQuestions:prepQuestions, judgeMeaning:judgeMeaning, rangeOf:rangeOf, selLabel:selLabel, quizSize:quizSize,
     similarity:similarity, rankGlyphs:rankGlyphs, judgeDrawing:judgeDrawing, thin:thin, skeletonGrid:skeletonGrid, chamfer:chamfer, zoneFlags:zoneFlags, ZONES:ZONES};
   return;
@@ -1897,6 +2087,60 @@ function renderVerbsLearn(){
     '<div class="rule"><h4>Person &middot; three</h4><p>'+PERSONS.join(", ")+'.</p><p class="ex">I, we &nbsp;&middot;&nbsp; you &nbsp;&middot;&nbsp; he, she, it, they</p></div></div>';
   $("#verbsLearn").innerHTML = html;
 }
+function renderPartsLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  function words(k){ return PART_WORDS.filter(function(p){ return p.kind === k; }).map(function(p){ return p.w; }).join(", "); }
+  $("#partsLearn").innerHTML =
+    '<h2 class="h2">What a participle is</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Participle</h4><p>A verbal <b>adjective</b>.</p><p class="ex">A verb form that modifies other words.</p></div>'+
+    '<div class="rule"><h4>Infinitive</h4><p>A verbal <b>noun</b>.</p></div></div>'+
+    '<h2 class="h2">What a participle has</h2>'+D+
+    '<p class="lead">Half verb (tense, voice), half adjective (gender, number, case). It has no mood: where the mood would go, write “participle”.</p>'+
+    '<div class="parse">'+PART_PARSE.map(function(p){ return '<div><b>'+p.h+'</b><span>'+p.v+'</span></div>'; }).join("")+'</div>'+
+    '<h2 class="h2">Tense is the kind of action</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>In the indicative</h4><p>Tense shows <b>time</b>.</p></div>'+
+    '<div class="rule"><h4>In a participle</h4><p>Tense shows the <b>kind of action</b>.</p><p class="ex">Present, aorist, perfect.</p></div></div>'+
+    '<h2 class="h2">The two ways it is used</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Adverbial</h4><p>Modifies a <b>verb</b>.</p><p class="ex">Translate with because, before, while, after, by.</p></div>'+
+    '<div class="rule"><h4>Adjectival</h4><p>Modifies a <b>noun</b>, or works as a noun.</p><p class="ex">It matches its noun in case, number and gender.</p></div></div>'+
+    '<h2 class="h2">Translating an adverbial participle</h2>'+D+
+    '<p class="lead">The four common words: because, while, by, after.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Kind</th><th>It tells</th><th>Words</th></tr></thead><tbody>'+
+    '<tr><td class="cs">Causal</td><td class="it">why</td><td class="mn">'+words("Causal")+'</td></tr>'+
+    '<tr><td class="cs">Temporal</td><td class="it">when</td><td class="mn">'+words("Temporal")+'</td></tr>'+
+    '<tr><td class="cs">Means</td><td class="it">how</td><td class="mn">'+words("Means")+'</td></tr>'+
+    '</tbody></table></div>';
+}
+function renderCondsLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#condsLearn").innerHTML =
+    '<h2 class="h2">What it is</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Conditional sentence</h4><p>A sentence that says <b>“if…, then…”</b>.</p></div>'+
+    '<div class="rule"><h4>Subjunctive mood</h4><p>The mood of <b>uncertainty</b>.</p><p class="ex">Key word: “should”.</p></div></div>'+
+    '<h2 class="h2">The four classes</h2>'+D+
+    '<div class="rules">'+COND_CLASSES.map(function(c){
+      return '<div class="rule"><h4>'+c.n+' class</h4><p>'+capFirst(c.d)+'.</p>'+
+        (c.ex ? '<p class="ex">'+c.ex+' — “But if there is no resurrection of the dead, then not even Christ has been raised.”</p>' : '')+
+        (c.note ? '<p class="ex">'+c.note+'</p>' : '')+'</div>';
+    }).join("")+'</div>';
+}
+var EXAM_PARTS = [
+  {what:"Textbook", go:[]},
+  {what:"Pronunciation", go:[["alphabet","Alphabet"],["sounds","Diphthongs &amp; Breathings"]]},
+  {what:"Grammar: nouns and adjectives", go:[["cases","Cases &amp; Articles"]]},
+  {what:"Grammar: verbs", go:[["verbs","Verbs"]]},
+  {what:"Grammar: participles", go:[["parts","Participles"]]},
+  {what:"Grammar: conditional sentences", go:[["conds","Conditionals"]]},
+  {what:"30 vocabulary words", go:[["vocab","Vocabulary"]]},
+  {what:"Transliteration", note:"10 Greek → English and 10 English → Greek", go:[["translit","Transliteration"]]}
+];
+function renderExamList(){
+  $("#examList").innerHTML = '<div class="examlist">'+EXAM_PARTS.map(function(p){
+    return '<div class="examrow"><div class="what">'+p.what+(p.note ? '<small>'+p.note+'</small>' : '')+'</div><div class="go">'+
+      p.go.map(function(g){ return '<button class="btn" type="button" data-go="'+g[0]+'">'+g[1]+'</button>'; }).join("")+'</div></div>';
+  }).join("")+'</div>';
+  $$("#examList [data-go]").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-go")); window.scrollTo({top:0, behavior:"smooth"}); }); });
+}
 function renderPrepsLearn(){
   var html = '<h2 class="h2">Prepositions so far</h2><div class="divider"><span>&#9670;</span></div>'+
     '<p class="lead">A preposition takes its noun in a set case, and the case can change the meaning. These four are from your vocabulary lists.</p>'+
@@ -2231,11 +2475,17 @@ engines.caseQuiz   = makeQuiz($("#caseQuiz"), caseQuestions);
 engines.alphaDraw  = makeDraw($("#alphaDraw"));
 engines.verbCards  = makeCards($("#verbCards")); engines.verbCards.load(verbDeck());
 engines.verbQuiz   = makeQuiz($("#verbQuiz"), verbQuestions);
+engines.partCards  = makeCards($("#partCards")); engines.partCards.load(partDeck());
+engines.partQuiz   = makeQuiz($("#partQuiz"), partQuestions);
+engines.condCards  = makeCards($("#condCards")); engines.condCards.load(condDeck());
+engines.condQuiz   = makeQuiz($("#condQuiz"), condQuestions);
 engines.prepQuiz   = makeQuiz($("#prepQuiz"), prepQuestions);
-renderReview(); renderSoundsLearn(); renderTranslitRules(); renderCaseTable(); renderVerbsLearn(); renderPrepsLearn();
+renderReview(); renderSoundsLearn(); renderTranslitRules(); renderCaseTable(); renderVerbsLearn(); renderPrepsLearn(); renderPartsLearn(); renderCondsLearn(); renderExamList();
 segWire("#drawSeg", "data-draw", function(v){ drawMode = v; store.set("draw.mode", v); engines.alphaDraw.start(null); });
 (function(){ var d = store.get("draw.mode"), b = d && $('#drawSeg button[data-draw="'+d+'"]'); if(b){ drawMode = d; $$("#drawSeg button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); }); } })();
 $("#vbShuffle").addEventListener("click", function(){ engines.verbCards.shuffle(); });
+$("#ptShuffle").addEventListener("click", function(){ engines.partCards.shuffle(); });
+$("#cdShuffle").addEventListener("click", function(){ engines.condCards.shuffle(); });
 
 var frontMode = "up", deckMode = "forms";
 segWire("#maskSeg", "data-mask", function(v){ maskMode = v; renderReview(); });
@@ -2312,7 +2562,9 @@ var ON_SHOW = {
   "vocab/type":     function(){ engines.vocabType.ensure(); },
   "alphabet/draw":  function(){ engines.alphaDraw.ensure(); },
   "verbs/quiz":     function(){ engines.verbQuiz.ensure(); },
-  "preps/quiz":     function(){ engines.prepQuiz.ensure(); }
+  "preps/quiz":     function(){ engines.prepQuiz.ensure(); },
+  "parts/quiz":     function(){ engines.partQuiz.ensure(); },
+  "conds/quiz":     function(){ engines.condQuiz.ensure(); }
 };
 var KEYS = {
   "alphabet/cards": function(e){ return engines.alphaCards.keys(e); },
@@ -2325,9 +2577,13 @@ var KEYS = {
   "alphabet/draw":  function(e){ return engines.alphaDraw.keys(e); },
   "verbs/cards":    function(e){ return engines.verbCards.keys(e); },
   "verbs/quiz":     function(e){ return engines.verbQuiz.keys(e); },
-  "preps/quiz":     function(e){ return engines.prepQuiz.keys(e); }
+  "preps/quiz":     function(e){ return engines.prepQuiz.keys(e); },
+  "parts/cards":    function(e){ return engines.partCards.keys(e); },
+  "parts/quiz":     function(e){ return engines.partQuiz.keys(e); },
+  "conds/cards":    function(e){ return engines.condCards.keys(e); },
+  "conds/quiz":     function(e){ return engines.condQuiz.keys(e); }
 };
-var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn"};
+var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn", parts:"learn", conds:"learn", exam:"page"};
 function showMode(topic, mode){
   currentMode[topic] = mode;
   $$('.seg[data-modes="'+topic+'"] button').forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
@@ -2361,7 +2617,7 @@ document.addEventListener("keydown", function(e){
 /* ---- restore where you were ---- */
 (function(){
   var t = store.get("topic");
-  ["alphabet","sounds","translit","cases","vocab","verbs","preps"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
+  ["alphabet","sounds","translit","cases","vocab","verbs","preps","parts","conds"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
   showTopic(t && $('#topic-'+t) ? t : "alphabet");
 })();
 
