@@ -8,6 +8,11 @@
 <meta name="theme-color" content="#f5f1e8">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Greek">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Greek Study Sheet">
 <meta property="og:url" content="https://daniel-projectt.github.io/greek-alphabet/">
@@ -2613,6 +2618,11 @@ document.addEventListener("keydown", function(e){
   var h = KEYS[currentTopic+"/"+currentMode[currentTopic]];
   if(h && h(e)) e.preventDefault();
 });
+
+/* ---- keep a copy on the device, so it opens without a connection ---- */
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+}
 
 /* ---- restore where you were ---- */
 (function(){
