@@ -279,6 +279,37 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 .qglyph .trq{font-family:var(--sans);font-size:44px;letter-spacing:.08em;color:var(--gold)}
 .btn.overrule{border-style:dashed}
 /* ---------- verbs ---------- */
+.group-btn{font-family:var(--sans);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:13px 18px;background:none;border:0;color:var(--muted);cursor:pointer;border-radius:2px;transition:color .18s,box-shadow .18s;min-height:44px}
+.group-btn:hover{color:var(--ink)}
+.group-btn[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--gold)}
+.topics[hidden]{display:none}
+.topics.sub{margin-top:0;border-top:0;background:var(--surface)}
+.topics.sub .topic-btn{font-size:10.5px;letter-spacing:.15em;padding:10px 13px;min-height:40px}
+.tbl.fit{min-width:0}
+.tbl.fit .mn{max-width:none}
+.tbl.fit .cs{white-space:normal}
+.tbl.fit th{white-space:normal}
+.parade{margin:0 auto;max-width:560px;color:#b9a67f}
+.parade svg{display:block;width:100%;height:auto}
+.parade figcaption{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;color:var(--ink-soft);font-size:14.5px;line-height:1.5}
+.parade figcaption b{display:block;font-family:var(--sans);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.examrow .what em{font-style:normal;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-left:6px;white-space:nowrap}
+.expart{background:var(--surface);border:1px solid var(--line);border-radius:3px;box-shadow:var(--shadow);padding:18px 18px 20px;margin:0 auto 16px;max-width:760px}
+.expart h4{font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.expart .exq{font-size:17px;line-height:1.5;margin:0 0 12px}
+.exin{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:10px 0 0;font-size:15.5px}
+.exin input{font:inherit;font-size:18px;width:6.2em;padding:9px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg,#fff);color:var(--ink);text-align:center}
+.exin .expts{color:var(--gold);font-family:var(--sans);font-size:12px;letter-spacing:.08em}
+.verse{border-top:1px solid var(--line);padding:14px 0 6px;margin-top:12px}
+.verse .vref{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.verse .vg{font-size:22px;line-height:1.6;margin:0 0 8px}
+.verse .vtr{font-style:italic;color:var(--ink-soft);font-size:16px;line-height:1.6;margin:0 0 6px}
+.verse .vph{font-family:var(--sans);font-size:13.5px;letter-spacing:.02em;line-height:1.7;color:var(--muted);margin:0 0 10px}
+.verse .heard{font-size:14.5px;color:var(--ink-soft);text-transform:none;letter-spacing:0}
+.qpart{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.extotal{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
+.extotal .tbl{margin:14px auto 0;max-width:420px;box-shadow:none}
+@media (max-width:520px){ .parade figcaption{grid-template-columns:1fr} .verse .vg{font-size:20px} }
 .examlist{display:grid;gap:10px;max-width:640px;margin:18px auto 0}
 .examrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 16px;box-shadow:var(--shadow)}
 .examrow .what{flex:1 1 200px;font-size:16px;line-height:1.45}
@@ -373,21 +404,31 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   <header>
     <p class="eyebrow">Study Sheet</p>
     <h1>Greek Study Sheet</h1>
-    <p class="sub">Alphabet &middot; diphthongs &amp; breathings &middot; transliteration &middot; cases of the article &middot; vocabulary &middot; verbs &middot; prepositions &middot; participles &middot; conditionals</p>
+    <p class="sub">Introduction to Biblical Languages</p>
     <svg class="orn" viewBox="0 0 320 44" aria-hidden="true"><use href="#flourish"/></svg>
   </header>
 
   <nav class="topics" role="tablist" aria-label="Topics">
-    <button class="topic-btn" role="tab" data-topic="alphabet" aria-selected="true">Alphabet</button>
-    <button class="topic-btn" role="tab" data-topic="sounds" aria-selected="false">Diphthongs &amp; Breathings</button>
-    <button class="topic-btn" role="tab" data-topic="translit" aria-selected="false">Transliteration</button>
-    <button class="topic-btn" role="tab" data-topic="cases" aria-selected="false">Cases &amp; Articles</button>
+    <button class="group-btn" type="button" data-group="alphabet" aria-selected="true">Alphabet</button>
     <button class="topic-btn" role="tab" data-topic="vocab" aria-selected="false">Vocabulary</button>
+    <button class="topic-btn" role="tab" data-topic="translit" aria-selected="false">Transliteration</button>
+    <button class="group-btn" type="button" data-group="grammar" aria-selected="false">Grammar</button>
+    <button class="topic-btn" role="tab" data-topic="exam" aria-selected="false">On the Exam</button>
+  </nav>
+  <nav class="topics sub" data-sub="alphabet" aria-label="Alphabet">
+    <button class="topic-btn" role="tab" data-topic="alphabet" aria-selected="true">Letters</button>
+    <button class="topic-btn" role="tab" data-topic="sounds" aria-selected="false">Diphthongs &amp; Breathings</button>
+  </nav>
+  <nav class="topics sub" data-sub="grammar" aria-label="Grammar" hidden>
+    <button class="topic-btn" role="tab" data-topic="cases" aria-selected="false">Nouns</button>
+    <button class="topic-btn" role="tab" data-topic="articles" aria-selected="false">Articles</button>
+    <button class="topic-btn" role="tab" data-topic="adjs" aria-selected="false">Adjectives</button>
     <button class="topic-btn" role="tab" data-topic="verbs" aria-selected="false">Verbs</button>
     <button class="topic-btn" role="tab" data-topic="preps" aria-selected="false">Prepositions</button>
     <button class="topic-btn" role="tab" data-topic="parts" aria-selected="false">Participles</button>
-    <button class="topic-btn" role="tab" data-topic="conds" aria-selected="false">Conditionals</button>
-    <button class="topic-btn" role="tab" data-topic="exam" aria-selected="false">On the Exam</button>
+    <button class="topic-btn" role="tab" data-topic="infs" aria-selected="false">Infinitives</button>
+    <button class="topic-btn" role="tab" data-topic="conds" aria-selected="false">Conditional</button>
+    <button class="topic-btn" role="tab" data-topic="terms" aria-selected="false">Terms</button>
   </nav>
 
   <main>
@@ -607,12 +648,21 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       </div>
 
       <div class="panel" data-panel="vocab/quiz" hidden>
-        <p class="hint">Mixed questions on the list you picked, always from the Greek: meaning, spelling and part of speech. Ten for one list, twenty for a range. <b>All 75</b> asks only what each word means. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <p class="hint">Meanings only, in the direction you choose. Ten questions for one list, twenty for a range or for <b>All 75</b>. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <div class="toolbar">
+          <span class="label">Ask</span>
+          <div class="seg" id="vDirSeg">
+            <button type="button" data-vdir="ge" aria-pressed="true">Greek &rarr; English</button>
+            <button type="button" data-vdir="eg" aria-pressed="false">English &rarr; Greek</button>
+            <button type="button" data-vdir="both" aria-pressed="false">Both</button>
+          </div>
+        </div>
         <div id="vocabQuiz"></div>
       </div>
 
       <div class="panel" data-panel="vocab/type" hidden>
         <p class="hint">Read the Greek word and type what it means in English. Any one of its meanings counts; &ldquo;I&rdquo; and &ldquo;to&rdquo; are optional. <kbd>Enter</kbd> checks and moves on.</p>
+        <div class="toolbar"><button class="btn primary" type="button" id="vtAll">Type all 75 words</button><span class="label" id="vtNote"></span></div>
         <div id="vocabType"></div>
       </div>
     </section>
@@ -679,8 +729,40 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 
     <!-- ================= ON THE EXAM ================= -->
     <section class="topic" id="topic-exam" hidden>
-      <p class="intro">What the exam covers, from the class notes &mdash; each line opens the part of this page that drills it.</p>
-      <div class="panel" data-panel="exam/page"><div id="examList"></div></div>
+      <p class="intro">A practice exam worth 95 points, laid out like the real one: the textbook, pronunciation, vocabulary, transliteration and grammar.</p>
+      <div class="panel" data-panel="exam/page"><div id="examList"></div><div id="examPractice"></div></div>
+    </section>
+
+    <!-- ================= GRAMMAR: ARTICLES, ADJECTIVES, INFINITIVES, TERMS ================= -->
+    <section class="topic" id="topic-articles" hidden>
+      <p class="intro">The article in English and in Greek, and the three things every Greek article has.</p>
+      <div class="panel" data-panel="articles/learn"><div id="articlesLearn"></div></div>
+    </section>
+    <section class="topic" id="topic-adjs" hidden>
+      <p class="intro">How an adjective agrees with its noun, the adjective used as a noun, and the kinds of pronouns.</p>
+      <div class="panel" data-panel="adjs/learn"><div id="adjsLearn"></div></div>
+    </section>
+    <section class="topic" id="topic-infs" hidden>
+      <p class="intro">The infinitive, beside the participle.</p>
+      <div class="panel" data-panel="infs/learn"><div id="infsLearn"></div></div>
+    </section>
+    <section class="topic" id="topic-terms" hidden>
+      <p class="intro">The grammar terms and their definitions: learn them, drill the flashcards, then take the quiz.</p>
+      <div class="modes"><div class="seg" data-modes="terms">
+        <button type="button" data-mode="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="terms/learn"><div id="termsLearn"></div></div>
+      <div class="panel" data-panel="terms/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar"><button class="btn" type="button" id="tmShuffle">Shuffle deck</button></div>
+        <div id="termCards"></div>
+      </div>
+      <div class="panel" data-panel="terms/quiz" hidden>
+        <p class="hint">Ten term-and-definition questions from across the grammar pages. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> answer, <kbd>Enter</kbd> moves on.</p>
+        <div id="termQuiz"></div>
+      </div>
     </section>
 
     <!-- ================= PREPOSITIONS ================= -->
@@ -1015,6 +1097,7 @@ var VOCAB = [
 var VOCAB_LISTS = uniqBy(VOCAB, function(d){ return d.list; }).map(function(d){ return d.list; });
 var VOCAB_POS = uniqBy(VOCAB, function(d){ return d.pos; }).map(function(d){ return d.pos; });
 var vocabSel = 1;                                    /* 1..8, or "all" */
+var vocabDir = "ge";                                 /* quiz direction: Greek to English, English to Greek, or both */
 function vocabPool(sel){
   sel = (sel === undefined) ? vocabSel : sel;
   var r = rangeOf(sel);
@@ -1293,15 +1376,15 @@ function caseQuestions(keys){
   });
   return shuffle(qs).slice(0, 10);
 }
-function vocabQuestions(keys, sel){
+function vocabQuestions(keys, sel, dir){
+  dir = dir || vocabDir;
   var all = vocabPool(sel);
   var pool = keys ? all.filter(function(d){ return keys.indexOf("v:"+d.g) >= 0; }) : all;
   if(!pool.length) pool = all;
   return pick(pool, Math.min(keys ? 10 : quizSize(sel === undefined ? vocabSel : sel), pool.length)).map(function(d){
     var tr = vtr(d.g);
     var rest = VOCAB.filter(function(x){ return x.g !== d.g; });   /* wrong answers may come from any list */
-    var types = (sel === undefined ? vocabSel : sel) === "all" ? ["meaning"]      /* All 75: only Greek to English meanings */
-                                                             : ["meaning","meaning","meaning","pos","translit"];
+    var types = dir === "eg" ? ["greek"] : dir === "both" ? ["meaning","greek"] : ["meaning"];   /* meanings only, either way */
     var type = pick(types, 1)[0];
     var q = {key:"v:"+d.g,
       explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”. "+capFirst(d.pos)+", list "+d.list+".",
@@ -1314,7 +1397,7 @@ function vocabQuestions(keys, sel){
     }
     else if(type === "greek"){
       q.text = "Which word means <i>“"+d.gloss+"”</i>?";
-      q.opts = mkOpts(d.g, pick(rest, 3).map(function(x){ return x.g; }), "glyph");
+      q.opts = mkOpts(d.g, pick(rest.filter(function(x){ return x.gloss !== d.gloss; }), 3).map(function(x){ return x.g; }), "glyph");
     }
     else if(type === "pos"){
       q.text = "What part of speech is this word?"; q.glyph = d.g; q.gcls = "word";
@@ -1483,6 +1566,164 @@ function condDeck(){
   c("1 Peter", "which class?", "Fourth class", "partial");
   return d;
 }
+/* ================================================================ grammar terms and definitions (class notes) */
+var TERM_DEFS = [
+  {t:"Inflection",      d:"A change in a word’s spelling that shows its function"},
+  {t:"Syntax",          d:"Placement, or word order, shows a word’s function"},
+  {t:"Lexical form",    d:"The form of a word as it is listed in the lexicon"},
+  {t:"Dictionary form", d:"The form you look a word up under; the same thing as its lexical form"},
+  {t:"Gloss",           d:"A short English equivalent for a Greek word"},
+  {t:"Semantic range",  d:"The full range of meanings a word can have"}
+];
+var PRONOUNS = [
+  {t:"Personal",      ex:"he, she, him, her"},
+  {t:"Demonstrative", ex:"this, that; these, those"},
+  {t:"Relative",      ex:"who, which"},
+  {t:"Indefinite",    ex:"someone, anyone"}
+];
+var MOOD_KEYS = [
+  {name:"Indicative",  key:"is",     d:"the mood of reality — closest to what is real; here tense shows time"},
+  {name:"Subjunctive", key:"should", d:"the mood of uncertainty; used in conditional sentences"},
+  {name:"Imperative",  key:"do!",    d:"the mood of command"},
+  {name:"Optative",    key:"may",    d:"the mood of wish — furthest from what is real"}
+];
+function termBank(){
+  var B = [];
+  function mc(key, text, right, wrongs, explain, title){
+    B.push({key:"gt:"+key, make:function(){ return {key:"gt:"+key, text:text, opts:mkOpts(right, wrongs), explain:explain, miss:missLine(title, explain)}; }});
+  }
+  var names = TERM_DEFS.map(function(x){ return x.t; });
+  TERM_DEFS.forEach(function(x){
+    var twin = x.t === "Lexical form" ? "Dictionary form" : x.t === "Dictionary form" ? "Lexical form" : "";
+    var wrong = pick(names.filter(function(n){ return n !== x.t && n !== twin; }), 3);
+    mc("def:"+x.t, "Which term is this? <i>"+x.d+"</i>", x.t, wrong, x.t+" — "+x.d.charAt(0).toLowerCase()+x.d.slice(1)+".", x.t);
+  });
+  mc("infl", "<b>Inflection</b> shows a word’s function by a change in its…", "spelling", ["word order","meaning","accent"], "Inflection: a change of spelling shows function. Syntax: word order shows function.", "Inflection");
+  mc("synt", "<b>Syntax</b> shows a word’s function by its…", "placement in the sentence", ["change of spelling","dictionary form","range of meanings"], "Syntax: placement, or word order, shows function.", "Syntax");
+  mc("gloss", "“Word” for λόγος is an example of a…", "gloss", ["semantic range","inflection","syntax"], "A gloss is a short English equivalent; the semantic range is every meaning the word can carry.", "Gloss");
+  mc("range", "λόγος can mean word, message, account or reason. Together those meanings are its…", "semantic range", ["gloss","lexical form","inflection"], "Semantic range: the full range of meanings a word can have.", "Semantic range");
+  mc("lex", "The lexical form of a word is the same as its…", "dictionary form", ["semantic range","gloss","syntax"], "The form the word is listed under in the lexicon.", "Lexical form");
+  /* articles */
+  mc("art:def", "In English, which is the <b>definite</b> article?", "the", ["a","an","this"], "Definite: the. Indefinite: a, an.", "English articles");
+  mc("art:indef", "In English, which are the <b>indefinite</b> articles?", "a, an", ["the, this","this, that","who, which"], "Indefinite: a, an. Definite: the.", "English articles");
+  mc("art:none", "Which article does Greek <b>not</b> have?", "An indefinite article", ["A definite article","A plural article","A neuter article"], "Greek has only the definite article — ὁ, ἡ, τό.", "The Greek article");
+  mc("art:has", "A Greek article has three things. Which set?", "Case, number, gender", ["Tense, voice, mood","Case, person, tense","Number, person, mood"], "Case (function), number (singular or plural), gender (masculine, feminine, neuter).", "The Greek article");
+  mc("art:case", "In the Greek article, what does <b>case</b> show?", "Function", ["How many","Masculine or feminine","Time"], "Case: function. Number: singular or plural. Gender: masculine, feminine, neuter.", "Case");
+  mc("art:num", "In the Greek article, what does <b>number</b> show?", "Singular or plural", ["The function in the sentence","First, second or third","Masculine, feminine or neuter"], "Number: singular or plural.", "Number");
+  /* adjectives and pronouns */
+  mc("adj:agree", "An adjective matches the noun it modifies in…", "case, number and gender", ["tense, voice and mood","person and number","case and tense"], "Like the article, it follows its noun in all three.", "Adjectives");
+  mc("adj:subst", "An adjective used by itself <b>as a noun</b> is called…", "substantive", ["demonstrative","relative","indefinite"], "“The good” = the good person. The other three are kinds of pronouns.", "Substantive adjective");
+  mc("adj:substex", "“The <i>poor</i> will always be with you.” Here “poor” is used as a…", "substantive adjective", ["relative pronoun","compound verb","definite article"], "The adjective stands in for a noun: the poor people.", "Substantive adjective");
+  var pn = PRONOUNS.map(function(p){ return p.t; });
+  PRONOUNS.slice(0, 3).forEach(function(p){
+    mc("pro:"+p.t, "<i>"+capFirst(p.ex)+"</i> — which kind of pronoun?", p.t, others(pn, p.t, 3), p.t+" pronouns: "+p.ex+".", p.t+" pronoun");
+  });
+  /* prepositions */
+  mc("prep:what", "A preposition shows…", "a relationship between words, often spatial", ["the time and kind of action of a verb","the gender and number of a noun","a change of spelling in an adjective"], "Prepositions show a relationship between words, often a spatial one.", "Prepositions");
+  mc("prep:cases", "Which cases can a preposition’s object be in?", "Genitive, dative or accusative", ["Nominative, genitive or dative","Nominative or vocative","Accusative only"], "Never the nominative: genitive, dative or accusative.", "Prepositions");
+  mc("prep:phrase", "Where do prepositions occur most often?", "In prepositional phrases", ["In compound verbs","In conditional sentences","In substantive adjectives"], "A preposition with its object, such as “by the log”.", "Prepositional phrase");
+  mc("prep:object", "In “by the log”, what is <i>log</i>?", "The object of the preposition", ["The subject of the sentence","A substantive adjective","A compound verb"], "The noun that follows the preposition is its object.", "Object of the preposition");
+  mc("prep:compound", "A verb with a preposition in front of it is called a…", "compound verb", ["prepositional phrase","verbal noun","substantive"], "Some verbs have a preposition attached to the front: compound verbs.", "Compound verb");
+  /* infinitive and participle */
+  mc("inf:what", "An infinitive is a verbal…", "noun", ["adjective","adverb","article"], "Infinitive: verbal noun. Participle: verbal adjective.", "Infinitive");
+  mc("inf:which", "Which one is a <b>verbal noun</b>?", "Infinitive", ["Participle","Substantive","Preposition"], "The participle is the verbal adjective.", "Verbal noun");
+  /* moods, time and aspect */
+  mc("mood:real", "Which mood is <b>closest to reality</b>?", "Indicative", ["Subjunctive","Imperative","Optative"], "Indicative, subjunctive, imperative, optative — decreasing in realness.", "Moods");
+  mc("mood:should", "The key word <b>“should”</b> belongs to which mood?", "Subjunctive", ["Indicative","Imperative","Optative"], "The subjunctive is the mood of uncertainty, used in conditionals.", "Subjunctive");
+  mc("mood:cmd", "Which mood gives a <b>command</b>?", "Imperative", ["Indicative","Subjunctive","Optative"], "Imperative: the mood of command.", "Imperative");
+  mc("mood:far", "Which mood is <b>furthest from reality</b>?", "Optative", ["Indicative","Subjunctive","Imperative"], "The optative comes last of the four.", "Optative");
+  mc("mood:time", "In which mood does tense show <b>time</b>?", "Indicative", ["Subjunctive","Optative","Imperative"], "Indicative: time. Elsewhere tense shows the kind of action.", "Indicative");
+  mc("aspect", "“Kind of action” is also called…", "aspect", ["voice","mood","syntax"], "Aspect: continuous, undefined, or completed.", "Aspect");
+  mc("parade:heli", "In the parade picture, who sees the action the <b>aorist</b> way?", "The one in the helicopter, seeing it whole", ["The one on the sidewalk, as it passes","The one marching in the parade itself","The one who arrives after it has ended"], "Aorist: undefined — the whole action at once. The sidewalk is the continuous view.", "Aorist");
+  mc("parade:walk", "Watching the parade pass from the sidewalk pictures which kind of action?", "Continuous", ["Undefined","Completed","Commanded"], "Present and imperfect: continuous. The helicopter view is the aorist.", "Continuous");
+  return B;
+}
+function termQuestions(keys){ return bankQuestions(termBank(), keys); }
+function termDeck(){
+  var d = [];
+  function c(front, hint, back, sub){ d.push({front:'<div class="mid">'+front+'</div><div class="hint">'+hint+'</div>', back:'<div class="bname">'+back+'</div>'+(sub ? '<div class="bsound">'+sub+'</div>' : '')}); }
+  TERM_DEFS.forEach(function(x){ c(x.t, "define it", x.d); });
+  c("English articles", "definite and indefinite", "the · a, an");
+  c("Greek articles", "what is missing?", "No indefinite article");
+  c("A Greek article has…", "three things", "Case · Number · Gender", "function · singular or plural · m, f, n");
+  c("Adjective", "matches its noun in…", "Case · Number · Gender");
+  c("Substantive", "what is it?", "An adjective used as a noun");
+  PRONOUNS.forEach(function(p){ c(p.t+" pronoun", "examples", p.ex); });
+  c("Preposition", "what does it show?", "A relationship between words", "often spatial");
+  c("A preposition’s object", "which cases?", "Genitive · Dative · Accusative");
+  c("“by the log”", "what is log?", "The object of the preposition");
+  c("Compound verb", "what is it?", "A verb with a preposition in front of it");
+  c("Infinitive", "what is it?", "A verbal noun");
+  MOOD_KEYS.forEach(function(m){ c(m.name, "mood", capFirst(m.d.split(";")[0].replace(/ — .*/, "")), "key word: “"+m.key+"”"); });
+  c("Aspect", "another name for…", "Kind of action");
+  return d;
+}
+
+/* ================================================================ the practice exam: 95 points */
+var JOHN = [{"ref": "John 3:16", "g": "Οὕτως γὰρ ἠγάπησεν ὁ θεὸς τὸν κόσμον ὥστε τὸν υἱὸν τὸν μονογενῆ ἔδωκεν, ἵνα πᾶς ὁ πιστεύων εἰς αὐτὸν μὴ ἀπόληται ἀλλὰ ἔχῃ ζωὴν αἰώνιον.", "ph": "HOO-tohs gar ay-GAH-pay-sen ho theh-OSS ton KOS-mon HOH-steh ton hwee-ON ton mo-no-geh-NAY EH-doh-ken, HEE-nah pahs ho pis-TYOO-ohn ays ow-TON may ah-POL-ay-tie ah-LAH EH-khay dzoh-AYN eye-OH-nee-on."}, {"ref": "John 3:17", "g": "οὐ γὰρ ἀπέστειλεν ὁ θεὸς τὸν υἱὸν εἰς τὸν κόσμον ἵνα κρίνῃ τὸν κόσμον, ἀλλʼ ἵνα σωθῇ ὁ κόσμος διʼ αὐτοῦ.", "ph": "oo gar ah-PES-tay-len ho theh-OSS ton hwee-ON ays ton KOS-mon HEE-nah KREE-nay ton KOS-mon, ahl HEE-nah soh-THAY ho KOS-mos dee ow-TOO."}, {"ref": "John 3:18", "g": "ὁ πιστεύων εἰς αὐτὸν οὐ κρίνεται· ὁ δὲ μὴ πιστεύων ἤδη κέκριται, ὅτι μὴ πεπίστευκεν εἰς τὸ ὄνομα τοῦ μονογενοῦς υἱοῦ τοῦ θεοῦ.", "ph": "ho pis-TYOO-ohn ays ow-TON oo KREE-neh-tie; ho deh may pis-TYOO-ohn AY-day KEH-kri-tie, HOT-ee may peh-PIS-tyoo-ken ays to ON-o-mah too mo-no-geh-NOOS hwee-OO too theh-OO."}];
+var EXAM_POINTS = {textbook:10, pronunciation:10, vocabulary:20, transliteration:15, grammar:40};
+function trVerse(g){
+  return g.split(" ").map(function(w){
+    var m = /^([^\u0370-\u03ff\u1f00-\u1fff]*)([\u0370-\u03ff\u1f00-\u1fff]+)(.*)$/.exec(w);
+    return m ? m[1] + translit(m[2]) + m[3].replace(/[ʼ’]/, "’") : w;
+  }).join(" ");
+}
+function plainGreek(str){
+  return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ς/g, "σ").replace(/[^α-ω\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+/* how much of the verse was heard: each word of the verse may be matched once, a little loosely */
+function heardScore(verse, heard){
+  var want = plainGreek(verse).split(" "), got = plainGreek(heard).split(" ").filter(Boolean), hit = 0;
+  want.forEach(function(w){
+    for(var k = 0; k < got.length; k++){
+      if(editDist(w, got[k]) <= Math.max(w.length > 2 ? 1 : 0, Math.floor(w.length * 0.34))){ got.splice(k, 1); hit++; return; }
+    }
+  });
+  return want.length ? hit / want.length : 0;
+}
+function examTag(label){ return '<span class="qpart">'+label+'</span>'; }
+function examVocab(n){
+  return pick(VOCAB, n).map(function(d, i){
+    var rest = VOCAB.filter(function(x){ return x.g !== d.g; }), tr = vtr(d.g);
+    var q = {key:"xv:"+d.g, part:"vocabulary", explain:gk(d.g)+" ("+tr+") — “"+d.gloss+"”.", miss:'<span class="g">'+d.g+'</span><span class="t"><b>'+tr+'</b>'+d.gloss+'</span>'};
+    if(i % 2 === 0){
+      var byGloss = uniqBy(rest.filter(function(x){ return x.gloss !== d.gloss; }), function(x){ return x.gloss; });
+      q.text = examTag("Vocabulary")+"What does this word mean?"; q.glyph = d.g; q.gcls = "word";
+      q.opts = mkOpts(d.gloss, pick(byGloss, 3).map(function(x){ return x.gloss; }));
+    } else {
+      q.text = examTag("Vocabulary")+"Which word means <i>“"+d.gloss+"”</i>?";
+      q.opts = mkOpts(d.g, pick(rest.filter(function(x){ return x.gloss !== d.gloss; }), 3).map(function(x){ return x.g; }), "glyph");
+    }
+    return q;
+  });
+}
+function examTranslit(n){
+  return pick(TRANS, n).map(function(w, i){
+    var q = {key:"xt:"+w.g, part:"transliteration", explain:gk(w.g)+" is written <b>"+w.tr+"</b>.", miss:'<span class="g">'+w.g+'</span><span class="t"><b>'+w.tr+'</b>'+(w.en || "")+'</span>'};
+    if(i % 2 === 0){
+      q.text = examTag("Transliteration")+"How is this word written in English letters?"; q.glyph = w.g; q.gcls = "word";
+      q.opts = mkOpts(w.tr, distractorsFor(w.tr));
+    } else {
+      var near = TRANS.filter(function(x){ return x.g !== w.g; }).map(function(x){ return {x:x, d:editDist(x.tr, w.tr)}; }).sort(function(a, b){ return a.d - b.d; }).slice(0, 3);
+      q.text = examTag("Transliteration")+"Which Greek word is written <b>"+w.tr+"</b>?";
+      q.opts = mkOpts(w.g, near.map(function(o){ return o.x.g; }), "glyph");
+    }
+    return q;
+  });
+}
+function examGrammar(n){
+  /* term-and-definition heavy: eighteen from the terms bank, then nouns, prepositions and the verb pages */
+  var terms = uniqBy(shuffle(termBank()), function(b){ return b.key; }).slice(0, 18);
+  var bank = uniqBy(shuffle(verbBank().concat(partBank(), condBank())), function(b){ return b.key; });
+  var lists = bank.filter(function(b){ return b.list; }).slice(0, 5), rest = bank.filter(function(b){ return !b.list; });
+  var nouns = uniqBy(caseQuestions(null), function(q){ return q.key; }).slice(0, 4), preps = uniqBy(prepQuestions(null), function(q){ return q.key; }).slice(0, 2);
+  var made = terms.concat(lists, rest.slice(0, n - terms.length - lists.length - nouns.length - preps.length)).map(function(b){ return b.make(); });
+  return shuffle(made.concat(nouns, preps)).slice(0, n).map(function(q){ q.part = "grammar"; q.text = examTag("Grammar") + q.text; return q; });
+}
+function examQuestions(){
+  return examVocab(EXAM_POINTS.vocabulary).concat(examTranslit(EXAM_POINTS.transliteration), examGrammar(EXAM_POINTS.grammar));
+}
+function textbookPoints(pct){ pct = Math.max(0, Math.min(100, parseFloat(pct) || 0)); return Math.round(pct) / 10; }
 var CASE_LABEL = {"dative":"Dative","accusative":"Accusative","genitive":"Genitive","genitive,accusative":"Genitive or accusative"};
 var CASE_LABELS = ["Dative","Accusative","Genitive","Genitive or accusative"];
 function prepQuestions(keys){
@@ -1712,6 +1953,8 @@ if(typeof window === "undefined"){
     alphaQuestions:alphaQuestions, soundsQuestions:soundsQuestions, caseQuestions:caseQuestions, alphaDeck:alphaDeck, caseDeck:caseDeck, describeForm:describeForm,
     VOCAB:VOCAB, VOCAB_LISTS:VOCAB_LISTS, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch, vocabPool:vocabPool, vtr:vtr,
     VERB_PARTS:VERB_PARTS, TENSES:TENSES, VOICES:VOICES, MOODS:MOODS, VERB_LISTS:VERB_LISTS, HOW_MANY:HOW_MANY, verbQuestions:verbQuestions, verbDeck:verbDeck, verbBank:verbBank,
+    TERM_DEFS:TERM_DEFS, PRONOUNS:PRONOUNS, MOOD_KEYS:MOOD_KEYS, termBank:termBank, termQuestions:termQuestions, termDeck:termDeck,
+    JOHN:JOHN, EXAM_POINTS:EXAM_POINTS, trVerse:trVerse, plainGreek:plainGreek, heardScore:heardScore, examVocab:examVocab, examTranslit:examTranslit, examGrammar:examGrammar, examQuestions:examQuestions, textbookPoints:textbookPoints,
     PART_TENSES:PART_TENSES, PART_HAS:PART_HAS, PART_PARSE:PART_PARSE, PART_USES:PART_USES, PART_WORDS:PART_WORDS, PART_LISTS:PART_LISTS, COND_CLASSES:COND_CLASSES,
     partBank:partBank, partQuestions:partQuestions, partDeck:partDeck, condBank:condBank, condQuestions:condQuestions, condDeck:condDeck,
     PREPS:PREPS, prepQuestions:prepQuestions, judgeMeaning:judgeMeaning, rangeOf:rangeOf, selLabel:selLabel, quizSize:quizSize,
@@ -1871,6 +2114,7 @@ function makeQuiz(root, gen, opts){
     $(".again", body).addEventListener("click", function(){ start(null); });
     if($(".missed", body)) $(".missed", body).addEventListener("click", function(){ start(uniqBy(missed, function(q){ return q.key; }).map(function(q){ return q.key; })); });
     renderDots();
+    if(opts.onResults) opts.onResults(qs, $(".result", body));
   }
   return {
     start:start,
@@ -2012,7 +2256,7 @@ function makeMeaning(root){
     var all = vocabPool();
     var pool = keys ? all.filter(function(d){ return keys.indexOf(d.g) >= 0; }) : all;
     if(!pool.length) pool = all;
-    set = pick(pool, Math.min(keys ? pool.length : quizSize(vocabSel), pool.length)).map(function(d){ return {g:d.g, gloss:d.gloss, pos:d.pos, list:d.list}; });
+    set = pick(pool, Math.min((keys || vocabSel === "all") ? pool.length : quizSize(vocabSel), pool.length)).map(function(d){ return {g:d.g, gloss:d.gloss, pos:d.pos, list:d.list}; });
     i = 0; score = 0; missed = []; started = true; render();
   }
   function renderDots(){
@@ -2075,18 +2319,43 @@ function makeMeaning(root){
 }
 
 /* ================================================================ verbs and prepositions: the learn pages */
+/* the parade: one viewer on the sidewalk sees the part in front of him; one in a helicopter sees it all */
+var PARADE = (function(){
+  var m = "", x;
+  for(x = 70; x <= 430; x += 45){
+    m += '<circle cx="'+x+'" cy="118" r="5"/><path d="M'+x+' 123v20M'+x+' 143l-6 16M'+x+' 143l6 16M'+x+' 129l-8 8M'+x+' 129l9 6"/>';
+  }
+  return '<svg viewBox="0 0 500 215" role="img" aria-label="A parade seen from the sidewalk and from a helicopter">'+
+    '<g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">'+
+      '<path d="M20 160H480"/><path d="M20 196H480" stroke-dasharray="2 7"/>'+m+
+      '<path d="M439 123V96l22 7-22 7"/><path d="M61 127h-10v14h10z"/>'+
+      '<circle cx="250" cy="176" r="5.5"/><path d="M250 182v17M250 199l-6 12M250 199l6 12M250 187l-9 5M250 187l9 5"/>'+
+      '<path d="M250 168L226 148M250 168L274 148" stroke-dasharray="3 5"/>'+
+      '<path d="M352 30h44a12 12 0 0 1 0 24h-30a14 14 0 0 1-14-14z"/><path d="M352 38H318l-8-9"/><path d="M340 20H412M376 20v10"/><path d="M364 54v8M388 54v8M356 62h40"/>'+
+      '<circle cx="380" cy="42" r="3.5"/>'+
+      '<path d="M362 62L48 112M392 62L462 112" stroke-dasharray="3 6"/>'+
+    '</g></svg>';
+})();
 function renderVerbsLearn(){
   var html = '<h2 class="h2">What to know about every verb</h2><div class="divider"><span>&#9670;</span></div>'+
     '<div class="five">'+VERB_PARTS.map(function(p){ return '<span>'+p+'</span>'; }).join("")+'</div>'+
     '<h2 class="h2">The six tenses</h2><div class="divider"><span>&#9670;</span></div>'+
-    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Tense</th><th>Time</th><th>Kind of action</th></tr></thead><tbody>'+
+    '<div class="tblwrap"><table class="tbl fit"><thead><tr><th>Tense</th><th>Time</th><th>Kind of action (aspect)</th></tr></thead><tbody>'+
     TENSES.map(function(t){ return '<tr><td class="cs">'+t.name+'</td><td class="it">'+t.time+'</td><td class="mn">'+t.kind+'</td></tr>'; }).join("")+
     '</tbody></table></div>'+
+    '<p class="note">In the <b>indicative</b>, tense shows <b>time</b>. Everywhere else it shows the kind of action.</p>'+
+    '<h2 class="h2">Seeing the action: the parade</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<figure class="parade">'+PARADE+
+      '<figcaption><span><b>On the sidewalk</b>You watch it pass in front of you: <i>continuous</i> — present, imperfect.</span>'+
+      '<span><b>From the helicopter</b>You see the whole parade at once: <i>undefined</i> — the <strong>aorist</strong>.</span></figcaption></figure>'+
     '<h2 class="h2">The three voices</h2><div class="divider"><span>&#9670;</span></div>'+
     '<div class="rules">'+VOICES.map(function(v){ return '<div class="rule"><h4>'+v.name+'</h4><p>'+capFirst(v.d)+'.</p></div>'; }).join("")+'</div>'+
     '<h2 class="h2">The four moods</h2><div class="divider"><span>&#9670;</span></div>'+
     '<p class="lead">Decreasing in realness, from what <i>is</i> to what only <i>might be</i>.</p>'+
     '<div class="moods">'+MOODS.map(function(m, i){ return '<span class="m" style="--r:'+(1 - i*0.22)+'"><b>'+(i+1)+'</b>'+m.name+'</span>'; }).join('<span class="arr">&rsaquo;</span>')+'</div>'+
+    '<div class="tblwrap"><table class="tbl fit"><thead><tr><th>Mood</th><th>Key word</th><th>What it is</th></tr></thead><tbody>'+
+    MOOD_KEYS.map(function(m){ return '<tr><td class="cs">'+m.name+'</td><td class="it">“'+m.key+'”</td><td class="mn">'+capFirst(m.d)+'.</td></tr>'; }).join("")+
+    '</tbody></table></div>'+
     '<h2 class="h2">Number and person</h2><div class="divider"><span>&#9670;</span></div>'+
     '<div class="rules"><div class="rule"><h4>Number &middot; two</h4><p>'+NUMBERS.join(", ")+'.</p></div>'+
     '<div class="rule"><h4>Person &middot; three</h4><p>'+PERSONS.join(", ")+'.</p><p class="ex">I, we &nbsp;&middot;&nbsp; you &nbsp;&middot;&nbsp; he, she, it, they</p></div></div>';
@@ -2129,25 +2398,135 @@ function renderCondsLearn(){
         (c.note ? '<p class="ex">'+c.note+'</p>' : '')+'</div>';
     }).join("")+'</div>';
 }
+function renderArticlesLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#articlesLearn").innerHTML =
+    '<h2 class="h2">In English</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Definite</h4><p>“<b>the</b>”</p></div><div class="rule"><h4>Indefinite</h4><p>“<b>a</b>”, “<b>an</b>”</p></div></div>'+
+    '<h2 class="h2">In Greek</h2>'+D+
+    '<p class="lead">Greek has <b>no indefinite article</b>. Its one article, ὁ ἡ τό, has three things:</p>'+
+    '<div class="parse"><div><b>Case</b><span>function</span></div><div><b>Number</b><span>singular, plural</span></div><div><b>Gender</b><span>masculine, feminine, neuter</span></div></div>'+
+    '<div class="toolbar" style="justify-content:center;margin-top:22px"><button class="btn" type="button" data-go="cases">See every form of the article</button></div>';
+  $$("#articlesLearn [data-go]").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-go")); window.scrollTo({top:0, behavior:"smooth"}); }); });
+}
+function renderAdjsLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#adjsLearn").innerHTML =
+    '<h2 class="h2">Agreement</h2>'+D+
+    '<p class="lead">An adjective matches the noun it modifies in <b>case, number and gender</b>.</p>'+
+    '<h2 class="h2">How an adjective is used</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>With a noun</h4><p>It describes the noun and agrees with it.</p><p class="ex">the <b>good</b> word</p></div>'+
+    '<div class="rule"><h4>Substantive</h4><p>The adjective stands by itself <b>as a noun</b>.</p><p class="ex">the <b>good</b> = the good one, the good person</p></div></div>'+
+    '<h2 class="h2">Pronouns</h2>'+D+
+    '<div class="tblwrap"><table class="tbl fit"><thead><tr><th>Kind</th><th>Examples</th></tr></thead><tbody>'+
+    PRONOUNS.map(function(p){ return '<tr><td class="cs">'+p.t+'</td><td class="mn">'+p.ex+'</td></tr>'; }).join("")+
+    '</tbody></table></div>';
+}
+function renderInfsLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#infsLearn").innerHTML =
+    '<h2 class="h2">Two verbals</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Infinitive</h4><p>A verbal <b>noun</b>.</p><p class="ex">In English: “<b>to</b> love”, “<b>to</b> believe”.</p></div>'+
+    '<div class="rule"><h4>Participle</h4><p>A verbal <b>adjective</b>.</p></div></div>'+
+    '<div class="toolbar" style="justify-content:center;margin-top:22px"><button class="btn" type="button" data-go="parts">Go to participles</button></div>';
+  $$("#infsLearn [data-go]").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-go")); window.scrollTo({top:0, behavior:"smooth"}); }); });
+}
+function renderTermsLearn(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#termsLearn").innerHTML =
+    '<h2 class="h2">Six terms to define</h2>'+D+
+    '<div class="tblwrap"><table class="tbl fit"><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody>'+
+    TERM_DEFS.map(function(x){ return '<tr><td class="cs">'+x.t+'</td><td class="mn">'+x.d+'.</td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Two ways to show function</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Syntax</h4><p><b>Placement</b> — word order shows function.</p></div>'+
+    '<div class="rule"><h4>Inflection</h4><p><b>A change of spelling</b> shows function.</p></div></div>';
+}
 var EXAM_PARTS = [
-  {what:"Textbook", go:[]},
-  {what:"Pronunciation", go:[["alphabet","Alphabet"],["sounds","Diphthongs &amp; Breathings"]]},
-  {what:"Grammar: nouns and adjectives", go:[["cases","Cases &amp; Articles"]]},
-  {what:"Grammar: verbs", go:[["verbs","Verbs"]]},
-  {what:"Grammar: participles", go:[["parts","Participles"]]},
-  {what:"Grammar: conditional sentences", go:[["conds","Conditionals"]]},
-  {what:"30 vocabulary words", go:[["vocab","Vocabulary"]]},
-  {what:"Transliteration", note:"10 Greek → English and 10 English → Greek", go:[["translit","Transliteration"]]}
+  {what:"Textbook", pts:10, note:"How much of it did you read?", go:[]},
+  {what:"Pronunciation", pts:10, note:"One verse from John 3:16–18", go:[["alphabet","Letters"],["sounds","Diphthongs &amp; Breathings"]]},
+  {what:"Vocabulary", pts:20, note:"20 questions", go:[["vocab","Vocabulary"]]},
+  {what:"Transliteration", pts:15, note:"15 questions, going both ways", go:[["translit","Transliteration"]]},
+  {what:"Grammar", pts:40, note:"Terms and definitions", go:[["cases","Nouns"],["verbs","Verbs"],["terms","Terms"]]}
 ];
 function renderExamList(){
   $("#examList").innerHTML = '<div class="examlist">'+EXAM_PARTS.map(function(p){
-    return '<div class="examrow"><div class="what">'+p.what+(p.note ? '<small>'+p.note+'</small>' : '')+'</div><div class="go">'+
+    return '<div class="examrow"><div class="what">'+p.what+' <em>'+p.pts+' points</em>'+(p.note ? '<small>'+p.note+'</small>' : '')+'</div><div class="go">'+
       p.go.map(function(g){ return '<button class="btn" type="button" data-go="'+g[0]+'">'+g[1]+'</button>'; }).join("")+'</div></div>';
   }).join("")+'</div>';
   $$("#examList [data-go]").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-go")); window.scrollTo({top:0, behavior:"smooth"}); }); });
 }
+/* The practice exam. Parts 1 and 2 are entered by hand; parts 3 to 5 are 75 one-point questions. */
+var examState = {read:null, pron:null};
+function renderExamPractice(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  $("#examPractice").innerHTML =
+    '<h2 class="h2">Practice exam &middot; 95 points</h2>'+D+
+    '<div class="expart"><h4>Part 1 &middot; Textbook &middot; 10 points</h4>'+
+      '<p class="exq">How much did you read of the textbook?</p>'+
+      '<p class="exin"><input id="exRead" type="number" inputmode="numeric" min="0" max="100" step="1" placeholder="0–100" aria-label="Percent of the textbook read"> <span>percent</span> <span class="expts" id="exReadPts"></span></p></div>'+
+    '<div class="expart"><h4>Part 2 &middot; Pronunciation &middot; 10 points</h4>'+
+      '<p class="exq">Read one verse aloud. The exam asks for one verse from John 3:16–18.</p>'+
+      JOHN.map(function(v, i){
+        return '<div class="verse" data-verse="'+i+'"><div class="vref">'+v.ref+' &middot; SBLGNT</div>'+
+          '<p class="vg">'+v.g+'</p><p class="vtr">'+trVerse(v.g)+'</p><p class="vph">'+v.ph+'</p>'+
+          '<div class="toolbar"><button class="btn speak" type="button" data-speak="'+i+'">Speak this verse</button><span class="heard" id="exHeard'+i+'"></span></div></div>';
+      }).join("")+
+      '<p class="note" id="exMicNote">'+(SR ? 'Tap <b>Speak this verse</b>, allow the microphone, and read. The page shows what it heard and how much of the verse it matched. It listens for modern Greek, so it is a rough guide — set your own score below.' : 'This browser cannot listen through the microphone. Read the verse aloud and give yourself a score below.')+'</p>'+
+      '<p class="exin"><span>My pronunciation score</span> <input id="exPron" type="number" inputmode="numeric" min="0" max="10" step="1" placeholder="0–10" aria-label="Pronunciation score out of ten"> <span>out of 10</span></p></div>'+
+    '<div class="expart"><h4>Parts 3–5 &middot; 75 points</h4>'+
+      '<p class="exq">20 vocabulary questions, 15 transliteration (both ways) and 40 grammar questions, one point each.</p>'+
+      '<div class="toolbar"><button class="btn primary" type="button" id="exStart">Start the 75 questions</button></div>'+
+      '<div id="examQuiz"></div></div>';
+  function readPts(){ var v = $("#exRead").value; examState.read = v === "" ? null : textbookPoints(v); $("#exReadPts").textContent = examState.read === null ? "" : "= "+examState.read+" of 10 points"; }
+  $("#exRead").addEventListener("input", readPts);
+  $("#exPron").addEventListener("input", function(){ var v = $("#exPron").value; examState.pron = v === "" ? null : Math.max(0, Math.min(10, Math.round(parseFloat(v) || 0))); });
+  $$("#examPractice .speak").forEach(function(b){
+    b.addEventListener("click", function(){
+      var i = parseInt(b.getAttribute("data-speak"), 10), out = $("#exHeard"+i);
+      if(!SR){ out.textContent = "No microphone listening in this browser."; return; }
+      var rec;
+      try{ rec = new SR(); }catch(e){ out.textContent = "The microphone could not be started."; return; }
+      rec.lang = "el-GR"; rec.interimResults = false; rec.maxAlternatives = 1; rec.continuous = false;
+      out.textContent = "Listening…"; b.disabled = true;
+      rec.onresult = function(ev){
+        var said = ev.results[0][0].transcript, pct = heardScore(JOHN[i].g, said), sug = Math.round(pct * 10);
+        out.innerHTML = 'Heard: <i>'+said.replace(/</g, "&lt;")+'</i> — matched <b>'+Math.round(pct * 100)+'%</b> of the verse.';
+        $("#exPron").value = String(sug); examState.pron = sug;
+      };
+      rec.onerror = function(ev){ out.textContent = ev.error === "not-allowed" ? "The microphone was not allowed." : "Nothing was heard. Try again."; };
+      rec.onend = function(){ b.disabled = false; if(out.textContent === "Listening…") out.textContent = "Nothing was heard. Try again."; };
+      try{ rec.start(); }catch(e){ b.disabled = false; out.textContent = "The microphone could not be started."; }
+    });
+  });
+  engines.exam = null;
+  $("#exStart").addEventListener("click", function(){
+    engines.exam = makeQuiz($("#examQuiz"), examQuestions, {onResults:examTotal});
+    engines.exam.start(null);
+    $("#exStart").textContent = "Start over";
+    if($("#examQuiz").scrollIntoView) $("#examQuiz").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+}
+function examTotal(qs, card){
+  function got(part){ return qs.filter(function(q){ return q.part === part && q.got === true; }).length; }
+  var rows = [["Textbook", examState.read, 10], ["Pronunciation", examState.pron, 10], ["Vocabulary", got("vocabulary"), 20], ["Transliteration", got("transliteration"), 15], ["Grammar", got("grammar"), 40]];
+  var total = 0, open = [];
+  rows.forEach(function(r){ if(r[1] === null) open.push(r[0]); else total += r[1]; });
+  var box = document.createElement("div");
+  box.className = "extotal";
+  box.innerHTML = '<div class="big">'+(Math.round(total * 10) / 10)+'/95</div><div class="rsub">'+Math.round(total / 95 * 100)+' percent of the exam</div>'+
+    '<table class="tbl fit"><tbody>'+rows.map(function(r){ return '<tr><td class="cs">'+r[0]+'</td><td class="mn">'+(r[1] === null ? "not entered" : r[1])+' of '+r[2]+'</td></tr>'; }).join("")+'</tbody></table>'+
+    (open.length ? '<p class="note">'+open.join(" and ")+' not entered above, so '+(open.length > 1 ? "they count" : "it counts")+' as 0 for now.</p>' : '');
+  card.insertBefore(box, card.firstChild);
+}
 function renderPrepsLearn(){
-  var html = '<h2 class="h2">Prepositions so far</h2><div class="divider"><span>&#9670;</span></div>'+
+  var html = '<h2 class="h2">What a preposition is</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<div class="rules"><div class="rule"><h4>Preposition</h4><p>Shows a <b>relationship between words</b>, often a <b>spatial</b> one.</p></div>'+
+    '<div class="rule"><h4>Its case</h4><p>A preposition can take the <b>genitive</b>, the <b>dative</b> or the <b>accusative</b>.</p></div>'+
+    '<div class="rule"><h4>Prepositional phrase</h4><p>Where prepositions occur most often.</p><p class="ex">“by the <b>log</b>” — <i>log</i> is the <b>object of the preposition</b>.</p></div>'+
+    '<div class="rule"><h4>Compound verb</h4><p>A verb with a <b>preposition in front of it</b>.</p></div></div>'+
+    '<h2 class="h2">Prepositions so far</h2><div class="divider"><span>&#9670;</span></div>'+
     '<p class="lead">A preposition takes its noun in a set case, and the case can change the meaning. These four are from your vocabulary lists.</p>'+
     '<div class="tblwrap"><table class="tbl"><thead><tr><th>Preposition</th><th>Written</th><th>Takes the</th><th>Meaning</th></tr></thead><tbody>'+
     PREPS.map(function(p){ return '<tr><td class="gk">'+p.g+'</td><td class="kw">'+vtr(p.g)+'</td><td class="it">'+p.cs.join(" or ")+'</td><td class="mn">'+
@@ -2485,12 +2864,16 @@ engines.partQuiz   = makeQuiz($("#partQuiz"), partQuestions);
 engines.condCards  = makeCards($("#condCards")); engines.condCards.load(condDeck());
 engines.condQuiz   = makeQuiz($("#condQuiz"), condQuestions);
 engines.prepQuiz   = makeQuiz($("#prepQuiz"), prepQuestions);
+engines.termCards  = makeCards($("#termCards")); engines.termCards.load(termDeck());
+engines.termQuiz   = makeQuiz($("#termQuiz"), termQuestions);
 renderReview(); renderSoundsLearn(); renderTranslitRules(); renderCaseTable(); renderVerbsLearn(); renderPrepsLearn(); renderPartsLearn(); renderCondsLearn(); renderExamList();
+renderArticlesLearn(); renderAdjsLearn(); renderInfsLearn(); renderTermsLearn(); renderExamPractice();
 segWire("#drawSeg", "data-draw", function(v){ drawMode = v; store.set("draw.mode", v); engines.alphaDraw.start(null); });
 (function(){ var d = store.get("draw.mode"), b = d && $('#drawSeg button[data-draw="'+d+'"]'); if(b){ drawMode = d; $$("#drawSeg button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); }); } })();
 $("#vbShuffle").addEventListener("click", function(){ engines.verbCards.shuffle(); });
 $("#ptShuffle").addEventListener("click", function(){ engines.partCards.shuffle(); });
 $("#cdShuffle").addEventListener("click", function(){ engines.condCards.shuffle(); });
+$("#tmShuffle").addEventListener("click", function(){ engines.termCards.shuffle(); });
 
 var frontMode = "up", deckMode = "forms";
 segWire("#maskSeg", "data-mask", function(v){ maskMode = v; renderReview(); });
@@ -2535,6 +2918,9 @@ segWire("#vListSeg", "data-vlist", function(v){
   vocabReload();
 });
 segWire("#vMaskSeg", "data-vmask", function(v){ vocabMask = v; renderVocabList(); });
+segWire("#vDirSeg", "data-vdir", function(v){ vocabDir = v; store.set("vocab.dir", v); engines.vocabQuiz.start(null); });
+(function(){ var d = store.get("vocab.dir"), b = d && $('#vDirSeg button[data-vdir="'+d+'"]'); if(b){ vocabDir = d; $$("#vDirSeg button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); }); } })();
+$("#vtAll").addEventListener("click", function(){ var all = $('#vListSeg button[data-vlist="all"]'); if(vocabSel === "all"){ engines.vocabType.start(null); } else { all.click(); } });
 segWire("#vFrontSeg", "data-vfront", function(v){ vocabFront = v; engines.vocabCards.load(vocabDeck(v)); });
 $("#vcShuffle").addEventListener("click", function(){ engines.vocabCards.shuffle(); });
 segWire("#vMatchSeg", "data-vmatch", function(v){ vocabMatchMode = v; engines.vocabMatch.round(); });
@@ -2569,7 +2955,8 @@ var ON_SHOW = {
   "verbs/quiz":     function(){ engines.verbQuiz.ensure(); },
   "preps/quiz":     function(){ engines.prepQuiz.ensure(); },
   "parts/quiz":     function(){ engines.partQuiz.ensure(); },
-  "conds/quiz":     function(){ engines.condQuiz.ensure(); }
+  "conds/quiz":     function(){ engines.condQuiz.ensure(); },
+  "terms/quiz":     function(){ engines.termQuiz.ensure(); }
 };
 var KEYS = {
   "alphabet/cards": function(e){ return engines.alphaCards.keys(e); },
@@ -2586,9 +2973,15 @@ var KEYS = {
   "parts/cards":    function(e){ return engines.partCards.keys(e); },
   "parts/quiz":     function(e){ return engines.partQuiz.keys(e); },
   "conds/cards":    function(e){ return engines.condCards.keys(e); },
-  "conds/quiz":     function(e){ return engines.condQuiz.keys(e); }
+  "conds/quiz":     function(e){ return engines.condQuiz.keys(e); },
+  "terms/cards":    function(e){ return engines.termCards.keys(e); },
+  "terms/quiz":     function(e){ return engines.termQuiz.keys(e); },
+  "exam/page":      function(e){ return engines.exam ? engines.exam.keys(e) : false; }
 };
-var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn", parts:"learn", conds:"learn", exam:"page"};
+var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn", parts:"learn", conds:"learn", exam:"page", articles:"learn", adjs:"learn", infs:"learn", terms:"learn"};
+/* the main bar has five tabs; Alphabet and Grammar each open a second row */
+var GROUP = {alphabet:"alphabet", sounds:"alphabet", cases:"grammar", articles:"grammar", adjs:"grammar", verbs:"grammar", preps:"grammar", parts:"grammar", infs:"grammar", conds:"grammar", terms:"grammar"};
+var lastIn = {alphabet:"alphabet", grammar:"cases"};
 function showMode(topic, mode){
   currentMode[topic] = mode;
   $$('.seg[data-modes="'+topic+'"] button').forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
@@ -2601,10 +2994,15 @@ function showTopic(id){
   currentTopic = id;
   $$(".topic-btn").forEach(function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-topic") === id)); });
   $$(".topic").forEach(function(s){ s.hidden = (s.id !== "topic-"+id); });
+  var grp = GROUP[id] || "";
+  if(grp) lastIn[grp] = id;
+  $$(".group-btn").forEach(function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-group") === grp)); });
+  $$(".topics.sub").forEach(function(n){ n.hidden = (n.getAttribute("data-sub") !== grp); });
   showMode(id, currentMode[id]);
   store.set("topic", id);
 }
 $$(".topic-btn").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-topic")); window.scrollTo({top:0, behavior:"smooth"}); }); });
+$$(".group-btn").forEach(function(b){ b.addEventListener("click", function(){ showTopic(lastIn[b.getAttribute("data-group")]); window.scrollTo({top:0, behavior:"smooth"}); }); });
 $$(".seg[data-modes]").forEach(function(seg){
   seg.addEventListener("click", function(e){
     var b = e.target.closest ? e.target.closest("button[data-mode]") : null;
@@ -2627,7 +3025,7 @@ if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
 /* ---- restore where you were ---- */
 (function(){
   var t = store.get("topic");
-  ["alphabet","sounds","translit","cases","vocab","verbs","preps","parts","conds"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
+  ["alphabet","sounds","translit","cases","vocab","verbs","preps","parts","conds","terms"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
   showTopic(t && $('#topic-'+t) ? t : "alphabet");
 })();
 
