@@ -300,16 +300,10 @@ button:focus-visible,.tile:focus-visible,.answer:focus-visible{outline:2px solid
 .exin{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:10px 0 0;font-size:15.5px}
 .exin input{font:inherit;font-size:18px;width:6.2em;padding:9px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg,#fff);color:var(--ink);text-align:center}
 .exin .expts{color:var(--gold);font-family:var(--sans);font-size:12px;letter-spacing:.08em}
-.verse{border-top:1px solid var(--line);padding:14px 0 6px;margin-top:12px}
-.verse .vref{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.verse .vg{font-size:22px;line-height:1.6;margin:0 0 8px}
-.verse .vtr{font-style:italic;color:var(--ink-soft);font-size:16px;line-height:1.6;margin:0 0 6px}
-.verse .vph{font-family:var(--sans);font-size:13.5px;letter-spacing:.02em;line-height:1.7;color:var(--muted);margin:0 0 10px}
-.verse .heard{font-size:14.5px;color:var(--ink-soft);text-transform:none;letter-spacing:0}
 .qpart{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .extotal{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
 .extotal .tbl{margin:14px auto 0;max-width:420px;box-shadow:none}
-@media (max-width:520px){ .parade figcaption{grid-template-columns:1fr} .verse .vg{font-size:20px} }
+@media (max-width:520px){ .parade figcaption{grid-template-columns:1fr} }
 .examlist{display:grid;gap:10px;max-width:640px;margin:18px auto 0}
 .examrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 16px;box-shadow:var(--shadow)}
 .examrow .what{flex:1 1 200px;font-size:16px;line-height:1.45}
@@ -729,7 +723,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 
     <!-- ================= ON THE EXAM ================= -->
     <section class="topic" id="topic-exam" hidden>
-      <p class="intro">A practice exam worth 95 points, laid out like the real one: the textbook, pronunciation, vocabulary, transliteration and grammar.</p>
+      <p class="intro">A practice exam worth 85 points: the textbook, vocabulary, transliteration and grammar.</p>
       <div class="panel" data-panel="exam/page"><div id="examList"></div><div id="examPractice"></div></div>
     </section>
 
@@ -1659,28 +1653,8 @@ function termDeck(){
   return d;
 }
 
-/* ================================================================ the practice exam: 95 points */
-var JOHN = [{"ref": "John 3:16", "g": "Οὕτως γὰρ ἠγάπησεν ὁ θεὸς τὸν κόσμον ὥστε τὸν υἱὸν τὸν μονογενῆ ἔδωκεν, ἵνα πᾶς ὁ πιστεύων εἰς αὐτὸν μὴ ἀπόληται ἀλλὰ ἔχῃ ζωὴν αἰώνιον.", "ph": "HOO-tohs gar ay-GAH-pay-sen ho theh-OSS ton KOS-mon HOH-steh ton hwee-ON ton mo-no-geh-NAY EH-doh-ken, HEE-nah pahs ho pis-TYOO-ohn ays ow-TON may ah-POL-ay-tie ah-LAH EH-khay dzoh-AYN eye-OH-nee-on."}, {"ref": "John 3:17", "g": "οὐ γὰρ ἀπέστειλεν ὁ θεὸς τὸν υἱὸν εἰς τὸν κόσμον ἵνα κρίνῃ τὸν κόσμον, ἀλλʼ ἵνα σωθῇ ὁ κόσμος διʼ αὐτοῦ.", "ph": "oo gar ah-PES-tay-len ho theh-OSS ton hwee-ON ays ton KOS-mon HEE-nah KREE-nay ton KOS-mon, ahl HEE-nah soh-THAY ho KOS-mos dee ow-TOO."}, {"ref": "John 3:18", "g": "ὁ πιστεύων εἰς αὐτὸν οὐ κρίνεται· ὁ δὲ μὴ πιστεύων ἤδη κέκριται, ὅτι μὴ πεπίστευκεν εἰς τὸ ὄνομα τοῦ μονογενοῦς υἱοῦ τοῦ θεοῦ.", "ph": "ho pis-TYOO-ohn ays ow-TON oo KREE-neh-tie; ho deh may pis-TYOO-ohn AY-day KEH-kri-tie, HOT-ee may peh-PIS-tyoo-ken ays to ON-o-mah too mo-no-geh-NOOS hwee-OO too theh-OO."}];
-var EXAM_POINTS = {textbook:10, pronunciation:10, vocabulary:20, transliteration:15, grammar:40};
-function trVerse(g){
-  return g.split(" ").map(function(w){
-    var m = /^([^\u0370-\u03ff\u1f00-\u1fff]*)([\u0370-\u03ff\u1f00-\u1fff]+)(.*)$/.exec(w);
-    return m ? m[1] + translit(m[2]) + m[3].replace(/[ʼ’]/, "’") : w;
-  }).join(" ");
-}
-function plainGreek(str){
-  return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ς/g, "σ").replace(/[^α-ω\s]/g, " ").replace(/\s+/g, " ").trim();
-}
-/* how much of the verse was heard: each word of the verse may be matched once, a little loosely */
-function heardScore(verse, heard){
-  var want = plainGreek(verse).split(" "), got = plainGreek(heard).split(" ").filter(Boolean), hit = 0;
-  want.forEach(function(w){
-    for(var k = 0; k < got.length; k++){
-      if(editDist(w, got[k]) <= Math.max(w.length > 2 ? 1 : 0, Math.floor(w.length * 0.34))){ got.splice(k, 1); hit++; return; }
-    }
-  });
-  return want.length ? hit / want.length : 0;
-}
+/* ================================================================ the practice exam: 85 points */
+var EXAM_POINTS = {textbook:10, vocabulary:20, transliteration:15, grammar:40};
 function examTag(label){ return '<span class="qpart">'+label+'</span>'; }
 function examVocab(n){
   return pick(VOCAB, n).map(function(d, i){
@@ -1954,7 +1928,7 @@ if(typeof window === "undefined"){
     VOCAB:VOCAB, VOCAB_LISTS:VOCAB_LISTS, vocabQuestions:vocabQuestions, vocabDeck:vocabDeck, vocabMatch:vocabMatch, vocabPool:vocabPool, vtr:vtr,
     VERB_PARTS:VERB_PARTS, TENSES:TENSES, VOICES:VOICES, MOODS:MOODS, VERB_LISTS:VERB_LISTS, HOW_MANY:HOW_MANY, verbQuestions:verbQuestions, verbDeck:verbDeck, verbBank:verbBank,
     TERM_DEFS:TERM_DEFS, PRONOUNS:PRONOUNS, MOOD_KEYS:MOOD_KEYS, termBank:termBank, termQuestions:termQuestions, termDeck:termDeck,
-    JOHN:JOHN, EXAM_POINTS:EXAM_POINTS, trVerse:trVerse, plainGreek:plainGreek, heardScore:heardScore, examVocab:examVocab, examTranslit:examTranslit, examGrammar:examGrammar, examQuestions:examQuestions, textbookPoints:textbookPoints,
+    EXAM_POINTS:EXAM_POINTS, examVocab:examVocab, examTranslit:examTranslit, examGrammar:examGrammar, examQuestions:examQuestions, textbookPoints:textbookPoints,
     PART_TENSES:PART_TENSES, PART_HAS:PART_HAS, PART_PARSE:PART_PARSE, PART_USES:PART_USES, PART_WORDS:PART_WORDS, PART_LISTS:PART_LISTS, COND_CLASSES:COND_CLASSES,
     partBank:partBank, partQuestions:partQuestions, partDeck:partDeck, condBank:condBank, condQuestions:condQuestions, condDeck:condDeck,
     PREPS:PREPS, prepQuestions:prepQuestions, judgeMeaning:judgeMeaning, rangeOf:rangeOf, selLabel:selLabel, quizSize:quizSize,
@@ -2444,7 +2418,6 @@ function renderTermsLearn(){
 }
 var EXAM_PARTS = [
   {what:"Textbook", pts:10, note:"How much of it did you read?", go:[]},
-  {what:"Pronunciation", pts:10, note:"One verse from John 3:16–18", go:[["alphabet","Letters"],["sounds","Diphthongs &amp; Breathings"]]},
   {what:"Vocabulary", pts:20, note:"20 questions", go:[["vocab","Vocabulary"]]},
   {what:"Transliteration", pts:15, note:"15 questions, going both ways", go:[["translit","Transliteration"]]},
   {what:"Grammar", pts:40, note:"Terms and definitions", go:[["cases","Nouns"],["verbs","Verbs"],["terms","Terms"]]}
@@ -2456,50 +2429,21 @@ function renderExamList(){
   }).join("")+'</div>';
   $$("#examList [data-go]").forEach(function(b){ b.addEventListener("click", function(){ showTopic(b.getAttribute("data-go")); window.scrollTo({top:0, behavior:"smooth"}); }); });
 }
-/* The practice exam. Parts 1 and 2 are entered by hand; parts 3 to 5 are 75 one-point questions. */
-var examState = {read:null, pron:null};
+/* The practice exam. Part 1 is entered by hand; parts 2 to 4 are 75 one-point questions. */
+var examState = {read:null};
 function renderExamPractice(){
   var D = '<div class="divider"><span>&#9670;</span></div>';
-  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   $("#examPractice").innerHTML =
-    '<h2 class="h2">Practice exam &middot; 95 points</h2>'+D+
+    '<h2 class="h2">Practice exam &middot; 85 points</h2>'+D+
     '<div class="expart"><h4>Part 1 &middot; Textbook &middot; 10 points</h4>'+
       '<p class="exq">How much did you read of the textbook?</p>'+
       '<p class="exin"><input id="exRead" type="number" inputmode="numeric" min="0" max="100" step="1" placeholder="0–100" aria-label="Percent of the textbook read"> <span>percent</span> <span class="expts" id="exReadPts"></span></p></div>'+
-    '<div class="expart"><h4>Part 2 &middot; Pronunciation &middot; 10 points</h4>'+
-      '<p class="exq">Read one verse aloud. The exam asks for one verse from John 3:16–18.</p>'+
-      JOHN.map(function(v, i){
-        return '<div class="verse" data-verse="'+i+'"><div class="vref">'+v.ref+' &middot; SBLGNT</div>'+
-          '<p class="vg">'+v.g+'</p><p class="vtr">'+trVerse(v.g)+'</p><p class="vph">'+v.ph+'</p>'+
-          '<div class="toolbar"><button class="btn speak" type="button" data-speak="'+i+'">Speak this verse</button><span class="heard" id="exHeard'+i+'"></span></div></div>';
-      }).join("")+
-      '<p class="note" id="exMicNote">'+(SR ? 'Tap <b>Speak this verse</b>, allow the microphone, and read. The page shows what it heard and how much of the verse it matched. It listens for modern Greek, so it is a rough guide — set your own score below.' : 'This browser cannot listen through the microphone. Read the verse aloud and give yourself a score below.')+'</p>'+
-      '<p class="exin"><span>My pronunciation score</span> <input id="exPron" type="number" inputmode="numeric" min="0" max="10" step="1" placeholder="0–10" aria-label="Pronunciation score out of ten"> <span>out of 10</span></p></div>'+
-    '<div class="expart"><h4>Parts 3–5 &middot; 75 points</h4>'+
+    '<div class="expart"><h4>Parts 2–4 &middot; 75 points</h4>'+
       '<p class="exq">20 vocabulary questions, 15 transliteration (both ways) and 40 grammar questions, one point each.</p>'+
       '<div class="toolbar"><button class="btn primary" type="button" id="exStart">Start the 75 questions</button></div>'+
       '<div id="examQuiz"></div></div>';
   function readPts(){ var v = $("#exRead").value; examState.read = v === "" ? null : textbookPoints(v); $("#exReadPts").textContent = examState.read === null ? "" : "= "+examState.read+" of 10 points"; }
   $("#exRead").addEventListener("input", readPts);
-  $("#exPron").addEventListener("input", function(){ var v = $("#exPron").value; examState.pron = v === "" ? null : Math.max(0, Math.min(10, Math.round(parseFloat(v) || 0))); });
-  $$("#examPractice .speak").forEach(function(b){
-    b.addEventListener("click", function(){
-      var i = parseInt(b.getAttribute("data-speak"), 10), out = $("#exHeard"+i);
-      if(!SR){ out.textContent = "No microphone listening in this browser."; return; }
-      var rec;
-      try{ rec = new SR(); }catch(e){ out.textContent = "The microphone could not be started."; return; }
-      rec.lang = "el-GR"; rec.interimResults = false; rec.maxAlternatives = 1; rec.continuous = false;
-      out.textContent = "Listening…"; b.disabled = true;
-      rec.onresult = function(ev){
-        var said = ev.results[0][0].transcript, pct = heardScore(JOHN[i].g, said), sug = Math.round(pct * 10);
-        out.innerHTML = 'Heard: <i>'+said.replace(/</g, "&lt;")+'</i> — matched <b>'+Math.round(pct * 100)+'%</b> of the verse.';
-        $("#exPron").value = String(sug); examState.pron = sug;
-      };
-      rec.onerror = function(ev){ out.textContent = ev.error === "not-allowed" ? "The microphone was not allowed." : "Nothing was heard. Try again."; };
-      rec.onend = function(){ b.disabled = false; if(out.textContent === "Listening…") out.textContent = "Nothing was heard. Try again."; };
-      try{ rec.start(); }catch(e){ b.disabled = false; out.textContent = "The microphone could not be started."; }
-    });
-  });
   engines.exam = null;
   $("#exStart").addEventListener("click", function(){
     engines.exam = makeQuiz($("#examQuiz"), examQuestions, {onResults:examTotal});
@@ -2510,12 +2454,12 @@ function renderExamPractice(){
 }
 function examTotal(qs, card){
   function got(part){ return qs.filter(function(q){ return q.part === part && q.got === true; }).length; }
-  var rows = [["Textbook", examState.read, 10], ["Pronunciation", examState.pron, 10], ["Vocabulary", got("vocabulary"), 20], ["Transliteration", got("transliteration"), 15], ["Grammar", got("grammar"), 40]];
+  var rows = [["Textbook", examState.read, 10], ["Vocabulary", got("vocabulary"), 20], ["Transliteration", got("transliteration"), 15], ["Grammar", got("grammar"), 40]];
   var total = 0, open = [];
   rows.forEach(function(r){ if(r[1] === null) open.push(r[0]); else total += r[1]; });
   var box = document.createElement("div");
   box.className = "extotal";
-  box.innerHTML = '<div class="big">'+(Math.round(total * 10) / 10)+'/95</div><div class="rsub">'+Math.round(total / 95 * 100)+' percent of the exam</div>'+
+  box.innerHTML = '<div class="big">'+(Math.round(total * 10) / 10)+'/85</div><div class="rsub">'+Math.round(total / 85 * 100)+' percent of the exam</div>'+
     '<table class="tbl fit"><tbody>'+rows.map(function(r){ return '<tr><td class="cs">'+r[0]+'</td><td class="mn">'+(r[1] === null ? "not entered" : r[1])+' of '+r[2]+'</td></tr>'; }).join("")+'</tbody></table>'+
     (open.length ? '<p class="note">'+open.join(" and ")+' not entered above, so '+(open.length > 1 ? "they count" : "it counts")+' as 0 for now.</p>' : '');
   card.insertBefore(box, card.firstChild);
