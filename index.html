@@ -377,6 +377,9 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
 .hverse .he{font-size:clamp(23px,6vw,34px);margin:8px 0 2px;line-height:1.5}
 .hverse .cap{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
 #hvListSeg button{min-width:42px}
+.ghost.he{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;font-size:58px}
+.qglyph.hdq .trq.nm{font-family:var(--sans);font-size:clamp(24px,7vw,34px);letter-spacing:.16em;text-transform:uppercase}
+.misslist .g.he{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;font-size:26px}
 </style>
 </head>
 <body>
@@ -810,12 +813,13 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   
     <!-- ================= HEBREW: LETTERS ================= -->
     <section class="topic" id="topic-hlet" hidden>
-      <p class="intro">The Hebrew alphabet from your handout: twenty-three consonants, five final forms, the six begadkephat letters, and the letters that are easy to confuse.</p>
+      <p class="intro">The Hebrew alphabet from your handout: twenty-three consonants, five final forms, the six begadkephat letters, and the letters that are easy to confuse. Then practice drawing them.</p>
       <div class="modes"><div class="seg" data-modes="hlet">
         <button type="button" data-mode="chart" aria-pressed="true">Chart</button>
         <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
         <button type="button" data-mode="match" aria-pressed="false">Match</button>
         <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+        <button type="button" data-mode="draw" aria-pressed="false">Draw</button>
       </div></div>
       <div class="panel" data-panel="hlet/chart"><div id="hLetChart"></div></div>
       <div class="panel" data-panel="hlet/cards" hidden>
@@ -838,6 +842,18 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       <div class="panel" data-panel="hlet/quiz" hidden>
         <p class="hint">Ten questions: names, sounds, transliteration, final forms and the begadkephat letters. Keys <kbd>1</kbd>&ndash;<kbd>9</kbd> answer or pick, <kbd>Enter</kbd> checks and moves on.</p>
         <div id="hLetQuiz"></div>
+      </div>
+      <div class="panel" data-panel="hlet/draw" hidden>
+        <p class="hint">Read the name, draw the letter with your finger or mouse, then press <b>Check</b>. Most letters sit between the two lines; <span class="he">ל</span> rises above, <span class="he">ק</span> and the long final forms drop below.</p>
+        <div class="toolbar">
+          <span class="label">Draw</span>
+          <div class="seg" id="hDrawSeg">
+            <button type="button" data-hdraw="letters" aria-pressed="true">The 22 letters</button>
+            <button type="button" data-hdraw="finals" aria-pressed="false">Final forms</button>
+            <button type="button" data-hdraw="all" aria-pressed="false">All</button>
+          </div>
+        </div>
+        <div id="hLetDraw"></div>
       </div>
     </section>
 
@@ -2346,7 +2362,7 @@ function hVocabQuestions(keys, sel, dir){
       var wr = uniqBy(near, function(x){ return hGlossKey(x.g); }).slice(0, 3).map(function(x){ return x.g; });
       return {key:"hv:"+i, text:"What does this word mean?", glyph:w.h, gcls:"he word", opts:mkOpts(w.g, wr), explain:ex, miss:hMiss(heb(w.h), w.g)};
     }
-    var wh = uniqBy(near, function(x){ return x.h; }).slice(0, 3).map(function(x){ return heb(x.h); });
+    var wh = uniqBy(near, function(x){ return hGlossKey(x.g); }).slice(0, 3).map(function(x){ return heb(x.h); });
     return {key:"hve:"+i, text:"Which word means <b>“"+w.g+"”</b>?", opts:mkOpts(heb(w.h), wh, "heopt"), explain:ex, miss:hMiss(w.g, heb(w.h))};
   });
 }
@@ -3111,6 +3127,195 @@ function makeDraw(root){
   };
 }
 
+/* ================================================================ Hebrew drawing practice
+   Same reader as the Greek one: her strokes are redrawn at one thickness, thinned to a skeleton
+   and compared with every letter printed in several typefaces. Sin and Shin share one shape
+   (only the dot differs), so they are drawn as one. The five final forms are their own shapes. */
+var HDRAW = HLETTERS.filter(function(d){ return d.name !== "Sin"; }).map(function(d){
+  return d.name === "Shin" ? {id:"ש", name:"Shin / Sin", tr:"š / ś", note:"Sin and Shin are one shape; only the dot moves"} : {id:d.g, name:d.name, tr:d.tr};
+}).concat(HFINALS.map(function(f){ return {id:f.fin, name:"final "+f.name, tr:HLETTERS.filter(function(x){ return x.name === f.name; })[0].tr, fin:true}; }));
+var HDRAW_FONTS = ['"Times New Roman","Arial Hebrew",serif', 'Arial,"Arial Hebrew",sans-serif', '"David","Times New Roman",serif', '"Courier New","Arial Hebrew",monospace', '"Segoe UI","Arial Hebrew",sans-serif'];
+/* Which shapes rise above the band (ל) or drop below the line (ק and four final forms) */
+HDRAW.forEach(function(d){ ZONES[d.id] = {asc:d.id === "ל", desc:/[קךןףץ]/.test(d.id)}; });
+var hDrawTemplates = null;
+/* Where a shape sits against the writing band: above it (ל), below it (ק, ך, ן, ף, ץ), small (י),
+   and how wide it is for its height. Cropping to the ink throws this away, so it is measured first. */
+function hPlace(x0, y0, x1, y1, top, base){
+  var band = base - top, h = Math.max(1, y1 - y0), w = Math.max(1, x1 - x0);
+  return {asc: y0 < top - 0.35*band, desc: y1 > base + 0.35*band, small: h < 0.6*band, ar: w / h};
+}
+function hTemplates(){
+  if(hDrawTemplates) return hDrawTemplates;
+  var cv = document.createElement("canvas"); cv.width = cv.height = 220;
+  var c = cv.getContext("2d"), out = [];
+  function ink(){
+    var d = c.getImageData(0, 0, 220, 220).data, x0 = 220, y0 = 220, x1 = -1, y1 = -1;
+    for(var y=0;y<220;y++) for(var x=0;x<220;x++) if(d[(y*220+x)*4+3] > 90){ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }
+    return x1 < 0 ? null : [x0, y0, x1, y1];
+  }
+  HDRAW_FONTS.forEach(function(f){
+    c.font = "120px " + f; c.textAlign = "center"; c.textBaseline = "alphabetic";
+    c.clearRect(0, 0, 220, 220); c.fillStyle = "#000"; c.fillText("ה", 110, 150);
+    var hb = ink(); if(!hb) return;
+    var top = hb[1], base = 150;                                      /* the band: the height of He in this face */
+    HDRAW.forEach(function(d){
+      c.clearRect(0, 0, 220, 220); c.fillText(d.id, 110, 150);
+      var b = ink(), g = b && gridFromCanvas(cv);
+      if(!g) return;
+      var pl = hPlace(b[0], b[1], b[2], b[3], top, base);           /* typefaces disagree on tails; she writes them as taught */
+      pl.asc = d.id === "ל"; pl.desc = /[קךןףץ]/.test(d.id); pl.small = d.id === "י";
+      out.push({id:d.id, grid:g, place:pl});
+    });
+  });
+  return (hDrawTemplates = out);
+}
+function hRank(grid, place, templates){
+  var best = {};
+  templates.forEach(function(t){
+    var s = 1 / (1 + chamfer(grid, t.grid));
+    if(place){
+      if(t.place.asc !== place.asc) s *= 0.45;
+      if(t.place.desc !== place.desc) s *= 0.45;
+      if(t.place.small !== place.small) s *= 0.45;
+      s *= Math.exp(-0.35 * Math.abs(Math.log(place.ar / t.place.ar)));
+    }
+    if(!(t.id in best) || s > best[t.id]) best[t.id] = s;
+  });
+  return Object.keys(best).map(function(id){ return {id:id, score:best[id]}; }).sort(function(a, b){ return b.score - a.score; });
+}
+function hRecognize(strokes, guides){
+  var g = gridFromStrokes(strokes);
+  if(!g) return [];
+  var pts = [].concat.apply([], strokes), xs = pts.map(function(p){ return p[0]; }), ys = pts.map(function(p){ return p[1]; });
+  var place = guides ? hPlace(Math.min.apply(null, xs), Math.min.apply(null, ys), Math.max.apply(null, xs), Math.max.apply(null, ys), guides.top, guides.base) : null;
+  return hRank(g, place, hTemplates());
+}
+function hDrawItem(id){ for(var i=0;i<HDRAW.length;i++){ if(HDRAW[i].id === id) return HDRAW[i]; } return null; }
+var hDrawMode = "letters";                                   /* letters · finals · all */
+function makeHDraw(root){
+  root.innerHTML = '<div class="quizWrap"><div class="dots"></div><div class="qbody"></div></div>';
+  var dots = $(".dots", root), body = $(".qbody", root);
+  var set = [], i = 0, score = 0, missed = [], state = "ask", started = false, strokes = [], cv, ctx, drawing = false;
+  function prompt(d){
+    var byName = d.fin || Math.random() < 0.6;
+    return {d:d, text:byName ? "Draw this letter" : "Draw the letter written", shown:byName ? d.name : d.tr, byName:byName};
+  }
+  function start(keys){
+    var pool = HDRAW.filter(function(d){ return hDrawMode === "all" || (hDrawMode === "finals" ? d.fin : !d.fin); });
+    if(keys){ var k = HDRAW.filter(function(d){ return keys.indexOf(d.id) >= 0; }); if(k.length) pool = k; }
+    set = pick(pool, Math.min(10, pool.length)).map(prompt);
+    i = 0; score = 0; missed = []; started = true; render();
+  }
+  function renderDots(){
+    dots.innerHTML = "";
+    set.forEach(function(w, k){
+      var s = document.createElement("i");
+      if(w.got === true) s.className = "ok"; else if(w.got === false) s.className = "no"; else if(k === i) s.className = "on";
+      dots.appendChild(s);
+    });
+  }
+  /* notebook lines: most letters sit between them; ל rises above, ק and the long finals drop below */
+  function guides(){ var H = cv.clientHeight || 300; return {top:0.34*H, base:0.64*H}; }
+  function paint(){
+    var r = cv.width / cv.clientWidth || 1, gd = guides(), W = cv.width;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.save(); ctx.strokeStyle = "rgba(154,122,68,.35)"; ctx.lineWidth = 1*r;
+    ctx.setLineDash([5*r, 6*r]); ctx.beginPath(); ctx.moveTo(0, gd.top*r); ctx.lineTo(W, gd.top*r); ctx.stroke();
+    ctx.setLineDash([]); ctx.strokeStyle = "rgba(154,122,68,.55)"; ctx.beginPath(); ctx.moveTo(0, gd.base*r); ctx.lineTo(W, gd.base*r); ctx.stroke();
+    ctx.restore();
+    ctx.lineWidth = 7 * r; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#1d1b17"; ctx.fillStyle = "#1d1b17";
+    strokes.forEach(function(st){
+      ctx.beginPath(); ctx.moveTo(st[0][0]*r, st[0][1]*r);
+      if(st.length === 1){ ctx.arc(st[0][0]*r, st[0][1]*r, 3.5*r, 0, 7); ctx.fill(); return; }
+      for(var j=1;j<st.length;j++) ctx.lineTo(st[j][0]*r, st[j][1]*r);
+      ctx.stroke();
+    });
+  }
+  function pos(e){ var b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; }
+  function render(){
+    renderDots();
+    if(i >= set.length){ results(); return; }
+    var q = set[i]; state = "ask"; strokes = [];
+    body.innerHTML =
+      '<div class="qcard card-corners">'+CORNERS+
+        '<div class="qnum">Letter '+(i+1)+' of '+set.length+'</div>'+
+        '<p class="qtext">'+q.text+'</p>'+
+        '<div class="qglyph hdq"><span class="trq'+(q.byName ? ' nm' : '')+'">'+q.shown+'</span></div>'+
+        (q.d.note && q.byName ? '<p class="hint">'+q.d.note+'</p>' : '')+
+        '<div class="padwrap"><canvas class="pad" aria-label="Drawing area"></canvas><div class="ghost he" hidden></div></div>'+
+        '<div class="keys"><button class="btn undo" type="button">Undo</button><button class="btn clear" type="button">Clear</button><button class="btn primary check" type="button">Check</button><button class="btn show" type="button">Show me</button></div>'+
+        '<p class="feedback"></p>'+
+        '<div class="qfoot"><button class="btn primary next" type="button" hidden>Next &rsaquo;</button></div>'+
+      '</div>';
+    cv = $(".pad", body); ctx = cv.getContext("2d");
+    var dpr = window.devicePixelRatio || 1, W = cv.clientWidth || 300, H = cv.clientHeight || 300;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); paint();
+    cv.addEventListener("pointerdown", function(e){
+      if(state !== "ask") return;
+      e.preventDefault(); drawing = true; try{ cv.setPointerCapture(e.pointerId); }catch(x){}
+      strokes.push([pos(e)]); paint();
+    });
+    cv.addEventListener("pointermove", function(e){ if(!drawing) return; e.preventDefault(); strokes[strokes.length-1].push(pos(e)); paint(); });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(t){ cv.addEventListener(t, function(){ drawing = false; }); });
+    $(".undo", body).addEventListener("click", function(){ if(state === "ask"){ strokes.pop(); paint(); } });
+    $(".clear", body).addEventListener("click", function(){ if(state === "ask"){ strokes = []; paint(); } });
+    $(".check", body).addEventListener("click", function(){ check(false); });
+    $(".show", body).addEventListener("click", function(){ check(true); });
+    $(".next", body).addEventListener("click", function(){ i++; render(); });
+  }
+  function check(gaveUp){
+    if(state !== "ask") return;
+    var q = set[i];
+    if(!gaveUp && !strokes.length){ $(".feedback", body).innerHTML = "Draw the letter in the box first."; return; }
+    var ranked = gaveUp ? [] : hRecognize(strokes, guides());
+    var j = gaveUp ? {ok:false, saw:null} : judgeDrawing(ranked, q.d.id);
+    state = "done"; q.got = j.ok;
+    if(j.ok) score++; else missed.push(q);
+    var ghost = $(".ghost", body); ghost.textContent = q.d.id; ghost.hidden = false;
+    var saw = j.saw && hDrawItem(j.saw);
+    $(".feedback", body).innerHTML = j.ok
+      ? "Correct — "+heb(q.d.id)+" is "+q.d.name+", written "+q.d.tr+"."
+      : (gaveUp ? "Here it is: " : (saw ? "That looks more like "+heb(saw.id)+" ("+saw.name+"). The answer is " : "Not this one. The answer is "))+heb(q.d.id)+", "+q.d.name+".";
+    $$(".keys .btn", body).forEach(function(b){ b.disabled = true; });
+    var place = -1; ranked.some(function(x, k){ if(x.id === q.d.id){ place = k; return true; } return false; });
+    if(!j.ok && !gaveUp && place > 0 && place <= 2){          /* a near miss by the reader: let her overrule it */
+      var ov = document.createElement("button"); ov.type = "button"; ov.className = "btn overrule"; ov.textContent = "My drawing was right";
+      ov.addEventListener("click", function(){
+        if(q.got) return; q.got = true; score++; missed = missed.filter(function(m){ return m !== q; });
+        $(".feedback", body).innerHTML = "Counted as correct — "+heb(q.d.id)+" is "+q.d.name+", written "+q.d.tr+".";
+        ov.remove(); renderDots(); $(".next", body).focus();
+      });
+      $(".qfoot", body).insertBefore(ov, $(".next", body));
+    }
+    var nb = $(".next", body); nb.hidden = false; nb.textContent = (i === set.length-1) ? "See results" : "Next"; nb.focus();
+    renderDots();
+  }
+  function results(){
+    var pct = set.length ? Math.round(score / set.length * 100) : 0;
+    var verdict = pct===100 ? "Flawless." : pct>=80 ? "Strong. One more pass and it is yours." : pct>=50 ? "Halfway there. Look over the misses below." : "Look over the chart, then try again.";
+    var html = '<div class="result card-corners">'+CORNERS+'<div class="big">'+score+'/'+set.length+'</div><div class="rsub">'+pct+' percent</div><p class="verdict">'+verdict+'</p>';
+    if(missed.length) html += '<div class="misslist">' + uniqBy(missed, function(q){ return q.d.id; }).map(function(q){ return '<div><span class="g he">'+q.d.id+'</span><span class="t"><b>'+q.d.name+'</b>written '+q.d.tr+'</span></div>'; }).join("") + '</div>';
+    html += '<div class="toolbar" style="margin:26px 0 0"><button class="btn primary again" type="button">Draw again</button>'+
+            (missed.length ? '<button class="btn missed" type="button">Practice the misses</button>' : '')+'</div></div>';
+    body.innerHTML = html;
+    $(".again", body).addEventListener("click", function(){ start(null); });
+    if($(".missed", body)) $(".missed", body).addEventListener("click", function(){ start(uniqBy(missed, function(q){ return q.d.id; }).map(function(q){ return q.d.id; })); });
+    renderDots();
+  }
+  return {
+    start:start, ensure:function(){ if(!started) start(null); },
+    keys:function(e){
+      if(e.key === "Enter"){
+        var nb = $(".next", body); if(nb && !nb.hidden){ nb.click(); return true; }
+        var ck = $(".check", body); if(ck && !ck.disabled){ ck.click(); return true; }
+      }
+      if((e.key === "z" && (e.ctrlKey || e.metaKey)) || e.key === "Backspace"){ var u = $(".undo", body); if(u && !u.disabled){ u.click(); return true; } }
+      return false;
+    },
+    _test:{recognize:hRecognize, set:function(){ return set; }}
+  };
+}
+
 /* ================================================================ static renderers */
 var reviewOrder = LETTERS.slice(), maskMode = "none";
 function renderReview(){
@@ -3339,6 +3544,9 @@ function renderHVocabList(){
 engines.hLetCards = makeCards($("#hLetCards")); engines.hLetCards.load(hLetterDeck("letters"));
 engines.hLetMatch = makeMatch($("#hLetMatch"), hLetterMatch);
 engines.hLetQuiz  = makeQuiz($("#hLetQuiz"), hLetterQuestions);
+engines.hLetDraw  = makeHDraw($("#hLetDraw"));
+(function(){ var d = store.get("hdraw.mode"), b = d && $('#hDrawSeg button[data-hdraw="'+d+'"]'); if(b){ hDrawMode = d; $$("#hDrawSeg button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); }); } })();
+segWire("#hDrawSeg", "data-hdraw", function(v){ hDrawMode = v; store.set("hdraw.mode", v); engines.hLetDraw.start(null); });
 engines.hVowCards = makeCards($("#hVowCards")); engines.hVowCards.load(hVowelDeck());
 engines.hVowQuiz  = makeQuiz($("#hVowQuiz"), hVowelQuestions);
 engines.hVocCards = makeCards($("#hVocCards"));
@@ -3453,6 +3661,7 @@ var ON_SHOW = {
   "terms/quiz":     function(){ engines.termQuiz.ensure(); },
   "hlet/match":     function(){ engines.hLetMatch.ensure(); },
   "hlet/quiz":      function(){ engines.hLetQuiz.ensure(); },
+  "hlet/draw":      function(){ engines.hLetDraw.ensure(); },
   "hvow/quiz":      function(){ engines.hVowQuiz.ensure(); },
   "hvoc/match":     function(){ engines.hVocMatch.ensure(); },
   "hvoc/quiz":      function(){ engines.hVocQuiz.ensure(); }
@@ -3478,6 +3687,7 @@ var KEYS = {
   "exam/page":      function(e){ return engines.exam ? engines.exam.keys(e) : false; },
   "hlet/cards":     function(e){ return engines.hLetCards.keys(e); },
   "hlet/quiz":      function(e){ return engines.hLetQuiz.keys(e); },
+  "hlet/draw":      function(e){ return engines.hLetDraw.keys(e); },
   "hvow/cards":     function(e){ return engines.hVowCards.keys(e); },
   "hvow/quiz":      function(e){ return engines.hVowQuiz.keys(e); },
   "hvoc/cards":     function(e){ return engines.hVocCards.keys(e); },
