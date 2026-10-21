@@ -349,6 +349,34 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   .veil{filter:none!important}
   header{padding-block:0 10px}
 }
+
+/* ---- Hebrew ---- */
+.he{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;direction:rtl;unicode-bidi:isolate;letter-spacing:0}
+.he b{color:var(--gold);font-weight:inherit}
+.glyphs.he{font-size:56px;line-height:1.15}
+.face .big.he{font-size:clamp(72px,16vw,112px);line-height:1.15;letter-spacing:0}
+.face .big.he.vword{font-size:clamp(44px,11vw,70px)}
+.qglyph.he{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;direction:rtl;font-size:88px;line-height:1.25;letter-spacing:0}
+.qglyph.he.word{font-size:62px}
+.opt.heopt .he{font-size:28px;line-height:1.3}
+.htbl td.he{text-align:center}
+.tbl .he.hg{font-size:31px;line-height:1.2}
+.tbl .he.hw{font-size:26px;line-height:1.3;white-space:nowrap}
+.he.hs{font-size:22px}
+.rule p .he,.lead .he,.note .he{font-size:1.4em;line-height:1}
+#hLetMatch .L .tile{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;font-size:36px}
+#hVocMatch .L .tile{font-family:"SBL Hebrew","Ezra SIL","Taamey Frank CLM","Times New Roman","Arial Hebrew","David",serif;font-size:25px;direction:rtl}
+.hvchart{min-width:0;table-layout:fixed}
+.hvchart th,.hvchart td{padding:8px 3px;text-align:center;vertical-align:middle}
+.hvchart th:first-child,.hvchart td.cs{width:24%;white-space:normal;font-size:9.5px;letter-spacing:.1em;line-height:1.4}
+.hvchart .he.hg{font-size:26px}
+.htbl th,.htbl td{padding:10px 8px}
+.hv{display:flex;flex-direction:column;align-items:center;margin:3px 0 9px}
+.hv .hn{font-family:var(--sans);font-size:9px;line-height:1.25;letter-spacing:.08em;color:var(--muted);margin-top:2px}
+.hverse{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:16px 12px;box-shadow:var(--shadow);max-width:640px;margin:0 auto}
+.hverse .he{font-size:clamp(23px,6vw,34px);margin:8px 0 2px;line-height:1.5}
+.hverse .cap{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+#hvListSeg button{min-width:42px}
 </style>
 </head>
 <body>
@@ -398,7 +426,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
   <header>
     <p class="eyebrow">Study Sheet</p>
     <h1>Greek Study Sheet</h1>
-    <p class="sub">Introduction to Biblical Languages</p>
+    <p class="sub">Introduction to Biblical Languages &middot; Greek &amp; Hebrew</p>
     <svg class="orn" viewBox="0 0 320 44" aria-hidden="true"><use href="#flourish"/></svg>
   </header>
 
@@ -408,6 +436,7 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
     <button class="topic-btn" role="tab" data-topic="translit" aria-selected="false">Transliteration</button>
     <button class="group-btn" type="button" data-group="grammar" aria-selected="false">Grammar</button>
     <button class="topic-btn" role="tab" data-topic="exam" aria-selected="false">On the Exam</button>
+    <button class="group-btn" type="button" data-group="hebrew" aria-selected="false">Hebrew</button>
   </nav>
   <nav class="topics sub" data-sub="alphabet" aria-label="Alphabet">
     <button class="topic-btn" role="tab" data-topic="alphabet" aria-selected="true">Letters</button>
@@ -423,6 +452,11 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
     <button class="topic-btn" role="tab" data-topic="infs" aria-selected="false">Infinitives</button>
     <button class="topic-btn" role="tab" data-topic="conds" aria-selected="false">Conditional</button>
     <button class="topic-btn" role="tab" data-topic="terms" aria-selected="false">Terms</button>
+  </nav>
+  <nav class="topics sub" data-sub="hebrew" aria-label="Hebrew" hidden>
+    <button class="topic-btn" role="tab" data-topic="hlet" aria-selected="false">Letters</button>
+    <button class="topic-btn" role="tab" data-topic="hvow" aria-selected="false">Vowels &amp; Syllables</button>
+    <button class="topic-btn" role="tab" data-topic="hvoc" aria-selected="false">Vocabulary</button>
   </nav>
 
   <main>
@@ -773,7 +807,125 @@ kbd{font-family:var(--sans);font-size:10px;border:1px solid var(--line-strong);b
       </div>
     </section>
 
-  </main>
+  
+    <!-- ================= HEBREW: LETTERS ================= -->
+    <section class="topic" id="topic-hlet" hidden>
+      <p class="intro">The Hebrew alphabet from your handout: twenty-three consonants, five final forms, the six begadkephat letters, and the letters that are easy to confuse.</p>
+      <div class="modes"><div class="seg" data-modes="hlet">
+        <button type="button" data-mode="chart" aria-pressed="true">Chart</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="match" aria-pressed="false">Match</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="hlet/chart"><div id="hLetChart"></div></div>
+      <div class="panel" data-panel="hlet/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar">
+          <span class="label">Deck</span>
+          <div class="seg" id="hLetDeckSeg">
+            <button type="button" data-hdeck="letters" aria-pressed="true">23 letters</button>
+            <button type="button" data-hdeck="more" aria-pressed="false">Finals &amp; begadkephat</button>
+          </div>
+          <button class="btn" type="button" id="hLetShuffle">Shuffle deck</button>
+        </div>
+        <div id="hLetCards"></div>
+      </div>
+      <div class="panel" data-panel="hlet/match" hidden>
+        <p class="hint">Tap a letter, then its name. Matched pairs fade out.</p>
+        <div class="toolbar"><button class="btn primary" type="button" id="hLetNew">New round</button></div>
+        <div id="hLetMatch"></div>
+      </div>
+      <div class="panel" data-panel="hlet/quiz" hidden>
+        <p class="hint">Ten questions: names, sounds, transliteration, final forms and the begadkephat letters. Keys <kbd>1</kbd>&ndash;<kbd>9</kbd> answer or pick, <kbd>Enter</kbd> checks and moves on.</p>
+        <div id="hLetQuiz"></div>
+      </div>
+    </section>
+
+    <!-- ================= HEBREW: VOWELS & SYLLABLES ================= -->
+    <section class="topic" id="topic-hvow" hidden>
+      <p class="intro">The vowel charts, Shewa, the daghesh forte, defective writing and how syllables work &mdash; chapters 2 and 3 of your handout.</p>
+      <div class="modes"><div class="seg" data-modes="hvow">
+        <button type="button" data-mode="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="panel" data-panel="hvow/learn"><div id="hVowLearn"></div></div>
+      <div class="panel" data-panel="hvow/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar"><button class="btn" type="button" id="hVowShuffle">Shuffle deck</button></div>
+        <div id="hVowCards"></div>
+      </div>
+      <div class="panel" data-panel="hvow/quiz" hidden>
+        <p class="hint">Ten questions on the vowels and syllables. Keys <kbd>1</kbd>&ndash;<kbd>9</kbd> answer or pick, <kbd>Enter</kbd> checks and moves on.</p>
+        <div id="hVowQuiz"></div>
+      </div>
+    </section>
+
+    <!-- ================= HEBREW: VOCABULARY ================= -->
+    <section class="topic" id="topic-hvoc" hidden>
+      <p class="intro">Your Hebrew vocabulary list: six lists, sixty words, each with its part of speech and its meaning.</p>
+      <div class="modes"><div class="seg" data-modes="hvoc">
+        <button type="button" data-mode="list" aria-pressed="true">List</button>
+        <button type="button" data-mode="cards" aria-pressed="false">Flashcards</button>
+        <button type="button" data-mode="match" aria-pressed="false">Match</button>
+        <button type="button" data-mode="quiz" aria-pressed="false">Quiz</button>
+      </div></div>
+      <div class="toolbar">
+        <span class="label">List</span>
+        <div class="seg" id="hvListSeg">
+          <button type="button" data-hvlist="1" aria-pressed="false">1</button>
+          <button type="button" data-hvlist="2" aria-pressed="false">2</button>
+          <button type="button" data-hvlist="3" aria-pressed="false">3</button>
+          <button type="button" data-hvlist="4" aria-pressed="false">4</button>
+          <button type="button" data-hvlist="5" aria-pressed="false">5</button>
+          <button type="button" data-hvlist="6" aria-pressed="false">6</button>
+          <button type="button" data-hvlist="all" aria-pressed="true">All 60</button>
+        </div>
+      </div>
+      <div class="panel" data-panel="hvoc/list">
+        <p class="hint">Hide a column to test yourself, then tap a row to reveal it.</p>
+        <div class="toolbar">
+          <span class="label">Hide</span>
+          <div class="seg" id="hvMaskSeg">
+            <button type="button" data-hvmask="none" aria-pressed="true">Nothing</button>
+            <button type="button" data-hvmask="hebrew" aria-pressed="false">Hebrew</button>
+            <button type="button" data-hvmask="meaning" aria-pressed="false">Meaning</button>
+          </div>
+        </div>
+        <div id="hVocList"></div>
+      </div>
+      <div class="panel" data-panel="hvoc/cards" hidden>
+        <p class="hint">Click the card (or press Space) to flip it. Arrow keys move through the deck.</p>
+        <div class="toolbar">
+          <span class="label">Front shows</span>
+          <div class="seg" id="hvFrontSeg">
+            <button type="button" data-hvfront="hebrew" aria-pressed="true">Hebrew</button>
+            <button type="button" data-hvfront="english" aria-pressed="false">English</button>
+          </div>
+          <button class="btn" type="button" id="hvShuffle">Shuffle deck</button>
+        </div>
+        <div id="hVocCards"></div>
+      </div>
+      <div class="panel" data-panel="hvoc/match" hidden>
+        <p class="hint">Tap a Hebrew word, then its meaning. Matched pairs fade out.</p>
+        <div class="toolbar"><button class="btn primary" type="button" id="hvNew">New round</button></div>
+        <div id="hVocMatch"></div>
+      </div>
+      <div class="panel" data-panel="hvoc/quiz" hidden>
+        <p class="hint">Meanings only, in the direction you choose. Ten questions for one list, twenty for <b>All 60</b>. Keys <kbd>1</kbd>&ndash;<kbd>4</kbd> pick an answer, <kbd>Enter</kbd> goes to the next.</p>
+        <div class="toolbar">
+          <span class="label">Ask</span>
+          <div class="seg" id="hvDirSeg">
+            <button type="button" data-hvdir="he" aria-pressed="false">Hebrew &rarr; English</button>
+            <button type="button" data-hvdir="en" aria-pressed="false">English &rarr; Hebrew</button>
+            <button type="button" data-hvdir="both" aria-pressed="true">Both</button>
+          </div>
+        </div>
+        <div id="hVocQuiz"></div>
+      </div>
+    </section>
+
+</main>
 
   <footer>
     <p>From Alpha to Omega, and a little beyond.</p>
@@ -1921,6 +2073,294 @@ function vocabMatch(mode, sel){
           rightCls:byMeaning ? "glosses" : "translits", items:pick(items, Math.min(10, items.length))};
 }
 
+/* ================================================================ HEBREW
+   From her two class handouts (Introduction to Biblical Language Tools): the alphabet, vowel and
+   syllable charts (Basics of Biblical Hebrew, chapters 1–3) and the Hebrew vocabulary list
+   (60 words in six lists). Quizzes show the Hebrew and ask for the English, like the Greek ones;
+   the vocabulary quiz can also run English → Hebrew. Counts of use in the OT are left out, as
+   for the Greek vocabulary.                                                                     */
+function heb(s){ return '<span class="he" lang="he" dir="rtl">'+s+'</span>'; }
+var DAG = "ּ";                                   /* daghesh */
+var HLETTERS = [
+ {n:1,  g:"א", name:"Alef",   sound:"silent",          tr:"ʾ"},
+ {n:2,  g:"ב", name:"Bet",    sound:"b as in boy",     tr:"b", bgdkpt:true},
+ {n:3,  g:"ג", name:"Gimel",  sound:"g as in God",     tr:"g", bgdkpt:true},
+ {n:4,  g:"ד", name:"Dalet",  sound:"d as in day",     tr:"d", bgdkpt:true},
+ {n:5,  g:"ה", name:"He",     sound:"h as in hay",     tr:"h"},
+ {n:6,  g:"ו", name:"Waw",    sound:"w as in way",     tr:"w"},
+ {n:7,  g:"ז", name:"Zayin",  sound:"z as in Zion",    tr:"z"},
+ {n:8,  g:"ח", name:"Ḥet",    sound:"ch as in Bach",   tr:"ḥ"},
+ {n:9,  g:"ט", name:"Ṭet",    sound:"t as in toy",     tr:"ṭ"},
+ {n:10, g:"י", name:"Yod",    sound:"y as in yes",     tr:"y"},
+ {n:11, g:"כ", name:"Kaf",    sound:"k as in king",    tr:"k", bgdkpt:true, fin:"ך"},
+ {n:12, g:"ל", name:"Lamed",  sound:"l as in lion",    tr:"l"},
+ {n:13, g:"מ", name:"Mem",    sound:"m as in mother",  tr:"m", fin:"ם"},
+ {n:14, g:"נ", name:"Nun",    sound:"n as in now",     tr:"n", fin:"ן"},
+ {n:15, g:"ס", name:"Samek",  sound:"s as in sin",     tr:"s"},
+ {n:16, g:"ע", name:"Ayin",   sound:"silent",          tr:"ʿ"},
+ {n:17, g:"פ", name:"Pe",     sound:"p as in pastor",  tr:"p", bgdkpt:true, fin:"ף"},
+ {n:18, g:"צ", name:"Tsade",  sound:"ts as in boots",  tr:"ṣ", fin:"ץ"},
+ {n:19, g:"ק", name:"Qof",    sound:"k as in king",    tr:"q"},
+ {n:20, g:"ר", name:"Resh",   sound:"r as in run",     tr:"r"},
+ {n:21, g:"שׂ", name:"Sin",   sound:"s as in sin",     tr:"ś"},
+ {n:22, g:"שׁ", name:"Shin",  sound:"sh as in ship",   tr:"š"},
+ {n:23, g:"ת", name:"Taw",    sound:"t as in toy",     tr:"t", bgdkpt:true}
+];
+/* the handout's ten look-alike groups and three sound-alike pairs (by letter name) */
+var HLOOK = [["Bet","Kaf"],["Gimel","Nun"],["He","Ḥet","Taw"],["Sin","Shin"],["final Mem","Samek"],["Dalet","Resh"],["Tsade","Ayin"],["Waw","Zayin"],["Waw","final Nun"],["final Kaf","final Nun"]];
+var HSOUND_ALIKE = [["Ṭet","Taw with daghesh lene"],["Qof","Kaf with daghesh lene"],["Samek","Sin"]];
+var HFINALS = [
+ {name:"Kaf",   reg:"כ", fin:"ך", ex:"דר<b>ך</b>", tr:"drk",  mean:"road, way"},
+ {name:"Mem",   reg:"מ", fin:"ם", ex:"ע<b>ם</b>",  tr:"ʿm",   mean:"nation, people"},
+ {name:"Nun",   reg:"נ", fin:"ן", ex:"זק<b>ן</b>", tr:"zqn",  mean:"old man, elder"},
+ {name:"Pe",    reg:"פ", fin:"ף", ex:"כס<b>ף</b>", tr:"ksp",  mean:"money, silver"},
+ {name:"Tsade", reg:"צ", fin:"ץ", ex:"אר<b>ץ</b>", tr:"ʾrṣ",  mean:"earth, land"}
+];
+var HBGDKPT = [
+ {name:"Bet",   g:"ב", hard:"b as in boy",    htr:"b", soft:"v as in vine",        str:"ḇ"},
+ {name:"Gimel", g:"ג", hard:"g as in God",    htr:"g", soft:"gh as in aghast",     str:"ḡ"},
+ {name:"Dalet", g:"ד", hard:"d as in day",    htr:"d", soft:"dh as in the",        str:"ḏ"},
+ {name:"Kaf",   g:"כ", hard:"k as in king",   htr:"k", soft:"ch as in Bach",       str:"ḵ"},
+ {name:"Pe",    g:"פ", hard:"p as in pastor", htr:"p", soft:"ph as in alphabet",   str:"p̄"},
+ {name:"Taw",   g:"ת", hard:"t as in toy",    htr:"t", soft:"th as in thin",       str:"ṯ"}
+];
+/* every vowel shown on בּ, as on the handout's charts */
+var HVOWELS = [
+ {name:"Pathach",       g:"בַּ",  cls:"short",        type:"a", sound:"a as in bat",     tr:"a"},
+ {name:"Seghol",        g:"בֶּ",  cls:"short",        type:"e", sound:"e as in better",  tr:"e"},
+ {name:"Hireq",         g:"בִּ",  cls:"short",        type:"i", sound:"i as in bitter",  tr:"i"},
+ {name:"Qamets Hatuf",  g:"בָּ",  cls:"short",        type:"o", sound:"o as in bottle",  tr:"o", twin:"Qamets"},
+ {name:"Qibbuts",       g:"בֻּ",  cls:"short",        type:"u", sound:"u as in ruler",   tr:"u"},
+ {name:"Qamets",        g:"בָּ",  cls:"changeable",   type:"a", sound:"a as in father",  tr:"ā", twin:"Qamets Hatuf"},
+ {name:"Tsere",         g:"בֵּ",  cls:"changeable",   type:"e", sound:"e as in they",    tr:"ē"},
+ {name:"Holem",         g:"בֹּ",  cls:"changeable",   type:"o", sound:"o as in role",    tr:"ō"},
+ {name:"Qamets Yod",    g:"בָּי", cls:"unchangeable", type:"a", sound:"ou as in bought", tr:"â"},
+ {name:"Tsere Yod",     g:"בֵּי", cls:"unchangeable", type:"e", sound:"e as in they",    tr:"ê"},
+ {name:"Seghol Yod",    g:"בֶּי", cls:"unchangeable", type:"e", sound:"e as in better",  tr:"ê"},
+ {name:"Hireq Yod",     g:"בִּי", cls:"unchangeable", type:"i", sound:"i as in machine", tr:"î"},
+ {name:"Holem Waw",     g:"בּוֹ", cls:"unchangeable", type:"o", sound:"o as in role",    tr:"ô"},
+ {name:"Shureq",        g:"בּוּ", cls:"unchangeable", type:"u", sound:"u as in ruler",   tr:"û"},
+ {name:"Hateph Pathach",g:"בֲּ",  cls:"reduced",      type:"a", sound:"a as in amuse",   tr:"ă"},
+ {name:"Hateph Seghol", g:"בֱּ",  cls:"reduced",      type:"e", sound:"a as in amuse",   tr:"ĕ"},
+ {name:"Hateph Qamets", g:"בֳּ",  cls:"reduced",      type:"o", sound:"a as in amuse",   tr:"ŏ"}
+];
+var HVCLASS = {short:"Short", changeable:"Changeable long", unchangeable:"Unchangeable long", reduced:"Reduced (hateph)"};
+var HDEFECTIVE = [
+ {from:"Holem Waw", to:"Holem",   full:"שׁוֹפָר", def:"שֹׁפָר", mean:"ram’s horn"},
+ {from:"Shureq",    to:"Qibbuts", full:"מַדּוּעַ", def:"מַדֻּעַ", mean:"why?"},
+ {from:"Hireq Yod", to:"Hireq",   full:"דָּוִיד", def:"דָּוִד", mean:"David"}
+];
+var HVOCAB = [
+ {l:1,h:"וְ",pos:"conjunction",g:"and, but, now"},
+ {l:1,h:"הַ",pos:"article",g:"the"},
+ {l:1,h:"לְ",pos:"preposition",g:"to, for"},
+ {l:1,h:"בְּ",pos:"preposition",g:"in, with, by"},
+ {l:1,h:"כֹּל",pos:"adjective",g:"all, every"},
+ {l:1,h:"לֹא",pos:"negative particle",g:"no, not"},
+ {l:1,h:"יהוה",pos:"proper noun",g:"LORD"},
+ {l:1,h:"אֱלֹהִים",pos:"masculine noun",g:"God, gods"},
+ {l:1,h:"אָדוֹן",pos:"masculine noun",g:"Lord"},
+ {l:1,h:"שָׁלוֹם",pos:"masculine noun",g:"peace"},
+ {l:2,h:"אֵת",pos:"particle",g:"sign of the accusative"},
+ {l:2,h:"בֵּן",pos:"masculine noun",g:"son"},
+ {l:2,h:"מֶלֶךְ",pos:"masculine noun",g:"king"},
+ {l:2,h:"אֶרֶץ",pos:"feminine noun",g:"land, earth"},
+ {l:2,h:"יוֹם",pos:"masculine noun",g:"day"},
+ {l:2,h:"בַּיִת",pos:"masculine noun",g:"house"},
+ {l:2,h:"עַם",pos:"masculine noun",g:"people, nation"},
+ {l:2,h:"הוּא",pos:"pronoun",g:"he"},
+ {l:2,h:"הִיא",pos:"pronoun",g:"she"},
+ {l:2,h:"מִי",pos:"pronoun",g:"who?"},
+ {l:3,h:"אָמַר",pos:"verb",g:"to say"},
+ {l:3,h:"הָיָה",pos:"verb",g:"to be"},
+ {l:3,h:"נָתַן",pos:"verb",g:"to give"},
+ {l:3,h:"הָלַךְ",pos:"verb",g:"to walk"},
+ {l:3,h:"שָׁמַע",pos:"verb",g:"to hear"},
+ {l:3,h:"שׁוּב",pos:"verb",g:"to return, repent"},
+ {l:3,h:"יָדַע",pos:"verb",g:"to know"},
+ {l:3,h:"בָּרַךְ",pos:"verb",g:"to bless"},
+ {l:3,h:"אָהַב",pos:"verb",g:"to love"},
+ {l:3,h:"בָּרָא",pos:"verb",g:"to create"},
+ {l:4,h:"יָד",pos:"feminine noun",g:"hand"},
+ {l:4,h:"אֶחָד",pos:"adjective",g:"one"},
+ {l:4,h:"טוֹב",pos:"adjective",g:"good, beautiful"},
+ {l:4,h:"רַע",pos:"adjective",g:"evil"},
+ {l:4,h:"צַדִּיק",pos:"adjective",g:"righteous"},
+ {l:4,h:"גִּבּוֹר",pos:"adjective",g:"mighty"},
+ {l:4,h:"הָלַל",pos:"verb (piel)",g:"to praise"},
+ {l:4,h:"קָדוֹשׁ",pos:"adjective",g:"holy"},
+ {l:4,h:"חֵן",pos:"masculine noun",g:"grace"},
+ {l:4,h:"שַׁבָּת",pos:"noun (both genders)",g:"Sabbath, day of rest"},
+ {l:5,h:"אִישׁ",pos:"masculine noun",g:"man, husband"},
+ {l:5,h:"דָּבָר",pos:"masculine noun",g:"word"},
+ {l:5,h:"אָב",pos:"masculine noun",g:"father"},
+ {l:5,h:"עֶבֶד",pos:"masculine noun",g:"servant"},
+ {l:5,h:"אִשָּׁה",pos:"feminine noun",g:"woman, wife"},
+ {l:5,h:"דֶּרֶךְ",pos:"masculine or feminine noun",g:"way"},
+ {l:5,h:"לֵב",pos:"masculine noun",g:"heart"},
+ {l:5,h:"גּוֹי",pos:"masculine noun",g:"nation, Gentile"},
+ {l:5,h:"אָדָם",pos:"masculine noun",g:"man, humankind"},
+ {l:5,h:"צָבָא",pos:"masculine noun",g:"army"},
+ {l:6,h:"שָׁמַיִם",pos:"masculine noun",g:"heavens"},
+ {l:6,h:"רוּחַ",pos:"feminine noun",g:"spirit, breath, wind"},
+ {l:6,h:"נָבִיא",pos:"masculine noun",g:"prophet"},
+ {l:6,h:"בְּרִית",pos:"feminine noun",g:"covenant"},
+ {l:6,h:"חֶסֶד",pos:"masculine noun",g:"loyal love, lovingkindness"},
+ {l:6,h:"תּוֹרָה",pos:"feminine noun",g:"law"},
+ {l:6,h:"כָּבוֹד",pos:"masculine noun",g:"glory"},
+ {l:6,h:"מִצְוָה",pos:"feminine noun",g:"commandment"},
+ {l:6,h:"חָכְמָה",pos:"feminine noun",g:"wisdom"},
+ {l:6,h:"כְּתוּבִים",pos:"masculine noun",g:"writings"}
+];
+var HLISTS = [1,2,3,4,5,6];
+
+function hName(n){ return HLETTERS.filter(function(x){ return x.name === n; })[0]; }
+/* wrong names for a letter: its look-alikes first, then others */
+function hLookalikes(name){
+  var out = [];
+  HLOOK.forEach(function(g){ if(g.indexOf(name) >= 0) g.forEach(function(x){ x = x.replace(/^final /, ""); if(x !== name && out.indexOf(x) < 0) out.push(x); }); });
+  return out;
+}
+function hWrongNames(name, n){
+  var near = hLookalikes(name).filter(function(x){ return !!hName(x); });
+  var rest = shuffle(HLETTERS.map(function(x){ return x.name; }).filter(function(x){ return x !== name && near.indexOf(x) < 0; }));
+  return shuffle(near).concat(rest).slice(0, n);
+}
+function hShow(d){ return d.bgdkpt ? d.g + DAG : d.g; }   /* a begadkephat letter is shown hard, with its daghesh */
+function hMiss(title, text){ return '<span class="g">&middot;</span><span class="t"><b>'+title+'</b>'+text+'</span>'; }
+function hQ(key, text, right, wrongs, explain, title, glyph, cls){
+  return {key:key, text:text, glyph:glyph || null, gcls:glyph ? "he" : null, opts:mkOpts(right, wrongs, cls), explain:explain, miss:hMiss(title, explain)};
+}
+
+/* ---- letters: every question keyed, so "practice the misses" can rebuild it ---- */
+function hLetterBank(){
+  var B = [];
+  function add(key, make){ B.push({key:key, make:make}); }
+  HLETTERS.forEach(function(d){
+    var ex = d.name+" — "+d.sound+", written "+d.tr+".";
+    add("hn:"+d.n, function(){ return hQ("hn:"+d.n, "What is this letter called?", d.name, hWrongNames(d.name, 3), ex, d.g+" &nbsp;"+d.name, d.g); });
+    var sw = pick(uniqBy(HLETTERS.filter(function(x){ return x.sound !== d.sound; }), function(x){ return x.sound; }), 3).map(function(x){ return x.sound; });
+    add("hs:"+d.n, function(){ return hQ("hs:"+d.n, "How does this letter sound?", d.sound, sw, ex, d.g+" &nbsp;"+d.name, hShow(d)); });
+    var tw = pick(uniqBy(HLETTERS.filter(function(x){ return x.tr !== d.tr; }), function(x){ return x.tr; }), 3).map(function(x){ return x.tr; });
+    add("ht:"+d.n, function(){ return hQ("ht:"+d.n, "How is this letter transliterated?", d.tr, tw, ex, d.g+" &nbsp;"+d.name, hShow(d), "tr"); });
+  });
+  HFINALS.forEach(function(f){
+    var ex = f.fin+" is final "+f.name+": the form "+f.reg+" takes at the end of a word, as in "+f.ex.replace(/<\/?b>/g,"")+" ("+f.mean+"). The sound does not change.";
+    add("hf:"+f.name, function(){ return hQ("hf:"+f.name, "This is a final form. Of which letter?", f.name, hWrongNames(f.name, 3).filter(function(x){ return x !== f.name; }), ex, f.fin+" &nbsp;final "+f.name, f.fin); });
+  });
+  HBGDKPT.forEach(function(b){
+    var ex = b.name+" with daghesh lene is hard ("+b.hard+"); without it, soft ("+b.soft+").";
+    add("hbs:"+b.name, function(){ return hQ("hbs:"+b.name, "No daghesh lene in this letter. How does it sound?", b.soft, [b.hard].concat(pick(HBGDKPT.filter(function(x){ return x !== b; }).map(function(x){ return x.soft; }), 2)), ex, b.g+" &nbsp;"+b.name+" without daghesh", b.g); });
+    add("hbt:"+b.name, function(){ return hQ("hbt:"+b.name, "No daghesh lene in this letter. How is it transliterated?", b.str, [b.htr].concat(pick(HBGDKPT.filter(function(x){ return x !== b; }).map(function(x){ return x.str; }), 2)), ex, b.g+" &nbsp;"+b.name+" without daghesh", b.g, "tr"); });
+  });
+  function fixed(key, text, right, wrongs, explain, title){ add(key, function(){ return hQ(key, text, right, wrongs, explain, title); }); }
+  fixed("hx:count", "How many consonants are in the Hebrew alphabet?", "23", ["22","24","26"], "Twenty-three consonants, counting Sin and Shin as two.", "The alphabet");
+  fixed("hx:silent", "Which two letters are <b>silent</b>?", "Alef and Ayin", ["Alef and He","He and Ḥet","Ayin and Yod"], "Alef (ʾ) and Ayin (ʿ) make no sound of their own.", "Silent letters");
+  fixed("hx:finalsound", "Does a final form change how a letter is pronounced?", "No — only how it is written", ["Yes — it becomes soft","Yes — it becomes silent","Only for Mem and Nun"], "A final form changes the letter’s shape, not its pronunciation or transliteration.", "Final forms");
+  fixed("hx:where", "When is a final form used?", "When the letter ends a word", ["When the letter begins a word","When it has a daghesh","When it follows a vowel"], "Five letters are written differently at the end of a word.", "Final forms");
+  fixed("hx:lene", "What does a <b>daghesh lene</b> in a begadkephat letter show?", "The hard pronunciation", ["The soft pronunciation","A doubled consonant","A silent letter"], "With the dot: hard (b, g, d, k, p, t). Without it: soft (v, gh, dh, ch, ph, th).", "Daghesh lene");
+  fixed("hx:sinshin", "How do you tell Sin (שׂ) from Shin (שׁ)?", "The dot: left for Sin, right for Shin", ["The dot: right for Sin, left for Shin","Sin has three prongs, Shin has two","Shin is only used at the end of a word"], "שׂ Sin = s as in sin; שׁ Shin = sh as in ship.", "Sin and Shin");
+  fixed("hx:qof", "Qof (ק) sounds like which letter?", "Kaf with daghesh lene", ["Ṭet","Gimel","Kaf without daghesh"], "Both are k as in king; Qof is transliterated q.", "Sound-alikes");
+  fixed("hx:tet", "Ṭet (ט) sounds like which letter?", "Taw with daghesh lene", ["Dalet","He","Taw without daghesh"], "Both are t as in toy; Ṭet is transliterated ṭ.", "Sound-alikes");
+  fixed("hx:samek", "Samek (ס) sounds like which letter?", "Sin", ["Shin","Tsade","Zayin"], "Both are s as in sin; Samek is s, Sin is ś.", "Sound-alikes");
+  B.push({key:"hl:finals", list:true, make:function(){ return listQuestion({q:"the five letters with final forms", items:["Kaf","Mem","Nun","Pe","Tsade"], extra:["Bet","Dalet","Lamed","Resh","Taw","Shin"], e:"Kaf ך, Mem ם, Nun ן, Pe ף, Tsade ץ."}, "hl:finals"); }});
+  B.push({key:"hl:bgdkpt", list:true, make:function(){ return listQuestion({q:"the six begadkephat letters", items:["Bet","Gimel","Dalet","Kaf","Pe","Taw"], extra:["He","Waw","Mem","Qof","Resh"], e:"B-G-D-K-P-T: Bet, Gimel, Dalet, Kaf, Pe, Taw — hard with daghesh lene, soft without."}, "hl:bgdkpt"); }});
+  return B;
+}
+function hLetterQuestions(keys){ return bankQuestions(hLetterBank(), keys); }
+function hLetterDeck(which){
+  if(which === "more"){
+    return HFINALS.map(function(f){ return {front:'<div class="big he">'+f.fin+'</div><div class="hint">final form</div>', back:'<div class="big he">'+f.reg+' &nbsp;'+f.fin+'</div><div class="bname">final '+f.name+'</div><div class="bsound">at the end of a word — same sound</div>'}; })
+      .concat(HBGDKPT.map(function(b){ return {front:'<div class="big he">'+b.g+DAG+' &nbsp;'+b.g+'</div><div class="hint">with and without daghesh</div>', back:'<div class="bname">'+b.name+'</div><div class="bsound">'+b.g+DAG+' '+b.hard+' ('+b.htr+') &nbsp;·&nbsp; '+b.g+' '+b.soft+' ('+b.str+')</div>'}; }));
+  }
+  return HLETTERS.map(function(d){ return {front:'<div class="big he">'+d.g+'</div><div class="hint">letter '+d.n+' of 23</div>', back:'<div class="big he">'+d.g+'</div><div class="bname">'+d.name+'</div><div class="btr">'+d.tr+'</div><div class="bsound">'+d.sound+'</div>'}; });
+}
+function hLetterMatch(){
+  var items = pick(HLETTERS, 10).map(function(d){ return {id:d.name, left:d.g, right:d.name}; });
+  return {leftTitle:"Letter", rightTitle:"Name", rightCls:"wide", items:items};
+}
+
+/* ---- vowels and syllables ---- */
+function hVowelBank(){
+  var B = [];
+  function add(key, make){ B.push({key:key, make:make}); }
+  HVOWELS.forEach(function(v, i){
+    var ex = v.name+" — "+HVCLASS[v.cls].toLowerCase()+", "+v.type+"-type, "+v.sound+" ("+v.tr+").";
+    if(!v.twin){
+      var nw = uniqBy(shuffle(HVOWELS.filter(function(x){ return x.name !== v.name && !x.twin; })).sort(function(a, b){ return (b.type === v.type) - (a.type === v.type); }), function(x){ return x.name; }).slice(0, 3).map(function(x){ return x.name; });
+      add("vn:"+i, function(){ return hQ("vn:"+i, "What is this vowel called?", v.name, nw, ex, v.g+" &nbsp;"+v.name, v.g); });
+      var cw = Object.keys(HVCLASS).filter(function(c){ return c !== v.cls; }).map(function(c){ return HVCLASS[c]; });
+      add("vc:"+i, function(){ return hQ("vc:"+i, "Which class of vowel is this?", HVCLASS[v.cls], cw, ex, v.g+" &nbsp;"+v.name, v.g); });
+      var tw = uniqBy(shuffle(HVOWELS.filter(function(x){ return x.tr !== v.tr; })).sort(function(a, b){ return (b.type === v.type) - (a.type === v.type); }), function(x){ return x.tr; }).slice(0, 3).map(function(x){ return x.tr; });
+      add("vt:"+i, function(){ return hQ("vt:"+i, "How is this vowel transliterated?", v.tr, tw, ex, v.g+" &nbsp;"+v.name, v.g, "tr"); });
+    }
+  });
+  function fixed(key, text, right, wrongs, explain, title, glyph){ add(key, function(){ return hQ(key, text, right, wrongs, explain, title, glyph); }); }
+  fixed("vx:qamets", "This mark can be two different vowels. Which two?", "Qamets and Qamets Hatuf", ["Qamets and Pathach","Qamets and Hateph Qamets","Pathach and Hateph Pathach"], "Qamets (ā, a as in father) and Qamets Hatuf (o, o as in bottle) look the same.", "בָּ &nbsp;one mark, two vowels", "בָּ");
+  fixed("vx:shewa", "What is this mark called?", "Shewa", ["Hateph Pathach","Seghol","Tsere"], "Shewa is not in the vowel charts; it belongs to no phonetic class.", "בְּ &nbsp;Shewa", "בְּ");
+  fixed("vx:shewa2", "What are the two kinds of Shewa?", "Silent and vocal", ["Short and long","Changeable and unchangeable","Hard and soft"], "Shewa is either silent or vocal.", "Shewa");
+  fixed("vx:shewa3", "Why is Shewa left out of the vowel charts?", "It belongs to no phonetic class", ["It is always silent","It only appears at the end of a word","It is a consonant, not a vowel"], "It is not like any other vowel: no a, e, i, o or u class.", "Shewa");
+  fixed("vx:forte", "What does a <b>daghesh forte</b> do?", "Doubles the consonant", ["Makes the consonant hard","Makes the consonant silent","Marks the accent"], "It looks just like the daghesh lene but doubles the letter: הַשָּׁמַיִם is haššāmayim.", "Daghesh forte");
+  fixed("vx:fortenot", "Which letters can <b>never</b> take a daghesh forte?", "The gutturals (א ע ה ח) and ר", ["The begadkephat letters","The five final forms","Sin and Shin"], "Daghesh forte can occur in any consonant except the gutturals א, ע, ה, ח and ר.", "Daghesh forte");
+  fixed("vx:heavens", "In הַשָּׁמַיִם (the heavens), why is it written with two Shins (haššāmayim)?", "The Shin has a daghesh forte", ["The Shin has a daghesh lene","The word ends in a final form","The He is a guttural"], "Daghesh forte doubles the consonant it sits in.", "הַשָּׁמַיִם");
+  HDEFECTIVE.forEach(function(d, i){
+    var others = HDEFECTIVE.filter(function(x){ return x !== d; });
+    fixed("vd:"+i, "In defective writing, "+d.from+" is written as…", d.to, [others[0].to, others[1].to, d.from === "Shureq" ? "Holem" : "Qibbuts"].filter(function(x, j, a){ return x !== d.to && a.indexOf(x) === j; }).concat(["Shewa"]).slice(0, 3), d.from+" → "+d.to+", as in "+d.full+" → "+d.def+" ("+d.mean+").", "Defective writing");
+  });
+  fixed("vs:rule1", "Every Hebrew syllable must begin with…", "One consonant, and have only one vowel", ["One vowel, and have one consonant","Two consonants and one vowel","A guttural or a vowel letter"], "Rule 1: one consonant at the start, one vowel in it — דָּ|בָר dā-ḇār.", "Syllable rule 1");
+  fixed("vs:open", "An <b>open</b> syllable ends in…", "A vowel", ["A consonant","A Shewa","A daghesh"], "Open ends in a vowel (דָּ dā); closed ends in a consonant (בָר ḇār).", "Open and closed");
+  fixed("vs:closed", "A <b>closed</b> syllable ends in…", "A consonant", ["A vowel","A Shewa","An accent mark"], "Closed ends in a consonant; open ends in a vowel.", "Open and closed");
+  fixed("vs:dabar", "In דָּבָר (dā-ḇār), which syllable is open?", "דָּ (dā)", ["בָר (ḇār)","Both","Neither"], "דָּ ends in a vowel, so it is open; בָר ends in ר, so it is closed.", "דָּבָר", "דָּבָר");
+  fixed("vs:accent", "Where are most Hebrew words accented?", "On the last syllable", ["On the first syllable","On the second-to-last syllable","On any long vowel"], "When the stress is elsewhere, an accent mark shows it, as in סֵפֶר.", "Accent");
+  fixed("vs:tonic", "The accented syllable is called the…", "Tonic", ["Pretonic","Propretonic","Ultima"], "Tonic = accented; pretonic = just before it; propretonic = before that.", "Syllable names");
+  fixed("vs:pretonic", "The syllable right before the accented one is the…", "Pretonic", ["Propretonic","Penultima","Tonic"], "Counting back from the accent: tonic, pretonic, propretonic.", "Syllable names");
+  fixed("vs:ultima", "Without reference to the accent, the last syllable is the…", "Ultima", ["Penultima","Antepenultima","Tonic"], "Ultima (last), penultima (second to last), antepenultima (third to last).", "Syllable names");
+  fixed("vs:ante", "The third syllable from the end is the…", "Antepenultima", ["Penultima","Propretonic","Ultima"], "Ultima, penultima, antepenultima — counted from the end, whatever the accent.", "Syllable names");
+  B.push({key:"vl:classes", list:true, make:function(){ return listQuestion({q:"the four classes of vowels on the summary chart", items:["Short","Changeable long","Unchangeable long","Reduced"], extra:["Silent","Vocal","Final","Doubled"], e:"Short, changeable long, unchangeable long and reduced (hateph)."}, "vl:classes"); }});
+  B.push({key:"vl:reduced", list:true, make:function(){ return listQuestion({q:"the three reduced (hateph) vowels", items:["Hateph Pathach","Hateph Seghol","Hateph Qamets"], extra:["Hateph Hireq","Hateph Tsere","Shewa","Qibbuts"], e:"Hateph Pathach, Hateph Seghol and Hateph Qamets — all a as in amuse."}, "vl:reduced"); }});
+  return B;
+}
+function hVowelQuestions(keys){ return bankQuestions(hVowelBank(), keys); }
+function hVowelDeck(){
+  return HVOWELS.map(function(v){ return {front:'<div class="big he">'+v.g+'</div><div class="hint">vowel on bet</div>', back:'<div class="big he">'+v.g+'</div><div class="bname">'+v.name+(v.twin ? ' <span style="opacity:.6">or '+v.twin+'</span>' : '')+'</div><div class="btr">'+v.tr+'</div><div class="bsound">'+HVCLASS[v.cls]+' · '+v.sound+'</div>'}; })
+    .concat([{front:'<div class="big he">בְּ</div><div class="hint">not on the charts</div>', back:'<div class="bname">Shewa</div><div class="bsound">silent or vocal; no phonetic class</div>'},
+             {front:'<div class="mid">Daghesh forte</div>', back:'<div class="bname">Doubles the consonant</div><div class="bsound">never in א ע ה ח or ר</div>'},
+             {front:'<div class="mid">Open syllable</div>', back:'<div class="bname">Ends in a vowel</div><div class="bsound">closed ends in a consonant</div>'},
+             {front:'<div class="mid">Tonic · pretonic · propretonic</div>', back:'<div class="bname">Named from the accent</div><div class="bsound">ultima · penultima · antepenultima are counted from the end</div>'}]);
+}
+
+/* ---- vocabulary: the 60 words ---- */
+function hPool(sel){ return sel === "all" ? HVOCAB.slice() : HVOCAB.filter(function(w){ return w.l === sel; }); }
+function hGlossKey(g){ return g.toLowerCase(); }            /* LORD and Lord count as one gloss */
+function hVocabQuestions(keys, sel, dir){
+  sel = sel || "all"; dir = dir || "both";
+  var pool = hPool(sel), all = HVOCAB;
+  if(keys) pool = HVOCAB.filter(function(w, i){ return keys.indexOf("hv:"+i) >= 0 || keys.indexOf("hve:"+i) >= 0; });
+  var n = sel === "all" && !keys ? 20 : Math.min(10, pool.length);
+  return pick(pool, n).map(function(w){
+    var i = HVOCAB.indexOf(w), toEng = dir === "he" ? true : dir === "en" ? false : Math.random() < 0.5;
+    if(keys) toEng = keys.indexOf("hv:"+i) >= 0;
+    var near = shuffle(all.filter(function(x){ return hGlossKey(x.g) !== hGlossKey(w.g); })).sort(function(a, b){ return (b.pos === w.pos) - (a.pos === w.pos); });
+    var ex = w.h+" — "+w.g+" ("+w.pos+", list "+w.l+").";
+    if(toEng){
+      var wr = uniqBy(near, function(x){ return hGlossKey(x.g); }).slice(0, 3).map(function(x){ return x.g; });
+      return {key:"hv:"+i, text:"What does this word mean?", glyph:w.h, gcls:"he word", opts:mkOpts(w.g, wr), explain:ex, miss:hMiss(heb(w.h), w.g)};
+    }
+    var wh = uniqBy(near, function(x){ return x.h; }).slice(0, 3).map(function(x){ return heb(x.h); });
+    return {key:"hve:"+i, text:"Which word means <b>“"+w.g+"”</b>?", opts:mkOpts(heb(w.h), wh, "heopt"), explain:ex, miss:hMiss(w.g, heb(w.h))};
+  });
+}
+function hVocabDeck(sel, front){
+  return hPool(sel).map(function(w){
+    var f = front === "english" ? '<div class="mid vmean">'+w.g+'</div><div class="hint">meaning</div>' : '<div class="big he vword">'+w.h+'</div><div class="hint">Hebrew word</div>';
+    return {front:f, back:'<div class="big he vword">'+w.h+'</div><div class="bname vgloss">'+w.g+'</div><div class="bsound">'+capFirst(w.pos)+' · list '+w.l+'</div>'};
+  });
+}
+function hVocabMatch(sel){
+  var items = uniqBy(hPool(sel).map(function(w){ return {id:w.h, left:w.h, right:w.g}; }), function(x){ return hGlossKey(x.right); });
+  return {leftTitle:"Hebrew word", rightTitle:"Meaning", rightCls:"glosses", items:pick(items, Math.min(10, items.length))};
+}
+
 /* ---- allow the pure parts to be tested outside a browser ---- */
 if(typeof window === "undefined"){
   module.exports = {translit:translit, rulesFor:rulesFor, judge:judge, distractorsFor:distractorsFor, LETTERS:LETTERS, TRANS:TRANS, BREATH_WORDS:BREATH_WORDS, PLACE:PLACE, DISTINCT:DISTINCT, FORM_GROUPS:FORM_GROUPS,
@@ -1932,7 +2372,10 @@ if(typeof window === "undefined"){
     PART_TENSES:PART_TENSES, PART_HAS:PART_HAS, PART_PARSE:PART_PARSE, PART_USES:PART_USES, PART_WORDS:PART_WORDS, PART_LISTS:PART_LISTS, COND_CLASSES:COND_CLASSES,
     partBank:partBank, partQuestions:partQuestions, partDeck:partDeck, condBank:condBank, condQuestions:condQuestions, condDeck:condDeck,
     PREPS:PREPS, prepQuestions:prepQuestions, judgeMeaning:judgeMeaning, rangeOf:rangeOf, selLabel:selLabel, quizSize:quizSize,
-    similarity:similarity, rankGlyphs:rankGlyphs, judgeDrawing:judgeDrawing, thin:thin, skeletonGrid:skeletonGrid, chamfer:chamfer, zoneFlags:zoneFlags, ZONES:ZONES};
+    similarity:similarity, rankGlyphs:rankGlyphs, judgeDrawing:judgeDrawing, thin:thin, skeletonGrid:skeletonGrid, chamfer:chamfer, zoneFlags:zoneFlags, ZONES:ZONES,
+    HLETTERS:HLETTERS, HLOOK:HLOOK, HSOUND_ALIKE:HSOUND_ALIKE, HFINALS:HFINALS, HBGDKPT:HBGDKPT, HVOWELS:HVOWELS, HVCLASS:HVCLASS, HDEFECTIVE:HDEFECTIVE, HVOCAB:HVOCAB, HLISTS:HLISTS,
+    hLetterBank:hLetterBank, hLetterQuestions:hLetterQuestions, hLetterDeck:hLetterDeck, hLetterMatch:hLetterMatch, hVowelBank:hVowelBank, hVowelQuestions:hVowelQuestions, hVowelDeck:hVowelDeck,
+    hPool:hPool, hVocabQuestions:hVocabQuestions, hVocabDeck:hVocabDeck, hVocabMatch:hVocabMatch, hWrongNames:hWrongNames, hLookalikes:hLookalikes};
   return;
 }
 
@@ -2818,6 +3261,113 @@ $("#vbShuffle").addEventListener("click", function(){ engines.verbCards.shuffle(
 $("#ptShuffle").addEventListener("click", function(){ engines.partCards.shuffle(); });
 $("#cdShuffle").addEventListener("click", function(){ engines.condCards.shuffle(); });
 $("#tmShuffle").addEventListener("click", function(){ engines.termCards.shuffle(); });
+/* ================================================================ Hebrew pages */
+var HGLYPH = {"final Mem":"ם", "final Nun":"ן", "final Kaf":"ך", "Taw with daghesh lene":"ת"+DAG, "Kaf with daghesh lene":"כ"+DAG};
+function hGlyphOf(name){ var d = hName(name); return HGLYPH[name] || (d ? d.g : ""); }
+function renderHLetters(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  $("#hLetChart").innerHTML =
+    '<p class="lead">Hebrew is read from <b>right to left</b>. Twenty-three consonants.</p>'+
+    '<div class="grid hgrid">'+HLETTERS.map(function(d){
+      return '<article class="card"><span class="num">'+pad(d.n)+'</span><div class="glyphs he" lang="he">'+d.g+'</div>'+
+        '<div class="name">'+d.name+'</div><div class="tr">'+d.tr+'</div><div class="sound">'+d.sound+'</div></article>';
+    }).join("")+'</div>'+
+    '<h2 class="h2">Five final forms</h2>'+D+
+    '<p class="lead">At the <b>end of a word</b> these five letters change shape. The sound and the transliteration stay the same.</p>'+
+    '<div class="tblwrap"><table class="tbl fit htbl"><thead><tr><th>Regular</th><th>Final</th><th>Example</th><th>Written</th><th>Meaning</th></tr></thead><tbody>'+
+    HFINALS.map(function(f){ return '<tr><td class="he hg">'+f.reg+'</td><td class="he hg">'+f.fin+'</td><td class="he hw">'+f.ex+'</td><td class="kw">'+f.tr+'</td><td class="mn">'+f.mean+'</td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Six begadkephat letters</h2>'+D+
+    '<p class="lead">A dot inside, the <b>daghesh lene</b>, makes the sound hard. No dot: soft.</p>'+
+    '<div class="tblwrap"><table class="tbl fit htbl"><thead><tr><th>Letter</th><th>Hard (with dot)</th><th>Soft (no dot)</th></tr></thead><tbody>'+
+    HBGDKPT.map(function(b){ return '<tr><td class="cs">'+b.name+'</td><td><span class="he hg">'+b.g+DAG+'</span> &nbsp;'+b.hard+' <span class="kw">'+b.htr+'</span></td><td><span class="he hg">'+b.g+'</span> &nbsp;'+b.soft+' <span class="kw">'+b.str+'</span></td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Easily confused</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>They look alike</h4>'+HLOOK.map(function(g){ return '<p>'+g.map(function(n){ return '<span class="he hs">'+hGlyphOf(n)+'</span> '+n; }).join(' &nbsp;&middot;&nbsp; ')+'</p>'; }).join("")+'</div>'+
+    '<div class="rule"><h4>They sound alike</h4>'+HSOUND_ALIKE.map(function(g){ return '<p>'+g.map(function(n){ return '<span class="he hs">'+hGlyphOf(n)+'</span> '+n; }).join(' &nbsp;&middot;&nbsp; ')+'</p>'; }).join("")+'</div></div>';
+}
+function renderHVowels(){
+  var D = '<div class="divider"><span>&#9670;</span></div>';
+  var rows = ["short","changeable","unchangeable","reduced"], cols = ["a","e","i","o","u"];
+  function cell(c, t){
+    var vs = HVOWELS.filter(function(v){ return v.cls === c && v.type === t; });
+    return '<td>'+vs.map(function(v){ return '<div class="hv"><span class="he hg">'+v.g+'</span><span class="hn">'+v.name+'</span></div>'; }).join("")+'</td>';
+  }
+  $("#hVowLearn").innerHTML =
+    '<h2 class="h2">The vowels are marks</h2>'+D+
+    '<p class="lead">The consonants came first; the vowel points were added under, over and beside them. Deuteronomy 6:5:</p>'+
+    '<div class="hverse"><p class="he" lang="he">ואהבת את יהוה אלהיך בכל לבבך</p><p class="cap">no vowel pointing</p>'+
+    '<p class="he" lang="he">וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ</p><p class="cap">with vowel pointing</p></div>'+
+    '<h2 class="h2">The summary chart</h2>'+D+
+    '<p class="lead">Every vowel is shown on <span class="he">בּ</span>, as on your handout.</p>'+
+    '<div class="tblwrap"><table class="tbl hvchart"><thead><tr><th></th>'+cols.map(function(c){ return '<th>'+c+'</th>'; }).join("")+'</tr></thead><tbody>'+
+    rows.map(function(r){ return '<tr><td class="cs">'+HVCLASS[r]+'</td>'+cols.map(function(c){ return cell(r, c); }).join("")+'</tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<p class="note"><b>Qamets</b> and <b>Qamets Hatuf</b> are the same mark <span class="he">בָּ</span>: long ā (father) or short o (bottle).</p>'+
+    rows.map(function(r){
+      return '<h2 class="h2">'+HVCLASS[r]+' vowels</h2>'+D+
+        '<div class="tblwrap"><table class="tbl fit htbl"><thead><tr><th>Vowel</th><th>Name</th><th>Sounds like</th><th>Written</th></tr></thead><tbody>'+
+        HVOWELS.filter(function(v){ return v.cls === r; }).map(function(v){ return '<tr><td class="he hg">'+v.g+'</td><td class="cs">'+v.name+'</td><td class="it">'+v.sound+'</td><td class="kw">'+v.tr+'</td></tr>'; }).join("")+
+        '</tbody></table></div>';
+    }).join("")+
+    '<h2 class="h2">Shewa and the daghesh forte</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Shewa &nbsp;<span class="he hs">בְּ</span></h4><p>Not on the vowel charts: it is not like any other vowel and belongs to no phonetic class.</p><p>Two kinds: <b>silent</b> Shewa and <b>vocal</b> Shewa.</p></div>'+
+    '<div class="rule"><h4>Daghesh forte &nbsp;<span class="he hs">בּ</span></h4><p>Looks exactly like the daghesh lene, but it <b>doubles</b> the consonant.</p><p class="ex"><span class="he">הַשָּׁמַיִם</span> the heavens = ha<b>šš</b>āmayim</p><p>Never in the gutturals <span class="he">א ע ה ח</span> or in <span class="he">ר</span>.</p></div></div>'+
+    '<h2 class="h2">Defective writing</h2>'+D+
+    '<div class="tblwrap"><table class="tbl fit htbl"><thead><tr><th>Full</th><th>Defective</th><th>Change</th><th>Meaning</th></tr></thead><tbody>'+
+    HDEFECTIVE.map(function(d){ return '<tr><td class="he hw">'+d.full+'</td><td class="he hw">'+d.def+'</td><td class="it">'+d.from+' &rarr; '+d.to+'</td><td class="mn">'+d.mean+'</td></tr>'; }).join("")+
+    '</tbody></table></div>'+
+    '<h2 class="h2">Syllables</h2>'+D+
+    '<div class="rules"><div class="rule"><h4>Rule 1</h4><p>Every syllable <b>begins with one consonant</b> and has <b>only one vowel</b>.</p><p class="ex"><span class="he">דָּבָר</span> &rarr; <span class="he">דָּ|בָר</span> dā-ḇār</p></div>'+
+    '<div class="rule"><h4>Rule 2</h4><p>Only two kinds: <b>open</b> ends in a vowel (<span class="he">דָּ</span> dā); <b>closed</b> ends in a consonant (<span class="he">בָר</span> ḇār).</p></div>'+
+    '<div class="rule"><h4>Accent</h4><p>Most words are stressed on the <b>last syllable</b>. When not, an accent mark shows the stress, as in <span class="he">סֵפֶר</span>.</p></div>'+
+    '<div class="rule"><h4>Naming syllables</h4><p class="ex"><span class="he">דְּ|בָ|רִים</span></p><p>From the accent: <b>tonic</b> (accented), <b>pretonic</b>, <b>propretonic</b>.</p><p>From the end: <b>ultima</b>, <b>penultima</b>, <b>antepenultima</b>.</p></div></div>';
+}
+var hvSel = "all", hvDir = "both", hvFront = "hebrew", hvMask = "none";
+function hvLabel(){ return hvSel === "all" ? "All 60 words" : "List "+hvSel; }
+function renderHVocabList(){
+  var hideH = hvMask === "hebrew" ? " veil" : "", hideM = hvMask === "meaning" ? " veil" : "";
+  var all = hvSel === "all";
+  $("#hVocList").innerHTML = '<h2 class="h2">'+hvLabel()+'</h2><div class="divider"><span>&#9670;</span></div>'+
+    '<div class="tblwrap"><table class="tbl vocab htbl"><thead><tr><th>#</th>'+(all ? '<th>List</th>' : '')+'<th>Hebrew word</th><th>Part of speech</th><th>Meaning</th></tr></thead><tbody>'+
+    hPool(hvSel).map(function(w, i){
+      return '<tr'+(hvMask !== "none" ? ' class="masked"' : '')+'><td class="rk">'+pad(i+1)+'</td>'+(all ? '<td class="rk">'+w.l+'</td>' : '')+
+        '<td class="he hw'+hideH+'">'+w.h+'</td><td class="it">'+w.pos+'</td><td class="mn'+hideM+'">'+w.g+'</td></tr>';
+    }).join("")+'</tbody></table></div>';
+  $$("#hVocList tr.masked").forEach(function(r){ r.addEventListener("click", function(){ $$(".veil", r).forEach(function(v){ v.classList.toggle("shown"); }); }); });
+}
+engines.hLetCards = makeCards($("#hLetCards")); engines.hLetCards.load(hLetterDeck("letters"));
+engines.hLetMatch = makeMatch($("#hLetMatch"), hLetterMatch);
+engines.hLetQuiz  = makeQuiz($("#hLetQuiz"), hLetterQuestions);
+engines.hVowCards = makeCards($("#hVowCards")); engines.hVowCards.load(hVowelDeck());
+engines.hVowQuiz  = makeQuiz($("#hVowQuiz"), hVowelQuestions);
+engines.hVocCards = makeCards($("#hVocCards"));
+engines.hVocMatch = makeMatch($("#hVocMatch"), function(){ return hVocabMatch(hvSel); });
+engines.hVocQuiz  = makeQuiz($("#hVocQuiz"), function(keys){ return hVocabQuestions(keys, hvSel, hvDir); });
+renderHLetters(); renderHVowels();
+(function(){
+  var s = store.get("hv.sel"), d = store.get("hv.dir"), f = store.get("hv.front");
+  if(s && (s === "all" || /^[1-6]$/.test(s))) hvSel = s === "all" ? "all" : parseInt(s, 10);
+  if(d && /^(he|en|both)$/.test(d)) hvDir = d;
+  if(f && /^(hebrew|english)$/.test(f)) hvFront = f;
+  function press(seg, attr, val){ $$(seg+" button").forEach(function(x){ x.setAttribute("aria-pressed", String(x.getAttribute(attr) === String(val))); }); }
+  press("#hvListSeg", "data-hvlist", hvSel); press("#hvDirSeg", "data-hvdir", hvDir); press("#hvFrontSeg", "data-hvfront", hvFront);
+})();
+renderHVocabList(); engines.hVocCards.load(hVocabDeck(hvSel, hvFront));
+segWire("#hLetDeckSeg", "data-hdeck", function(v){ engines.hLetCards.load(hLetterDeck(v)); });
+$("#hLetShuffle").addEventListener("click", function(){ engines.hLetCards.shuffle(); });
+$("#hLetNew").addEventListener("click", function(){ engines.hLetMatch.round(); });
+$("#hVowShuffle").addEventListener("click", function(){ engines.hVowCards.shuffle(); });
+segWire("#hvListSeg", "data-hvlist", function(v){
+  hvSel = v === "all" ? "all" : parseInt(v, 10); store.set("hv.sel", v);
+  renderHVocabList(); engines.hVocCards.load(hVocabDeck(hvSel, hvFront)); engines.hVocMatch.round(); engines.hVocQuiz.start(null);
+});
+segWire("#hvDirSeg", "data-hvdir", function(v){ hvDir = v; store.set("hv.dir", v); engines.hVocQuiz.start(null); });
+segWire("#hvFrontSeg", "data-hvfront", function(v){ hvFront = v; store.set("hv.front", v); engines.hVocCards.load(hVocabDeck(hvSel, hvFront)); });
+segWire("#hvMaskSeg", "data-hvmask", function(v){ hvMask = v; renderHVocabList(); });
+$("#hvShuffle").addEventListener("click", function(){ engines.hVocCards.shuffle(); });
+$("#hvNew").addEventListener("click", function(){ engines.hVocMatch.round(); });
+
 
 var frontMode = "up", deckMode = "forms";
 segWire("#maskSeg", "data-mask", function(v){ maskMode = v; renderReview(); });
@@ -2900,7 +3450,12 @@ var ON_SHOW = {
   "preps/quiz":     function(){ engines.prepQuiz.ensure(); },
   "parts/quiz":     function(){ engines.partQuiz.ensure(); },
   "conds/quiz":     function(){ engines.condQuiz.ensure(); },
-  "terms/quiz":     function(){ engines.termQuiz.ensure(); }
+  "terms/quiz":     function(){ engines.termQuiz.ensure(); },
+  "hlet/match":     function(){ engines.hLetMatch.ensure(); },
+  "hlet/quiz":      function(){ engines.hLetQuiz.ensure(); },
+  "hvow/quiz":      function(){ engines.hVowQuiz.ensure(); },
+  "hvoc/match":     function(){ engines.hVocMatch.ensure(); },
+  "hvoc/quiz":      function(){ engines.hVocQuiz.ensure(); }
 };
 var KEYS = {
   "alphabet/cards": function(e){ return engines.alphaCards.keys(e); },
@@ -2920,12 +3475,18 @@ var KEYS = {
   "conds/quiz":     function(e){ return engines.condQuiz.keys(e); },
   "terms/cards":    function(e){ return engines.termCards.keys(e); },
   "terms/quiz":     function(e){ return engines.termQuiz.keys(e); },
-  "exam/page":      function(e){ return engines.exam ? engines.exam.keys(e) : false; }
+  "exam/page":      function(e){ return engines.exam ? engines.exam.keys(e) : false; },
+  "hlet/cards":     function(e){ return engines.hLetCards.keys(e); },
+  "hlet/quiz":      function(e){ return engines.hLetQuiz.keys(e); },
+  "hvow/cards":     function(e){ return engines.hVowCards.keys(e); },
+  "hvow/quiz":      function(e){ return engines.hVowQuiz.keys(e); },
+  "hvoc/cards":     function(e){ return engines.hVocCards.keys(e); },
+  "hvoc/quiz":      function(e){ return engines.hVocQuiz.keys(e); }
 };
-var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn", parts:"learn", conds:"learn", exam:"page", articles:"learn", adjs:"learn", infs:"learn", terms:"learn"};
-/* the main bar has five tabs; Alphabet and Grammar each open a second row */
-var GROUP = {alphabet:"alphabet", sounds:"alphabet", cases:"grammar", articles:"grammar", adjs:"grammar", verbs:"grammar", preps:"grammar", parts:"grammar", infs:"grammar", conds:"grammar", terms:"grammar"};
-var lastIn = {alphabet:"alphabet", grammar:"cases"};
+var currentTopic = "alphabet", currentMode = {alphabet:"chart", sounds:"learn", translit:"rules", cases:"table", vocab:"list", verbs:"learn", preps:"learn", parts:"learn", conds:"learn", exam:"page", articles:"learn", adjs:"learn", infs:"learn", terms:"learn", hlet:"chart", hvow:"learn", hvoc:"list"};
+/* the main bar has six tabs; Alphabet, Grammar and Hebrew each open a second row */
+var GROUP = {alphabet:"alphabet", sounds:"alphabet", cases:"grammar", articles:"grammar", adjs:"grammar", verbs:"grammar", preps:"grammar", parts:"grammar", infs:"grammar", conds:"grammar", terms:"grammar", hlet:"hebrew", hvow:"hebrew", hvoc:"hebrew"};
+var lastIn = {alphabet:"alphabet", grammar:"cases", hebrew:"hlet"};
 function showMode(topic, mode){
   currentMode[topic] = mode;
   $$('.seg[data-modes="'+topic+'"] button').forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode)); });
@@ -2969,7 +3530,7 @@ if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
 /* ---- restore where you were ---- */
 (function(){
   var t = store.get("topic");
-  ["alphabet","sounds","translit","cases","vocab","verbs","preps","parts","conds","terms"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
+  ["alphabet","sounds","translit","cases","vocab","verbs","preps","parts","conds","terms","hlet","hvow","hvoc"].forEach(function(k){ var m = store.get("mode."+k); if(m && $('.seg[data-modes="'+k+'"] button[data-mode="'+m+'"]')) currentMode[k] = m; });
   showTopic(t && $('#topic-'+t) ? t : "alphabet");
 })();
 
